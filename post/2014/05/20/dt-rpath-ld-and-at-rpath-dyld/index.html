@@ -192,7 +192,9 @@ libraries<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>.</p>
 <code>-Wl,-rpath,@executable_path</code> magic, but note that instead of $ORIGIN,
 you use @executable_path or @loader_path. @executable_path behaves
 like $ORIGIN, @loader_path is the directory of whatever object is doing the
-loading, which could be a dylib that your application has loaded.</p>
+loading, which could be a dylib that your application has loaded. For
+details, <a href="https://wincent.com/wiki/@executable_path,_@load_path_and_@rpath">read this excellent article by Wincent Colaiuta</a> and
+<a href="https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html">this blog post by Mike Ash</a>.</p>
 
 <p>This rpath does <em>not</em> do anything by default. To make it take effect,
 the install name for the shared library has to start with <code>@rpath/</code> &mdash;
