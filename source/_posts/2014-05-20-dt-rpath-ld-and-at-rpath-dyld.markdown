@@ -94,7 +94,9 @@ Your application can set its own rpath at link-time using the same
 `-Wl,-rpath,@executable_path` magic, but note that instead of $ORIGIN,
 you use @executable\_path or @loader\_path. @executable\_path behaves
 like $ORIGIN, @loader\_path is the directory of whatever object is doing the
-loading, which could be a dylib that your application has loaded.
+loading, which could be a dylib that your application has loaded. For
+details, [read this excellent article by Wincent Colaiuta][at-paths] and
+[this blog post by Mike Ash][at-paths-ash].
 
 This rpath does *not* do anything by default. To make it take effect,
 the install name for the shared library has to start with `@rpath/` --
@@ -123,3 +125,5 @@ your game outside of Steam.
 [^5]: See the man page for install\_name\_tool (`install_name_tool -change old.dylib @rpath/new.dylib my_application`)
 
 [steam-runtime]: https://github.com/ValveSoftware/steam-runtime
+[at-paths]: https://wincent.com/wiki/@executable_path,_@load_path_and_@rpath
+[at-paths-ash]: https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html
