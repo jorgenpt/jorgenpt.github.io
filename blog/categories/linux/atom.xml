@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Linux | Jørgen's Blog]]></title>
+  <link href="http://jorgenpt.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://jorgenpt.github.io/"/>
   <updated>2014-05-20T23:28:30-07:00</updated>
   <id>http://jorgenpt.github.io/</id>
@@ -20,7 +20,7 @@
     <id>http://jorgenpt.github.io/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
     <content type="html"><![CDATA[<p>Mac and Linux have two similarly named concepts that both deal with
 dynamic loading, that behave quite differently: <code>@rpath</code> (under Mac OS
-X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux&#8217; ld.)</p>
+X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux' ld.)</p>
 
 <p>Having done development (and more importantly, deployment) on both of
 these platforms, I&rsquo;ve experienced first-hand how those concepts can get
@@ -39,19 +39,20 @@ link-time with the <code>-rpath</code> option to <code>ld</code>.  If you invoke
 option to pass arguments through to <code>ld</code>. You use commas to separate
 arguments passed to <code>-Wl</code>.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gcc program.c -lm -o program '-Wl,-rpath,$ORIGIN/lib'
-</span><span class='line'>$ ldd program | grep libm
-</span><span class='line'>        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f3b9ad94000)
-</span><span class='line'>$ mkdir lib && cp /lib/x86_64-linux-gnu/libm.so.6
-</span><span class='line'>$ ldd program | grep libm
-</span><span class='line'>        libm.so.6 =&gt; /home/jorgenpt/lib/libm.so.6 (0x00007f1440b0c000)</span></code></pre></td></tr></table></div></figure>
+<p>```
+$ gcc program.c -lm -o program &lsquo;-Wl,-rpath,$ORIGIN/lib&rsquo;
+$ ldd program | grep libm</p>
 
+<pre><code>    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f3b9ad94000)
+</code></pre>
+
+<p>$ mkdir lib &amp;&amp; cp /lib/x86_64-linux-gnu/libm.so.6
+$ ldd program | grep libm</p>
+
+<pre><code>    libm.so.6 =&gt; /home/jorgenpt/lib/libm.so.6 (0x00007f1440b0c000)
+</code></pre>
+
+<p>```</p>
 
 <p>The snippet above also shows one of the three special variables<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> you
 can include in an rpath, $ORIGIN. $ORIGIN gets replaced at runtime with
