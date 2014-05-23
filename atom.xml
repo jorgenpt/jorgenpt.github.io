@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="http://jorgenpt.github.io/atom.xml" rel="self"/>
   <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-22T23:46:52-07:00</updated>
+  <updated>2014-05-23T00:00:35-07:00</updated>
   <id>http://jorgenpt.github.io/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -148,6 +148,36 @@ your game outside of Steam.</p>
 </ol>
 </div>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to a new blog!]]></title>
+    <link href="http://jorgenpt.github.io/post/2014/05/19/moving-to-a-new-blog/"/>
+    <updated>2014-05-19T19:36:01-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2014/05/19/moving-to-a-new-blog</id>
+    <content type="html"><![CDATA[<p>I have decided to retire my old <a href="http://jorgenpt.tumblr.com/">tumblr blog</a> in favor of this
+new <a href="http://jorgen.tjer.no">octopress blog</a>. The reason for doing so is both that when it
+comes to a blog, I&rsquo;d really like to own my own data, and that tumblr&rsquo;s
+feature-set has bothered me in the past (with no way of improving it.)</p>
+
+<p>With <a href="http://octopress.org">octopress</a> all my posts are simple markdown documents
+managed <a href="https://github.com/jorgenpt/jorgenpt.github.io">in a git repository</a>, that gets transformed into
+static content. That way, I both have the raw input for my blog, but
+also static output, which I can host anywhere else if I decide that I
+don&rsquo;t like GitHub any more.</p>
+
+<p>In addition, octopress is open source (and uses <a href="https://github.com/jekyll/jekyll">jekyll</a>, an
+excellent static site generator), so if I need / desire to change
+anything, I can.</p>
+
+<p>With this transition, my blog also needed a new domain. Peferably it
+would be one I owned, so I can easily move the blog to another host if
+it came to it, unlike what I could with my old tumblr blog.</p>
+
+<p>I chose to use my tjer.no domain &ndash; and now the URL is jorgen.tjer.no!</p>
+
+<p>Now I just need to actually keep posting to it on a semi-regular basis.</p>
 ]]></content>
   </entry>
   
