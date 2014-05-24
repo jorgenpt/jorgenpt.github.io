@@ -1,0 +1,20 @@
+---
+layout: post
+title: 'Dungeon Fodder Update #7'
+date: '2012-05-28T16:59:00-07:00'
+tags:
+- game development
+- Unity3D
+- dungeon fodder
+- dfodder
+tumblr_url: http://jorgenpt.tumblr.com/post/23962832741/dev-diary-007
+---
+
+{% youtube yX0M2LjnyOc %}
+
+A little busy the past two weeks (Diablo 3 and a lot to do at work), but here's what I had time to do:
+
+* Reworked minimap
+* Inventory management
+* New spell, "Barrier"
+* Non-active player switched to [Behave](http://angryant.com/behave)-based AI - he now shoots at enemies!
