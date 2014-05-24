@@ -1,3 +1,6 @@
 [submodule ".themes/octostrap3"]
 	path = .themes/octostrap3
 	url = https://github.com/kAworu/octostrap3
+[submodule "external-repos/jekyll_alias_generator"]
+	path = external-repos/jekyll_alias_generator
+	url = https://github.com/tsmango/jekyll_alias_generator
