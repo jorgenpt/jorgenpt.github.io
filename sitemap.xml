@@ -1,16 +1,134 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://jorgenpt.github.io/post/2010/12/06/chocolate-landscape/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2011/02/21/gui-frustration/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/04/14/dungeon-fodder/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/04/19/first-video-of-gameplay-from-my-alpha-game/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/04/20/unity-utilities/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/04/27/inventory-minimap/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/04/29/dungeon-generation/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/05/05/its-a-party/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/05/19/minimap-cleanup/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/05/26/inventory-management/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/05/28/dev-diary-007/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/
+        </loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/06/18/lack-of-updates-for-a-few-weeks/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/09/09/announcing-arcane-deathmatch/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/10/01/arcane-dm-first-progress-update/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2012/10/28/droidcon-uk-2012-slides-recap/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/</loc>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://jorgenpt.github.io/post/2014/05/19/moving-to-a-new-blog/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/archives/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/assets/bootstrap/docs/about.html</loc>
@@ -34,7 +152,7 @@
     </url>
     <url>
         <loc>http://jorgenpt.github.io/assets/bootstrap/docs/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/assets/bootstrap/docs/javascript.html</loc>
@@ -46,15 +164,15 @@
     </url>
     <url>
         <loc>http://jorgenpt.github.io/blog/archives/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/blog/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/</loc>
-        <lastmod>2014-05-23T00:01:06-07:00</lastmod>
+        <lastmod>2014-05-23T23:17:49-07:00</lastmod>
     </url>
     <url>
         <loc>http://jorgenpt.github.io/robots.txt</loc>

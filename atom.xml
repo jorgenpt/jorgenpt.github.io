@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="http://jorgenpt.github.io/atom.xml" rel="self"/>
   <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-23T00:01:22-07:00</updated>
+  <updated>2014-05-23T23:22:45-07:00</updated>
   <id>http://jorgenpt.github.io/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -167,6 +167,9 @@ static content. That way, I both have the raw input for my blog, but
 also static output, which I can host anywhere else if I decide that I
 don&rsquo;t like GitHub any more.</p>
 
+<!-- more -->
+
+
 <p>In addition, octopress is open source (and uses <a href="https://github.com/jekyll/jekyll">jekyll</a>, an
 excellent static site generator), so if I need / desire to change
 anything, I can.</p>
@@ -178,6 +181,452 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 <p>I chose to use my tjer.no domain &ndash; and now the URL is jorgen.tjer.no!</p>
 
 <p>Now I just need to actually keep posting to it on a semi-regular basis.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
+    <link href="http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
+    <updated>2014-03-19T14:04:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
+
+<p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
+
+<p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
+
+<p>Lastly, Epic is trying to encourage an open development process &ndash; both by them and by their licensees. That&rsquo;s pretty cool &ndash; I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
+
+<p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Droidcon UK 2012: Slides & recap]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/10/28/droidcon-uk-2012-slides-recap/"/>
+    <updated>2012-10-28T09:09:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/10/28/droidcon-uk-2012-slides-recap</id>
+    <content type="html"><![CDATA[<p>On Friday I spoke at <a href="http://uk.droidcon.com">Droidcon UK 2012</a>, and it was my very first conference talk, titled <a href="http://uk.droidcon.com/2012/sessions/the-butler-did-it-continuously-building-enforcing-app-quality-using-jenkins/">The Butler Did It: Continuously building &amp; enforcing app quality using Jenkins</a>.</p>
+
+<p>I did the talk together with <a href="http://chris.orr.me.uk/+">Christopher Orr</a>, and the topic was using <a href="http://jenkins-ci.org/">Jenkins CI</a> and <a href="http://code.google.com/p/gerrit/">Gerrit</a> to improve app quality when building Android software. It also included a short rant about the Android NDK. I thought it went surprisingly well, especially considering I was fueled by only 5 hours of sleep!</p>
+
+<p>The turn-out was great &ndash; every seat was occupied, and we got a lot of interest in the form of questions afterwards. Here you can find the source material for our talk &ndash; our slides are pretty light on text, so we also have a version with a more fleshed out version of our speaker notes.</p>
+
+<p>I&rsquo;ve been told by the Droidcon organizers that they&rsquo;ll publish the video from the talk. I&rsquo;ll post an update once that&rsquo;s available.</p>
+
+<p>In addition, the demo doesn&rsquo;t have any audio or captioning so far, but hopefully we&rsquo;ll update soon with a narrated or captioned video.</p>
+
+<ul>
+<li><a href="https://dl.dropbox.com/u/987046/Presentations/droidcon_slides_with_notes.pdf">Slides with notes (PDF)</a></li>
+<li><a href="https://dl.dropbox.com/u/987046/Presentations/droidcon_slides.pdf">Slides without notes (PDF)</a></li>
+<li><a href="http://youtu.be/E3ZHBD1Med8">Jenkins &amp; Android demo (YouTube)</a></li>
+</ul>
+
+
+<p>If you&rsquo;d like to contact me or Chris, the contact information is on the last slide.</p>
+
+<p><strong>EDIT April 2014</strong>: I finally found the video of the talk, it requires a (free) sign-up, and is <a href="https://skillsmatter.com/skillscasts/3729-the-butler-did-it-continuously-building-enforcing-app-quality-using-jenkins">available on SkillsMatter.com</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <updated>2012-10-06T15:41:16-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div>
+
+
+<p>So far the game has:</p>
+
+<ul>
+<li>Working networking</li>
+<li>Simple network lobby</li>
+<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Three initial spells (magic missile, infernal nova, teleport)</li>
+<li>A very boring level</li>
+<li>A reward system for kills</li>
+<li>A round system with a &ldquo;last man standing&rdquo; victory condition</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <updated>2012-10-06T15:24:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
+
+<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
+
+<p>Some very useful things I learned include:</p>
+
+<ul>
+<li>Controls need to be thought about very carefully, and tested on real people. What seems fine when you&rsquo;re just testing around the environment is experienced completely differently when you&rsquo;re in an action-packed fight.</li>
+<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important &ndash; even early on. People need to find the information and actions they care about!</li>
+<li>Pacing is very important, and hard to get right &ndash; there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
+</ul>
+
+
+<p>There were a lot of other subtle bugs and improvements I found through this little hour of gameplay. As an example, camera movement is currently not animated, which makes Teleport <strong>very</strong> jarring.</p>
+
+<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) &ndash; and then I can get a better feel for how pacing and balancing needs to be done.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Arcane DM: First progress update]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/10/01/arcane-dm-first-progress-update/"/>
+    <updated>2012-10-01T23:58:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/10/01/arcane-dm-first-progress-update</id>
+    <content type="html"><![CDATA[<p>While work is keeping me busy, over the past few weeks I&rsquo;ve had a couple of good evenings to work on Arcane Deathmatch.</p>
+
+<p>Last weekend I poked around with a second spell, &ldquo;Infernal Nova&rdquo;:</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/e_HNPJ92-H0" allowfullscreen></iframe></div>
+
+
+<p>This Saturday I added a leader board, a gold reward when you kill someone, and fixed some bugs. Tonight I added a UI for shopping spells, made the leader board prettier, and added a Teleport spell. Woo! Check it out below:</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/YFKmtO05VjU" allowfullscreen></iframe></div>
+
+
+<p>Hopefully I&rsquo;ll keep making steady progress and I can start very very early tests against real people this week or next.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/09/09/announcing-arcane-deathmatch/"/>
+    <updated>2012-09-09T15:10:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/09/09/announcing-arcane-deathmatch</id>
+    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
+
+<p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
+
+<p>Every time you&rsquo;re hit by a spell, you lose some health and get knocked back. The less health you have, the easier you are to knock around. If you get knocked off the map, you&rsquo;ll probably sustain damage wading through a lava pit, be nibbled on by piranhas as you swim to shore, or fall off the map.</p>
+
+<p><img class="center" src="http://jorgenpt.github.io/images/early_adm.png"></p>
+
+<p>So far, I&rsquo;ve got rudimentary networking and gameplay working &ndash; two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much &ndash; but that&rsquo;s never stopped me before! ;&ndash;)</p>
+
+<p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
+
+<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lack of updates for a few weeks]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/06/18/lack-of-updates-for-a-few-weeks/"/>
+    <updated>2012-06-18T12:41:38-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/06/18/lack-of-updates-for-a-few-weeks</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.</p>
+
+<p>I&rsquo;m in the middle of organizing a wedding reception, so there won&rsquo;t be any time for working on my projects until after the 26th of June. I look forward to getting back to it!</p>
+
+<p>So far, updates have been on a weekly schedule. I intend to continue with that pace &ndash; or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
+
+<p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Requiring a minimum version of the Android SDK]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
+    <updated>2012-06-05T16:40:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
+    <content type="html"><![CDATA[<p>(This is similar to <a href="http://jorgenpt.github.io/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
+
+<p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
+
+<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers &ndash; we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
+
+<p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
+
+<p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
+
+<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :&ndash;)</p>
+
+<figure class='code'><figcaption><span>Makefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="cp">ifneq ($(shell $(LOCAL_PATH)/assert_sdk_version.sh &quot;r19&quot;),true)</span>
+</span><span class='line'>  <span class="k">$(</span>error SDK version r19 or greater required<span class="k">)</span>
+</span><span class='line'><span class="cp">endif</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;re curious how this works: It checks the <code>tools/source.properties</code> file in your Android SDK, looking for a line like <code>Pkg.Revision=XX</code>, and extracts the version (<code>XX</code>) from that.</p>
+
+<p>It&rsquo;s pretty straight forward, but I couldn&rsquo;t find anything online on how to check the SDK version from the command line, so I figured I&rsquo;d share it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #7]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/28/dev-diary-007/"/>
+    <updated>2012-05-28T16:59:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/28/dev-diary-007</id>
+    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div>
+
+
+<p>A little busy the past two weeks (Diablo 3 and a lot to do at work), but here&rsquo;s what I had time to do:</p>
+
+<ul>
+<li>Reworked minimap</li>
+<li>Inventory management</li>
+<li>New spell, &ldquo;Barrier&rdquo;</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI &ndash; he now shoots at enemies!</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Inventory management]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/26/inventory-management/"/>
+    <updated>2012-05-26T14:39:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/26/inventory-management</id>
+    <content type="html"><![CDATA[<p>I added some rudimentary (but functional) inventory management:</p>
+
+<p><img class="center" src="http://i.imgur.com/7nQjQ.gif"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Minimap cleanup]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/19/minimap-cleanup/"/>
+    <updated>2012-05-19T13:58:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/19/minimap-cleanup</id>
+    <content type="html"><![CDATA[<p>Didn&rsquo;t get too much done this week, but I cleaned up the minimap:</p>
+
+<p>Minimap before:<br/>
+<img src="http://i.imgur.com/0z7oB.png" title="&#34;Minimap before&#34;" alt="&#34;Minimap before&#34;"></p>
+
+<p>Minimap after:<br/>
+<img src="http://i.imgur.com/9wMdz.png" title="&#34;Minimap after&#34;" alt="&#34;Minimap after&#34;"></p>
+
+<p>I also added a dungeon level indicator:<br/>
+<img src="http://i.imgur.com/dXnTI.png" title="&#34;Dungeon level indicator&#34;" alt="&#34;Dungeon level indicator&#34;"></p>
+
+<p>And finally I switched the non-player character to use the same AI engine as the zombies (<a href="http://angryant.com/behave">AngryAnt&rsquo;s Behave</a>), though with a different behavior tree. So far this just means that the non-player character actually attacks enemies. Woo!</p>
+
+<p>Hopefully I&rsquo;ll have time to make the inventory management more complete and do a dev diary this weekend. We&rsquo;ll see.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #6]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
+    <updated>2012-05-12T22:21:10-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
+    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/kHIqzAOQwIM" allowfullscreen></iframe></div>
+
+
+<p>This week I added level transitions and automatic saves! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #5]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/05/its-a-party/"/>
+    <updated>2012-05-05T17:31:27-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/05/its-a-party</id>
+    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/HopI5Rfcf8k" allowfullscreen></iframe></div>
+
+
+<p>Not too much time this week: I added a second (simultaneous) character and some more rudimentary UI.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #4: Dungeon generation]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/29/dungeon-generation/"/>
+    <updated>2012-04-29T20:23:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/29/dungeon-generation</id>
+    <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="http://jorgenpt.github.io/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
+
+
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms &ndash; some of them will be &ldquo;special&rdquo; rooms.</p>
+
+<p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+
+<h3>Rooms</h3>
+
+<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
+
+<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
+
+<h3>Placement</h3>
+
+<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
+
+<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
+
+<h3>Monsters &amp; loot</h3>
+
+<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
+
+<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
+
+<h3>Paths</h3>
+
+<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
+
+<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
+
+<h3>Questions? Comments?</h3>
+
+<p>Feel free to contact me on <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#106;&#111;&#x72;&#x67;&#101;&#x6e;&#112;&#116;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x6a;&#x6f;&#114;&#103;&#101;&#x6e;&#112;&#x74;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Inventory, minimap]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/27/inventory-minimap/"/>
+    <updated>2012-04-27T11:02:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/27/inventory-minimap</id>
+    <content type="html"><![CDATA[<p>This week I&rsquo;ve been deep in non-visible changes, working on a dungeon generator. While there&rsquo;s not any good visible output yet, here&rsquo;s the other stuff I had time to do this week:</p>
+
+<p>Basic inventory, supports drag, still missing drop (and on-hover descriptions) ^_^<br/>
+<img src="http://jorgenpt.github.io/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
+
+<p>Initial minimap &ndash; should probably not render lighting etc, but it works!<br/>
+<img src="http://jorgenpt.github.io/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #3]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/"/>
+    <updated>2012-04-23T00:31:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this</id>
+    <content type="html"><![CDATA[<p>Not too much time this Sunday, but I added some very rudimentary loot support: Boots of speed +50%!</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/Qf7OgHpw5_M" allowfullscreen></iframe></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #2]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/"/>
+    <updated>2012-04-21T02:08:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud</id>
+    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/uH2lyRBXMe0" allowfullscreen></iframe></div>
+
+
+<p>Path finding, HUD, health, and player death.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Livecasting your desktop in OS X]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/"/>
+    <updated>2012-04-21T00:04:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop</id>
+    <content type="html"><![CDATA[<p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
+<strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
+
+<p>Turns out that livecasting your desktop in OS X is surprisingly hard. I found two ways online, none of which satisfied me, so I hunted for my own.</p>
+
+<h3>Adobe Flash Media Live Encoder, CamTwist &amp; Soundflower</h3>
+
+<p>This method, <a href="http://www.mikechambers.com/blog/2011/05/29/setting-up-desktop-streaming-on-mac-os-x/">described by Mike Chambers</a>, relied on three separate GUI tools (one of which was required the Adobe Flash Media Live Encoder), consumed all my CPU, and refused to support my 16:10 aspect ratio. Yikes.</p>
+
+<h3>Ustream Producer</h3>
+
+<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
+
+<h3>My own</h3>
+
+<p>So, based on <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s Linux approach</a>, I tried getting something similar working on OS X. It only used ffmpeg, and seemed to work pretty well.</p>
+
+<p>Surprisingly, my researched ended up with the following results:
+ 1. <code>ffmpeg</code> doesn&rsquo;t support screen grabbing on OS X
+ 1. <code>ffmpeg</code> doesn&rsquo;t have a single audio input that can read an audio device on OS X (see OpenAL section below)
+ 1. <code>ffmpeg</code> can&rsquo;t record a web cam on OS X (this would allow me to use CamTwist as an input source)
+ 1. VLC doesn&rsquo;t support streaming to an RTMP server
+ 1. VLC can&rsquo;t record from an audio device
+ 1. The only other app that&rsquo;d stream audio live from an audio device to a fifo or pipe was <code>sox</code>.</p>
+
+<p>Any of these statements might be wrong, so please tell me if you know a way :)</p>
+
+<p>So, the best I could do was have <a href="http://www.videolan.org/">VLC</a> stream the screen over a FIFO to <code>ffmpeg</code>, redirect audio through <a href="http://code.google.com/p/soundflower/">Soundflower</a>, then use <code>sox</code> to pipe audio to <code>ffmpeg</code>.
+Finally, <code>ffmpeg</code> recodes all that data and sends it to the justin.tv RTMP server. Not very simple, but at least it works.</p>
+
+<p>Turns out that this works best if you do <em>no</em> work in VLC other than spew to a FIFO: no encoding or encapsulating. Even using MPEG-TS had issues in this context. Raw video in a dummy mux is passed over the FIFO to <code>ffmpeg</code>, and <code>ffmpeg</code> is allowed to do all the encoding.</p>
+
+<p>In any case, I figured I should share this with the rest of you.</p>
+
+<p>Here&rsquo;s a modified version of <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s script</a>:</p>
+
+<div><script src='https://gist.github.com/2435006.js?file=stream.sh'></script>
+<noscript><pre><code>#!/bin/sh -xe
+
+API_KEY=&quot;YOUR_API_KEY_GOES_HERE&quot;
+FPS=&quot;10&quot;
+VLC_PATH=&quot;/Applications/VLC.app/Contents/MacOS/VLC&quot;
+# I don&#39;t know how this&#39;ll behave on multimon, so you might want to hard-code.
+# INRES=&#39;1440x900&#39;
+INRES=$(osascript -e &#39;tell application &quot;Finder&quot; to get bounds of window of desktop&#39;|sed &#39;s/, /x/g&#39;|cut -f3- -dx)
+OUTRES=&#39;1280x800&#39;
+# You can change this to record microphone or something else, from man soxformat (under coreaudio):
+# The valid names can be seen in the System Preferences-&gt;Sound menu and then under the Output and Input tabs.
+COREAUDIO_DEVICE=&quot;Soundflower (2ch)&quot;
+
+VIDEO_FIFO=/tmp/vlc-ffmpeg.raw
+AUDIO_FIFO=/tmp/sox-ffmpeg.wav
+
+for fifo in &quot;$VIDEO_FIFO&quot; &quot;$AUDIO_FIFO&quot;; do
+  rm -f &quot;$fifo&quot;
+  mkfifo &quot;$fifo&quot;
+done
+
+# This is called when you ^C or an app quits. It kills all the processes and deletes the FIFOs.
+function cleanup() {
+  trap &quot;&quot; EXIT INT
+
+  [[ ! -z &quot;$vlc_pid&quot; ]] &amp;&amp; kill -9 &quot;$vlc_pid&quot;
+  [[ ! -z &quot;$sox_pid&quot; ]] &amp;&amp; kill -9 &quot;$sox_pid&quot;
+  [[ ! -z &quot;$ffmpeg_pid&quot; ]] &amp;&amp; kill -9 &quot;$ffmpeg_pid&quot;
+  rm -f &quot;$VIDEO_FIFO&quot;
+  rm -f &quot;$AUDIO_FIFO&quot;
+}
+
+trap &quot;cleanup&quot; EXIT INT
+
+# VLC streams screen:// to $VIDEO_FIFO, in a raw BGRA format.
+$VLC_PATH screen:// :screen-fps=&quot;$FPS&quot; -I dummy --sout &quot;file/dummy:$VIDEO_FIFO&quot; &amp;
+vlc_pid=$!
+
+# SOX streams $COREAUDIO_DEVICE to $AUDIO_FIFO (with an increased buffer size, 4MB)
+sox --buffer 4194304 -q -c 2 -t coreaudio &quot;$COREAUDIO_DEVICE&quot; -t wav &quot;$AUDIO_FIFO&quot; &amp;
+sox_pid=$!
+
+# ffmpeg reads raw video from $VIDEO_FIFO, recodes it using libx264, combines it with mp3 that&#39;s been
+# transcoded from $AUDIO_FIFO with LAME, and ships it as FLV to justin.tv&#39;s RTMP server.
+ffmpeg -threads 0 \
+  -f rawvideo -pix_fmt bgra -s &quot;$INRES&quot; -r &quot;$FPS&quot; -i &quot;$VIDEO_FIFO&quot; \
+  -f wav -i &quot;$AUDIO_FIFO&quot; \
+  -vcodec libx264 -s &quot;$OUTRES&quot; \
+  -acodec libmp3lame -ab 128k -ar 44100 \
+  -f flv &quot;rtmp://live.justin.tv/app/$API_KEY&quot; &amp;
+ffmpeg_pid=$!
+
+wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
+
+
+<h4>OpenAL issues</h4>
+
+<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
 ]]></content>
   </entry>
   

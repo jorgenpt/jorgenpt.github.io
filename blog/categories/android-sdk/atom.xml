@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android SDK | Jørgen's Blog]]></title>
+  <link href="http://jorgenpt.github.io/blog/categories/android-sdk/atom.xml" rel="self"/>
+  <link href="http://jorgenpt.github.io/"/>
+  <updated>2014-05-23T23:22:45-07:00</updated>
+  <id>http://jorgenpt.github.io/</id>
+  <author>
+    <name><![CDATA[Jørgen Tjernø]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Requiring a minimum version of the Android SDK]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
+    <updated>2012-06-05T16:40:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
+    <content type="html"><![CDATA[<p>(This is similar to <a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
+
+<p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
+
+<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers &ndash; we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
+
+<p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
+
+<p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
+
+<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :&ndash;)</p>
+
+<p><code>make Makefile
+ifneq ($(shell $(LOCAL_PATH)/assert_sdk_version.sh "r19"),true)
+  $(error SDK version r19 or greater required)
+endif
+</code></p>
+
+<p>If you&rsquo;re curious how this works: It checks the <code>tools/source.properties</code> file in your Android SDK, looking for a line like <code>Pkg.Revision=XX</code>, and extracts the version (<code>XX</code>) from that.</p>
+
+<p>It&rsquo;s pretty straight forward, but I couldn&rsquo;t find anything online on how to check the SDK version from the command line, so I figured I&rsquo;d share it.</p>
+]]></content>
+  </entry>
+  
+</feed>

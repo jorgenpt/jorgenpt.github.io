@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Livecasting your desktop in OS X - Jørgen's Blog</title>
+  <meta name="author" content="Jørgen Tjernø">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-51279149-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jørgen's Blog</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:jorgenpt.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T00:04:00-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Livecasting your desktop in OS X
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
+<strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
+
+<p>Turns out that livecasting your desktop in OS X is surprisingly hard. I found two ways online, none of which satisfied me, so I hunted for my own.</p>
+
+<h3>Adobe Flash Media Live Encoder, CamTwist &amp; Soundflower</h3>
+
+<p>This method, <a href="http://www.mikechambers.com/blog/2011/05/29/setting-up-desktop-streaming-on-mac-os-x/">described by Mike Chambers</a>, relied on three separate GUI tools (one of which was required the Adobe Flash Media Live Encoder), consumed all my CPU, and refused to support my 16:10 aspect ratio. Yikes.</p>
+
+<h3>Ustream Producer</h3>
+
+<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
+
+<h3>My own</h3>
+
+<p>So, based on <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s Linux approach</a>, I tried getting something similar working on OS X. It only used ffmpeg, and seemed to work pretty well.</p>
+
+<p>Surprisingly, my researched ended up with the following results:
+ 1. <code>ffmpeg</code> doesn&rsquo;t support screen grabbing on OS X
+ 1. <code>ffmpeg</code> doesn&rsquo;t have a single audio input that can read an audio device on OS X (see OpenAL section below)
+ 1. <code>ffmpeg</code> can&rsquo;t record a web cam on OS X (this would allow me to use CamTwist as an input source)
+ 1. VLC doesn&rsquo;t support streaming to an RTMP server
+ 1. VLC can&rsquo;t record from an audio device
+ 1. The only other app that&rsquo;d stream audio live from an audio device to a fifo or pipe was <code>sox</code>.</p>
+
+<p>Any of these statements might be wrong, so please tell me if you know a way :)</p>
+
+<p>So, the best I could do was have <a href="http://www.videolan.org/">VLC</a> stream the screen over a FIFO to <code>ffmpeg</code>, redirect audio through <a href="http://code.google.com/p/soundflower/">Soundflower</a>, then use <code>sox</code> to pipe audio to <code>ffmpeg</code>.
+Finally, <code>ffmpeg</code> recodes all that data and sends it to the justin.tv RTMP server. Not very simple, but at least it works.</p>
+
+<p>Turns out that this works best if you do <em>no</em> work in VLC other than spew to a FIFO: no encoding or encapsulating. Even using MPEG-TS had issues in this context. Raw video in a dummy mux is passed over the FIFO to <code>ffmpeg</code>, and <code>ffmpeg</code> is allowed to do all the encoding.</p>
+
+<p>In any case, I figured I should share this with the rest of you.</p>
+
+<p>Here&rsquo;s a modified version of <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s script</a>:</p>
+
+<div><script src='https://gist.github.com/2435006.js?file=stream.sh'></script>
+<noscript><pre><code>#!/bin/sh -xe
+
+API_KEY=&quot;YOUR_API_KEY_GOES_HERE&quot;
+FPS=&quot;10&quot;
+VLC_PATH=&quot;/Applications/VLC.app/Contents/MacOS/VLC&quot;
+# I don&#39;t know how this&#39;ll behave on multimon, so you might want to hard-code.
+# INRES=&#39;1440x900&#39;
+INRES=$(osascript -e &#39;tell application &quot;Finder&quot; to get bounds of window of desktop&#39;|sed &#39;s/, /x/g&#39;|cut -f3- -dx)
+OUTRES=&#39;1280x800&#39;
+# You can change this to record microphone or something else, from man soxformat (under coreaudio):
+# The valid names can be seen in the System Preferences-&gt;Sound menu and then under the Output and Input tabs.
+COREAUDIO_DEVICE=&quot;Soundflower (2ch)&quot;
+
+VIDEO_FIFO=/tmp/vlc-ffmpeg.raw
+AUDIO_FIFO=/tmp/sox-ffmpeg.wav
+
+for fifo in &quot;$VIDEO_FIFO&quot; &quot;$AUDIO_FIFO&quot;; do
+  rm -f &quot;$fifo&quot;
+  mkfifo &quot;$fifo&quot;
+done
+
+# This is called when you ^C or an app quits. It kills all the processes and deletes the FIFOs.
+function cleanup() {
+  trap &quot;&quot; EXIT INT
+
+  [[ ! -z &quot;$vlc_pid&quot; ]] &amp;&amp; kill -9 &quot;$vlc_pid&quot;
+  [[ ! -z &quot;$sox_pid&quot; ]] &amp;&amp; kill -9 &quot;$sox_pid&quot;
+  [[ ! -z &quot;$ffmpeg_pid&quot; ]] &amp;&amp; kill -9 &quot;$ffmpeg_pid&quot;
+  rm -f &quot;$VIDEO_FIFO&quot;
+  rm -f &quot;$AUDIO_FIFO&quot;
+}
+
+trap &quot;cleanup&quot; EXIT INT
+
+# VLC streams screen:// to $VIDEO_FIFO, in a raw BGRA format.
+$VLC_PATH screen:// :screen-fps=&quot;$FPS&quot; -I dummy --sout &quot;file/dummy:$VIDEO_FIFO&quot; &amp;
+vlc_pid=$!
+
+# SOX streams $COREAUDIO_DEVICE to $AUDIO_FIFO (with an increased buffer size, 4MB)
+sox --buffer 4194304 -q -c 2 -t coreaudio &quot;$COREAUDIO_DEVICE&quot; -t wav &quot;$AUDIO_FIFO&quot; &amp;
+sox_pid=$!
+
+# ffmpeg reads raw video from $VIDEO_FIFO, recodes it using libx264, combines it with mp3 that&#39;s been
+# transcoded from $AUDIO_FIFO with LAME, and ships it as FLV to justin.tv&#39;s RTMP server.
+ffmpeg -threads 0 \
+  -f rawvideo -pix_fmt bgra -s &quot;$INRES&quot; -r &quot;$FPS&quot; -i &quot;$VIDEO_FIFO&quot; \
+  -f wav -i &quot;$AUDIO_FIFO&quot; \
+  -vcodec libx264 -s &quot;$OUTRES&quot; \
+  -acodec libmp3lame -ab 128k -ar 44100 \
+  -f flv &quot;rtmp://live.justin.tv/app/$API_KEY&quot; &amp;
+ffmpeg_pid=$!
+
+wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
+
+
+<h4>OpenAL issues</h4>
+
+<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Jørgen Tjernø</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T00:04:00-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2012</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/livecasting/'>Livecasting</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>, <a class='category' href='/blog/categories/openal/'>OpenAL</a>, <a class='category' href='/blog/categories/vlc/'>VLC</a>, <a class='category' href='/blog/categories/ffmpeg/'>ffmpeg</a>, <a class='category' href='/blog/categories/justin-dot-tv/'>justin.tv</a>, <a class='category' href='/blog/categories/sox/'>sox</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/" data-via="" data-counturl="http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/post/2012/04/20/unity-utilities/" title="Previous Post: Unity Utilities">&laquo; Unity Utilities</a></li>
+            
+            
+            <li class="next"><a href="/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/" title="Next Post: Dungeon Fodder Update #2">Dungeon Fodder Update #2 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
+    
+    <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
+    
+    <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
+    
+    <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
+    
+    <a class="list-group-item " href="/post/2012/10/06/arcane-dm-dev-diary-001/">Arcane DM Dev Diary #1</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Jørgen Tjernø<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jorgenpt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/';
+        var disqus_url = 'http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>

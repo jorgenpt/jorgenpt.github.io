@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Dev Diary | Jørgen's Blog]]></title>
+  <link href="http://jorgenpt.github.io/blog/categories/dev-diary/atom.xml" rel="self"/>
+  <link href="http://jorgenpt.github.io/"/>
+  <updated>2014-05-23T23:22:45-07:00</updated>
+  <id>http://jorgenpt.github.io/</id>
+  <author>
+    <name><![CDATA[Jørgen Tjernø]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <updated>2012-10-06T15:41:16-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
+
+<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
+
+<p>So far the game has:</p>
+
+<ul>
+<li>Working networking</li>
+<li>Simple network lobby</li>
+<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Three initial spells (magic missile, infernal nova, teleport)</li>
+<li>A very boring level</li>
+<li>A reward system for kills</li>
+<li>A round system with a &ldquo;last man standing&rdquo; victory condition</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #7]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/28/dev-diary-007/"/>
+    <updated>2012-05-28T16:59:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/28/dev-diary-007</id>
+    <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div></p>
+
+<p>A little busy the past two weeks (Diablo 3 and a lot to do at work), but here&rsquo;s what I had time to do:</p>
+
+<ul>
+<li>Reworked minimap</li>
+<li>Inventory management</li>
+<li>New spell, &ldquo;Barrier&rdquo;</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI &ndash; he now shoots at enemies!</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #6]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
+    <updated>2012-05-12T22:21:10-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
+    <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/kHIqzAOQwIM" allowfullscreen></iframe></div></p>
+
+<p>This week I added level transitions and automatic saves! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #5]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/05/05/its-a-party/"/>
+    <updated>2012-05-05T17:31:27-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/05/05/its-a-party</id>
+    <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/HopI5Rfcf8k" allowfullscreen></iframe></div></p>
+
+<p>Not too much time this week: I added a second (simultaneous) character and some more rudimentary UI.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dungeon Fodder Update #4: Dungeon generation]]></title>
+    <link href="http://jorgenpt.github.io/post/2012/04/29/dungeon-generation/"/>
+    <updated>2012-04-29T20:23:00-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2012/04/29/dungeon-generation</id>
+    <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
+
+<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div></p>
+
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms &ndash; some of them will be &ldquo;special&rdquo; rooms.</p>
+
+<p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+
+<h3>Rooms</h3>
+
+<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
+
+<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
+
+<h3>Placement</h3>
+
+<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
+
+<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
+
+<h3>Monsters &amp; loot</h3>
+
+<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
+
+<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
+
+<h3>Paths</h3>
+
+<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
+
+<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
+
+<h3>Questions? Comments?</h3>
+
+<p>Feel free to contact me on <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x6a;&#111;&#x72;&#103;&#101;&#110;&#112;&#116;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x6a;&#111;&#114;&#x67;&#x65;&#x6e;&#x70;&#x74;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+]]></content>
+  </entry>
+  
+</feed>

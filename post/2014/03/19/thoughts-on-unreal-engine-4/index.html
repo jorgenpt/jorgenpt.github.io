@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Thoughts on Unreal Engine 4 - Jørgen's Blog</title>
+  <meta name="author" content="Jørgen Tjernø">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-51279149-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jørgen's Blog</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:jorgenpt.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-19T14:04:00-07:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Thoughts on Unreal Engine 4
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
+
+<p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
+
+<p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
+
+<p>Lastly, Epic is trying to encourage an open development process &ndash; both by them and by their licensees. That&rsquo;s pretty cool &ndash; I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
+
+<p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Jørgen Tjernø</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-19T14:04:00-07:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/" data-via="" data-counturl="http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/post/2012/10/28/droidcon-uk-2012-slides-recap/" title="Previous Post: Droidcon UK 2012: Slides & recap">&laquo; Droidcon UK 2012: Slides & recap</a></li>
+            
+            
+            <li class="next"><a href="/post/2014/05/19/moving-to-a-new-blog/" title="Next Post: Moved to a new location!">Moved to a new location! &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
+    
+    <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
+    
+    <a class="list-group-item active" href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
+    
+    <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
+    
+    <a class="list-group-item " href="/post/2012/10/06/arcane-dm-dev-diary-001/">Arcane DM Dev Diary #1</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Jørgen Tjernø<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jorgenpt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/';
+        var disqus_url = 'http://jorgenpt.github.io/post/2014/03/19/thoughts-on-unreal-engine-4/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>

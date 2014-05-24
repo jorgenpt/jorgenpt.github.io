@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sandbox | Jørgen's Blog]]></title>
+  <link href="http://jorgenpt.github.io/blog/categories/sandbox/atom.xml" rel="self"/>
+  <link href="http://jorgenpt.github.io/"/>
+  <updated>2014-05-23T23:22:45-07:00</updated>
+  <id>http://jorgenpt.github.io/</id>
+  <author>
+    <name><![CDATA[Jørgen Tjernø]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The secret to the home-relative Sandbox entitlement]]></title>
+    <link href="http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement/"/>
+    <updated>2011-07-26T16:45:55-07:00</updated>
+    <id>http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement</id>
+    <content type="html"><![CDATA[<p>With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.</p>
+
+<p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &mdash; which falls under this category.</p>
+
+<p>I&rsquo;ve been spending some time today trying to figure out how to get the <code>com.apple.security.temporary-exception.files.home-relative-path.read-only</code> entitlement working. The documentation is sparse, and there&rsquo;re no samples as far as I can tell. After many attempts, I finally figured out the key piece of information keeping me from getting this working: The path you specify in the entitlement needs to <strong>start with a slash</strong>. For example, instead of specifying <code>Desktop</code>, you specify <code>/Desktop</code>.</p>
+
+<p>Here&rsquo;s an example of a valid entitlement plist:</p>
+
+<p>```xml Info.plist</p>
+
+<p><pre>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+<plist version="1.0">
+<dict></p>
+
+<pre><code>    &lt;key&gt;com.apple.security.app-sandbox&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;com.apple.security.temporary-exception.files.home-relative-path.read-only&lt;/key&gt;
+    &lt;array&gt;
+            &lt;string&gt;/Desktop&lt;/string&gt;
+            &lt;string&gt;/Dropbox&lt;/string&gt;
+    &lt;/array&gt;
+</code></pre>
+
+<p></dict>
+</plist>
+```</p>
+
+<p>I assume this applies to the <code>com.apple.security.temporary-exception.files.home-relative-path.read-write</code> entitlement as well.</p>
+
+<p>I hope this saves other people trying to get this working a little bit of time. :&ndash;)</p>
+
+<p>[dev-library-sandbox]: <a href="http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7">http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7</a>
+[ars-lion-review]: <a href="http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing">http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing</a></p>
+]]></content>
+  </entry>
+  
+</feed>
