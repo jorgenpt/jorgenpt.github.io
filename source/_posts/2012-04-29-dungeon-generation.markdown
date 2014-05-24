@@ -7,6 +7,7 @@ categories:
     - Dungeon Fodder
     - Unity3D
     - Game Development
+    - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/22102329394/dungeon-generation
 ---
 

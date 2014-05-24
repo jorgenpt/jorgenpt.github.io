@@ -7,6 +7,7 @@ categories:
     - Dungeon Fodder
     - Game Development
     - Unity3D
+    - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/21899932368/dungeon-fodder-update-not-too-much-time-this
 ---
 
