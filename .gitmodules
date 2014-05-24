@@ -4,3 +4,6 @@
 [submodule "external-repos/jekyll_alias_generator"]
 	path = external-repos/jekyll_alias_generator
 	url = https://github.com/tsmango/jekyll_alias_generator
+[submodule "external-repos/octopress-responsive-video-embed"]
+	path = external-repos/octopress-responsive-video-embed
+	url = https://github.com/optikfluffel/octopress-responsive-video-embed.git
