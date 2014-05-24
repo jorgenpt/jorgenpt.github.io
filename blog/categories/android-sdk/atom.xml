@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android SDK | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/android-sdk/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/android-sdk/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Requiring a minimum version of the Android SDK]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
+    <link href="http://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
     <updated>2012-06-05T16:40:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
+    <id>http://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
     <content type="html"><![CDATA[<p>(This is similar to <a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
 
 <p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>

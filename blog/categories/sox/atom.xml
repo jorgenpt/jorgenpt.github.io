@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: sox | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/sox/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/sox/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Livecasting your desktop in OS X]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop/"/>
+    <link href="http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/"/>
     <updated>2012-04-21T00:04:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/04/21/livecasting-osx-desktop</id>
+    <id>http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop</id>
     <content type="html"><![CDATA[<p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
 <strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
 

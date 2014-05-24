@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[DT_RPATH (ld) & @rpath (dyld)]]></title>
-    <link href="http://jorgenpt.github.io/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
+    <link href="http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
     <updated>2014-05-20T22:06:29-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
+    <id>http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
     <content type="html"><![CDATA[<p>Mac and Linux have two similarly named concepts that both deal with
 dynamic loading, that behave quite differently: <code>@rpath</code> (under Mac OS
 X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux' ld.)</p>

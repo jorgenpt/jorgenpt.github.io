@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sandbox | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/sandbox/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/sandbox/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The secret to the home-relative Sandbox entitlement]]></title>
-    <link href="http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement/"/>
+    <link href="http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
     <updated>2011-07-26T16:45:55-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement</id>
+    <id>http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
     <content type="html"><![CDATA[<p>With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.</p>
 
 <p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &mdash; which falls under this category.</p>

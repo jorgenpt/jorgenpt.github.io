@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Presentation | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/presentation/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/presentation/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Droidcon UK 2012: Slides & recap]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/10/28/droidcon-uk-2012-slides-recap/"/>
+    <link href="http://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap/"/>
     <updated>2012-10-28T09:09:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/10/28/droidcon-uk-2012-slides-recap</id>
+    <id>http://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap</id>
     <content type="html"><![CDATA[<p>On Friday I spoke at <a href="http://uk.droidcon.com">Droidcon UK 2012</a>, and it was my very first conference talk, titled <a href="http://uk.droidcon.com/2012/sessions/the-butler-did-it-continuously-building-enforcing-app-quality-using-jenkins/">The Butler Did It: Continuously building &amp; enforcing app quality using Jenkins</a>.</p>
 
 <p>I did the talk together with <a href="http://chris.orr.me.uk/+">Christopher Orr</a>, and the topic was using <a href="http://jenkins-ci.org/">Jenkins CI</a> and <a href="http://code.google.com/p/gerrit/">Gerrit</a> to improve app quality when building Android software. It also included a short rant about the Android NDK. I thought it went surprisingly well, especially considering I was fueled by only 5 hours of sleep!</p>

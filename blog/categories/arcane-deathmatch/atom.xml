@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Arcane Deathmatch | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/arcane-deathmatch/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/arcane-deathmatch/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <link href="http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
     <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <id>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
 
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
@@ -39,9 +39,9 @@
   
   <entry>
     <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <link href="http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
     <updated>2012-10-06T15:24:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <id>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
 
 <p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
@@ -63,9 +63,9 @@
   
   <entry>
     <title type="html"><![CDATA[Arcane DM: First progress update]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/10/01/arcane-dm-first-progress-update/"/>
+    <link href="http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/"/>
     <updated>2012-10-01T23:58:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/10/01/arcane-dm-first-progress-update</id>
+    <id>http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update</id>
     <content type="html"><![CDATA[<p>While work is keeping me busy, over the past few weeks I&rsquo;ve had a couple of good evenings to work on Arcane Deathmatch.</p>
 
 <p>Last weekend I poked around with a second spell, &ldquo;Infernal Nova&rdquo;:</p>
@@ -82,9 +82,9 @@
   
   <entry>
     <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/09/09/announcing-arcane-deathmatch/"/>
+    <link href="http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
     <updated>2012-09-09T15:10:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/09/09/announcing-arcane-deathmatch</id>
+    <id>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
 
 <p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>

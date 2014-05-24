@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Objective-C | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/objective-c/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The secret to the home-relative Sandbox entitlement]]></title>
-    <link href="http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement/"/>
+    <link href="http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
     <updated>2011-07-26T16:45:55-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2011/07/26/home-relative-sandbox-entitlement</id>
+    <id>http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
     <content type="html"><![CDATA[<p>With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.</p>
 
 <p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &mdash; which falls under this category.</p>
@@ -57,9 +57,9 @@
   
   <entry>
     <title type="html"><![CDATA[GUI frustration]]></title>
-    <link href="http://jorgenpt.github.io/post/2011/02/21/gui-frustration/"/>
+    <link href="http://jorgen.tjer.no/post/2011/02/21/gui-frustration/"/>
     <updated>2011-02-21T19:14:00-08:00</updated>
-    <id>http://jorgenpt.github.io/post/2011/02/21/gui-frustration</id>
+    <id>http://jorgen.tjer.no/post/2011/02/21/gui-frustration</id>
     <content type="html"><![CDATA[<p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos &ndash; a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
 
 <p>Ideally, I&rsquo;d write this app in Ruby, but I have had only bad experiences trying to get a useful, good GUI written in either Ruby or Python. Years ago I looked into GTK, QT and WxWidgets, but none of them convinced me they were capable. So I googled around for &ldquo;simple GUI ruby&rdquo;, and &ldquo;Shoes&rdquo; caught my eye. I tried it out, and it was indeed simple, but sadly <strong>too</strong> simple. It was hellbent on not letting me do anything complex, even when it&rsquo;s &ldquo;intuitive behavior&rdquo; was wrong.</p>

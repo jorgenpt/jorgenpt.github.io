@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Playtesting | Jørgen's Blog]]></title>
-  <link href="http://jorgenpt.github.io/blog/categories/playtesting/atom.xml" rel="self"/>
-  <link href="http://jorgenpt.github.io/"/>
-  <updated>2014-05-24T11:45:48-07:00</updated>
-  <id>http://jorgenpt.github.io/</id>
+  <link href="http://jorgen.tjer.no/blog/categories/playtesting/atom.xml" rel="self"/>
+  <link href="http://jorgen.tjer.no/"/>
+  <updated>2014-05-24T12:11:45-07:00</updated>
+  <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
-    <link href="http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <link href="http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
     <updated>2012-10-06T15:24:00-07:00</updated>
-    <id>http://jorgenpt.github.io/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <id>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
 
 <p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
