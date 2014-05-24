@@ -9,6 +9,7 @@ categories:
     - Dungeon Fodder
     - Arcane Deathmatch
 tumblr_url: http://jorgenpt.tumblr.com/post/31229056278/announcing-arcane-deathmatch
+alias: /post/31229056278/announcing-arcane-deathmatch
 ---
 
 The last few months it's been busy with three weddings (including my own) and a vacation. Every once in a while I've been tinkering with a game prototype with a smaller scope than Dungeon Fodder - and now I've finally reached a point where I can say that I'll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity's (fairly lacking) networking APIs would be suitable for developing this.

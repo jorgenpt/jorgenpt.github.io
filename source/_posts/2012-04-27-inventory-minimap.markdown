@@ -8,6 +8,7 @@ categories:
     - Game Development
     - Dungeon Fodder
 tumblr_url: http://jorgenpt.tumblr.com/post/21921096803/inventory-minimap
+alias: /post/21921096803/inventory-minimap
 ---
 
 This week I've been deep in non-visible changes, working on a dungeon generator. While there's not any good visible output yet, here's the other stuff I had time to do this week:

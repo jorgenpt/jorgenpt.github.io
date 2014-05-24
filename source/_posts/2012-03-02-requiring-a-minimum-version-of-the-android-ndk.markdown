@@ -7,6 +7,7 @@ categories:
     - Android
     - Android NDK
 tumblr_url: http://jorgenpt.tumblr.com/post/18620908643/requiring-a-minimum-version-of-the-android-ndk
+alias: /post/18620908643/requiring-a-minimum-version-of-the-android-ndk
 ---
 
 I was tinkering with our build system at work, and I realized that builds were failing on r5b and below. After a bit of debugging (and reading the NDK changelog), I realized that `LOCAL_WHOLE_STATIC_LIBRARIES` was broken in r5b and missing in r4 and before. To prevent other engineers from running into this, I wanted to make our project depend on r5c or above.

@@ -9,6 +9,7 @@ categories:
     - Game Development
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/22953753755/this-week-i-added-level-transitions-and-automatic
+alias: /post/22953753755/this-week-i-added-level-transitions-and-automatic
 ---
 {% youtube kHIqzAOQwIM %}
 

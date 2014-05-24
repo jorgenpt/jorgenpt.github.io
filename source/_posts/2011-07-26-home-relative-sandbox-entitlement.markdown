@@ -9,6 +9,7 @@ categories:
     - Sandbox
     - Mac OS X
 tumblr_url: http://jorgenpt.tumblr.com/post/8105269529/home-relative-sandbox-entitlement
+alias: /post/8105269529/home-relative-sandbox-entitlement
 ---
 
 With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.

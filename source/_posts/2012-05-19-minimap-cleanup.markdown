@@ -8,6 +8,7 @@ categories:
     - Game Development
     - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/23370470293/minimap-cleanup
+alias: /post/23370470293/minimap-cleanup
 ---
 
 Didn't get too much done this week, but I cleaned up the minimap:

@@ -9,6 +9,7 @@ categories:
     - Dungeon Fodder
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/23962832741/dev-diary-007
+alias: /post/23962832741/dev-diary-007
 ---
 
 {% youtube yX0M2LjnyOc %}

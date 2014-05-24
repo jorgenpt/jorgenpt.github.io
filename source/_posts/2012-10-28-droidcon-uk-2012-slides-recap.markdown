@@ -11,6 +11,7 @@ categories:
     - Android NDK
     - Gerrit
 tumblr_url: http://jorgenpt.tumblr.com/post/34491749309/droidcon-uk-2012-slides-recap
+alias: /post/34491749309/droidcon-uk-2012-slides-recap
 ---
 
 On Friday I spoke at [Droidcon UK 2012](http://uk.droidcon.com), and it was my very first conference talk, titled [The Butler Did It: Continuously building & enforcing app quality using Jenkins](http://uk.droidcon.com/2012/sessions/the-butler-did-it-continuously-building-enforcing-app-quality-using-jenkins/).

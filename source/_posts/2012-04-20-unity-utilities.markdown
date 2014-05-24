@@ -8,6 +8,7 @@ categories:
     - Game Development
     - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/21900062758/unity-utilities
+alias: /post/21900062758/unity-utilities
 ---
 [Unity Utilities](https://github.com/jorgenpt/unity-utilities)
 

@@ -8,6 +8,7 @@ categories:
     - Game Development
     - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/21899748740/dungeon-fodder
+alias: /post/21899748740/dungeon-fodder
 ---
 
 About a week ago I started playing around with [Unity3D](http://unity3d.com), trying to learn the ropes of the engine so that I could start making a game with it. This is that game: **Dungeon Fodder**.

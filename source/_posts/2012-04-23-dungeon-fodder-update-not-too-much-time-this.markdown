@@ -9,6 +9,7 @@ categories:
     - Unity3D
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/21899932368/dungeon-fodder-update-not-too-much-time-this
+alias: /post/21899932368/dungeon-fodder-update-not-too-much-time-this
 ---
 
 Not too much time this Sunday, but I added some very rudimentary loot support: Boots of speed +50%!

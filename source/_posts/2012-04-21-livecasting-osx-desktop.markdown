@@ -12,6 +12,7 @@ categories:
     - Mac OS X
     - Livecasting
 tumblr_url: http://jorgenpt.tumblr.com/post/21484803576/livecasting-osx-desktop
+alias: /post/21484803576/livecasting-osx-desktop
 ---
 
 **EDIT**: Found a way to get audio using Soundflower & sox.  

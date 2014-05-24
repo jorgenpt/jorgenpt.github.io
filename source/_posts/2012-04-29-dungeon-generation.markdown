@@ -9,6 +9,7 @@ categories:
     - Game Development
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/22102329394/dungeon-generation
+alias: /post/22102329394/dungeon-generation
 ---
 
 This week I added some rudimentary dungeon generation code to [DungeonFodder](/blog/categories/dungeon-fodder/). You can see what it looks like [on YouTube](http://youtu.be/51Rvmtzo3gg).

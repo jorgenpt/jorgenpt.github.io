@@ -8,6 +8,7 @@ categories:
     - Unity3D
     - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/32725599443/arcane-dm-first-progress-update
+alias: /post/32725599443/arcane-dm-first-progress-update
 ---
 
 While work is keeping me busy, over the past few weeks I've had a couple of good evenings to work on Arcane Deathmatch.
