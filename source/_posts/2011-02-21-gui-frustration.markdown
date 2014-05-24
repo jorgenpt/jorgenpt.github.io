@@ -2,12 +2,11 @@
 layout: post
 title: GUI frustration
 date: '2011-02-21T19:14:00-08:00'
-tags:
-- objective-c
-- cocoa
-- ruby
-- gui
-- shoes
+categories:
+    - Objective-C
+    - Cocoa
+    - Ruby
+    - GUI
 tumblr_url: http://jorgenpt.tumblr.com/post/3437297505/gui-frustration
 ---
 

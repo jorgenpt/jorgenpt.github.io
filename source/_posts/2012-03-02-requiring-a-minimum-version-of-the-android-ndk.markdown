@@ -2,9 +2,9 @@
 layout: post
 title: Requiring a minimum version of the Android NDK
 date: '2012-03-02T13:22:00-08:00'
-tags:
-- android
-- android ndk
+categories:
+    - Android
+    - Android NDK
 tumblr_url: http://jorgenpt.tumblr.com/post/18620908643/requiring-a-minimum-version-of-the-android-ndk
 ---
 

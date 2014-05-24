@@ -2,9 +2,9 @@
 layout: post
 title: Requiring a minimum version of the Android SDK
 date: '2012-06-05T16:40:00-07:00'
-tags:
-- android sdk
-- android
+categories:
+    - Android SDK
+    - Android
 tumblr_url: http://jorgenpt.tumblr.com/post/24502661219/requiring-a-minimum-version-of-the-android-sdk
 ---
 

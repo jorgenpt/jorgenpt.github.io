@@ -2,12 +2,11 @@
 layout: post
 title: 'Arcane DM Dev Diary #1'
 date: '2012-10-06T15:41:16-07:00'
-tags:
-- arcane deathmatch
-- ADM
-- game development
-- Unity3D
-- dev diary
+categories:
+    - Arcane Deathmatch
+    - Game Development
+    - Unity3D
+    - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/33038177406/arcane-dm-dev-diary-001
 ---
 

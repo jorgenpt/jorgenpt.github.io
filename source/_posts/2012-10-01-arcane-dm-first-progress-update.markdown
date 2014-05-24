@@ -2,11 +2,10 @@
 layout: post
 title: 'Arcane DM: First progress update'
 date: '2012-10-01T23:58:00-07:00'
-tags:
-- ADM
-- arcane deathmatch
-- Unity3D
-- game development
+categories:
+    - Arcane Deathmatch
+    - Unity3D
+    - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/32725599443/arcane-dm-first-progress-update
 ---
 

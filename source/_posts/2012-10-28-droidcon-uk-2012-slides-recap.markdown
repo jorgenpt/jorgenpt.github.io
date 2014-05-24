@@ -2,14 +2,13 @@
 layout: post
 title: 'Droidcon UK 2012: Slides & recap'
 date: '2012-10-28T09:09:00-07:00'
-tags:
-- presentation
-- droidcon uk
-- jenkins
-- android
-- android ndk
-- gerrit
-- slides
+categories:
+    - Presentation
+    - DroidCon UK
+    - Jenkins
+    - Android
+    - Android NDK
+    - Gerrit
 tumblr_url: http://jorgenpt.tumblr.com/post/34491749309/droidcon-uk-2012-slides-recap
 ---
 

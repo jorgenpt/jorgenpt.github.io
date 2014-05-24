@@ -3,10 +3,9 @@ layout: post
 title: 'Dungeon Fodder Update #4: Dungeon generation'
 date: '2012-04-29T20:23:00-07:00'
 categories:
-- Dungeon Fodder
-- dfodder
-- Unity3D
-- game development
+    - Dungeon Fodder
+    - Unity3D
+    - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/22102329394/dungeon-generation
 ---
 

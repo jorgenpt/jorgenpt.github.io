@@ -2,11 +2,10 @@
 layout: post
 title: Unity Utilities
 date: '2012-04-20T18:50:00-07:00'
-tags:
-- dungeon fodder
-- game development
-- unity3d
-- dfodder
+categories:
+    - Dungeon Fodder
+    - Game Development
+    - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/21900062758/unity-utilities
 ---
 [Unity Utilities](https://github.com/jorgenpt/unity-utilities)

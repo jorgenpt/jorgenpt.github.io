@@ -2,14 +2,14 @@
 layout: post
 title: Livecasting your desktop in OS X
 date: '2012-04-21T00:04:00-07:00'
-tags:
-- ffmpeg
-- vlc
-- sox
-- openal
-- justin.tv
-- mac os x
-- livecasting
+categories:
+    - ffmpeg
+    - VLC
+    - sox
+    - OpenAL
+    - justin.tv
+    - Mac OS X
+    - Livecasting
 tumblr_url: http://jorgenpt.tumblr.com/post/21484803576/livecasting-osx-desktop
 ---
 

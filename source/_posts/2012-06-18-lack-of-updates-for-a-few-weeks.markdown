@@ -2,11 +2,10 @@
 layout: post
 title: Lack of updates for a few weeks
 date: '2012-06-18T12:41:38-07:00'
-tags:
-- dungeon fodder
-- dfodder
-- game development
-- Unity3D
+categories:
+    - Dungeon Fodder
+    - Game Development
+    - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/25380034342/lack-of-updates-for-a-few-weeks
 ---
 

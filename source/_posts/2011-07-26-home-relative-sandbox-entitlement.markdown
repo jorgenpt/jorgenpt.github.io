@@ -2,11 +2,11 @@
 layout: post
 title: The secret to the home-relative Sandbox entitlement
 date: '2011-07-26T16:45:55-07:00'
-tags:
-- cocoa
-- objective-c
-- sandbox
-- mac os x
+categories:
+    - Cocoa
+    - Objective-C
+    - Sandbox
+    - Mac OS X
 tumblr_url: http://jorgenpt.tumblr.com/post/8105269529/home-relative-sandbox-entitlement
 ---
 

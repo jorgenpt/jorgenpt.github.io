@@ -2,11 +2,10 @@
 layout: post
 title: 'Dungeon Fodder Update #7'
 date: '2012-05-28T16:59:00-07:00'
-tags:
-- game development
-- Unity3D
-- dungeon fodder
-- dfodder
+categories:
+    - Game Development
+    - Unity3D
+    - Dungeon Fodder
 tumblr_url: http://jorgenpt.tumblr.com/post/23962832741/dev-diary-007
 ---
 

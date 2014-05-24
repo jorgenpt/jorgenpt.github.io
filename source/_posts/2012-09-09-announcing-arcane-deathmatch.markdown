@@ -2,13 +2,11 @@
 layout: post
 title: Announcing Arcane Deathmatch
 date: '2012-09-09T15:10:00-07:00'
-tags:
-- Unity3D
-- game development
-- dfodder
-- dungeon fodder
-- adm
-- arcane deathmatch
+categories:
+    - Unity3D
+    - Game Development
+    - Dungeon Fodder
+    - Arcane Deathmatch
 tumblr_url: http://jorgenpt.tumblr.com/post/31229056278/announcing-arcane-deathmatch
 ---
 

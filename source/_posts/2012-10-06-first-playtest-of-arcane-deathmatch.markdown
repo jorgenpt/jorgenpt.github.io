@@ -2,12 +2,11 @@
 layout: post
 title: First playtest of Arcane Deathmatch
 date: '2012-10-06T15:24:00-07:00'
-tags:
-- arcane deathmatch
-- ADM
-- playtesting
-- Unity3D
-- game development
+categories:
+    - Arcane Deathmatch
+    - Playtesting
+    - Unity3D
+    - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/33037031622/first-playtest-of-arcane-deathmatch
 ---
 
