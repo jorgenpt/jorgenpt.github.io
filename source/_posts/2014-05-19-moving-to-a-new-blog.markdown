@@ -16,6 +16,8 @@ static content. That way, I both have the raw input for my blog, but
 also static output, which I can host anywhere else if I decide that I
 don't like GitHub any more.
 
+<!-- more -->
+
 In addition, octopress is open source (and uses [jekyll][jekyll], an
 excellent static site generator), so if I need / desire to change
 anything, I can.
