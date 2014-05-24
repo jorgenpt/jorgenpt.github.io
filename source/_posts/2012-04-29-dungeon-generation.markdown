@@ -2,6 +2,7 @@
 layout: post
 title: 'Dungeon Fodder Update #4: Dungeon generation'
 date: '2012-04-29T20:23:00-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Unity3D

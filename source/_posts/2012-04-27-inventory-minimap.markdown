@@ -2,6 +2,7 @@
 layout: post
 title: "Inventory, minimap"
 date: '2012-04-27T11:02:00-07:00'
+comments: true
 categories:
     - Unity3D
     - Game Development

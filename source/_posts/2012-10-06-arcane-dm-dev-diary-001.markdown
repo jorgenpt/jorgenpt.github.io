@@ -2,6 +2,7 @@
 layout: post
 title: 'Arcane DM Dev Diary #1'
 date: '2012-10-06T15:41:16-07:00'
+comments: true
 categories:
     - Arcane Deathmatch
     - Game Development

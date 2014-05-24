@@ -2,6 +2,7 @@
 layout: post
 title: 'Arcane DM: First progress update'
 date: '2012-10-01T23:58:00-07:00'
+comments: true
 categories:
     - Arcane Deathmatch
     - Unity3D

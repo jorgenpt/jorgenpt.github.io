@@ -2,6 +2,7 @@
 layout: post
 title: First playtest of Arcane Deathmatch
 date: '2012-10-06T15:24:00-07:00'
+comments: true
 categories:
     - Arcane Deathmatch
     - Playtesting

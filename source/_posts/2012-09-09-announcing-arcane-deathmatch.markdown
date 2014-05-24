@@ -2,6 +2,7 @@
 layout: post
 title: Announcing Arcane Deathmatch
 date: '2012-09-09T15:10:00-07:00'
+comments: true
 categories:
     - Unity3D
     - Game Development

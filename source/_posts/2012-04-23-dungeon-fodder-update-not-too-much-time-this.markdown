@@ -2,6 +2,7 @@
 layout: post
 title: 'Dungeon Fodder Update #3'
 date: '2012-04-23T00:31:00-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Game Development

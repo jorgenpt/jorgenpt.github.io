@@ -2,6 +2,7 @@
 layout: post
 title: Thoughts on Unreal Engine 4
 date: '2014-03-19T14:04:00-07:00'
+comments: true
 categories:
  - Game Development
  - Unity3D

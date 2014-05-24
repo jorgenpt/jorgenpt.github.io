@@ -2,6 +2,7 @@
 layout: post
 title: Minimap cleanup
 date: '2012-05-19T13:58:00-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Game Development

@@ -2,6 +2,7 @@
 layout: post
 title: Requiring a minimum version of the Android NDK
 date: '2012-03-02T13:22:00-08:00'
+comments: true
 categories:
     - Android
     - Android NDK

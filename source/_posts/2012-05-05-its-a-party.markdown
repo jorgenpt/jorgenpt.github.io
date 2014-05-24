@@ -2,6 +2,7 @@
 layout: post
 title: 'Dungeon Fodder Update #5'
 date: '2012-05-05T17:31:27-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Unity3D

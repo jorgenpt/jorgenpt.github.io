@@ -2,6 +2,7 @@
 layout: post
 title: Requiring a minimum version of the Android SDK
 date: '2012-06-05T16:40:00-07:00'
+comments: true
 categories:
     - Android SDK
     - Android

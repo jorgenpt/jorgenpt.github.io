@@ -2,6 +2,7 @@
 layout: post
 title: The secret to the home-relative Sandbox entitlement
 date: '2011-07-26T16:45:55-07:00'
+comments: true
 categories:
     - Cocoa
     - Objective-C

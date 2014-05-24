@@ -2,6 +2,7 @@
 layout: post
 title: Inventory management
 date: '2012-05-26T14:39:00-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Unity3D

@@ -2,6 +2,7 @@
 layout: post
 title: Unity Utilities
 date: '2012-04-20T18:50:00-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Game Development

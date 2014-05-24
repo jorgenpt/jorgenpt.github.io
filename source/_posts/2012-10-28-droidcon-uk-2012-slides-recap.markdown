@@ -2,6 +2,7 @@
 layout: post
 title: 'Droidcon UK 2012: Slides & recap'
 date: '2012-10-28T09:09:00-07:00'
+comments: true
 categories:
     - Presentation
     - DroidCon UK

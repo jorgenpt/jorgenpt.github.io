@@ -2,6 +2,7 @@
 layout: post
 title: Lack of updates for a few weeks
 date: '2012-06-18T12:41:38-07:00'
+comments: true
 categories:
     - Dungeon Fodder
     - Game Development

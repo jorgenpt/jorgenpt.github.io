@@ -2,6 +2,7 @@
 layout: post
 title: GUI frustration
 date: '2011-02-21T19:14:00-08:00'
+comments: true
 categories:
     - Objective-C
     - Cocoa
