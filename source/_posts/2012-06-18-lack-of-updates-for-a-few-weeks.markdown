@@ -8,7 +8,7 @@ categories:
     - Game Development
     - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/25380034342/lack-of-updates-for-a-few-weeks
-alias: /post/25380034342/lack-of-updates-for-a-few-weeks
+alias: [/post/25380034342, /post/25380034342/lack-of-updates-for-a-few-weeks]
 ---
 
 I've attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.

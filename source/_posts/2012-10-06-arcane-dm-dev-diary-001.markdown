@@ -9,7 +9,7 @@ categories:
     - Unity3D
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/33038177406/arcane-dm-dev-diary-001
-alias: /post/33038177406/arcane-dm-dev-diary-001
+alias: [/post/33038177406, /post/33038177406/arcane-dm-dev-diary-001]
 ---
 
 Here's the first "dev diary" video for Arcane Deathmatch.

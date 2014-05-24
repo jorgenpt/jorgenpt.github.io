@@ -7,7 +7,7 @@ categories:
     - Android SDK
     - Android
 tumblr_url: http://jorgenpt.tumblr.com/post/24502661219/requiring-a-minimum-version-of-the-android-sdk
-alias: /post/24502661219/requiring-a-minimum-version-of-the-android-sdk
+alias: [/post/24502661219, /post/24502661219/requiring-a-minimum-version-of-the-android-sdk]
 ---
 
 (This is similar to [Requiring a minimum version of the Android NDK](/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/), but for SDK versions)

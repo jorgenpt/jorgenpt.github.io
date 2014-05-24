@@ -9,7 +9,7 @@ categories:
     - Ruby
     - GUI
 tumblr_url: http://jorgenpt.tumblr.com/post/3437297505/gui-frustration
-alias: /post/3437297505/gui-frustration
+alias: [/post/3437297505, /post/3437297505/gui-frustration]
 ---
 
 Yesterday I needed to whip together a simple little app to "vet" photos - a tool to quickly let me go through each photo in a directory and choose between "thumbs up" or "boo", then give me a list of the ones I said "boo" to.

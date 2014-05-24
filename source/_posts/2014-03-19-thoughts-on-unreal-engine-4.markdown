@@ -7,7 +7,7 @@ categories:
  - Game Development
  - Unity3D
 tumblr_url: http://jorgenpt.tumblr.com/post/80097448178/thoughts-on-unreal-engine-4
-alias: /post/80097448178/thoughts-on-unreal-engine-4
+alias: [/post/80097448178, /post/80097448178/thoughts-on-unreal-engine-4]
 ---
 
 I'm excited by the [release of Unreal Engine 4][ue4-release] (by Epic Games), and I figured I'd put a couple of my thoughts down in writing.

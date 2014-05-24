@@ -9,7 +9,7 @@ categories:
     - Game Development
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/22482234500/its-a-party
-alias: /post/22482234500/its-a-party
+alias: [/post/22482234500, /post/22482234500/its-a-party]
 ---
 {% youtube HopI5Rfcf8k %}
 

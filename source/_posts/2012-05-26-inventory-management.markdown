@@ -8,7 +8,7 @@ categories:
     - Unity3D
     - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/23953438602/inventory-management
-alias: /post/23953438602/inventory-management
+alias: [/post/23953438602, /post/23953438602/inventory-management]
 ---
 
 I added some rudimentary (but functional) inventory management:

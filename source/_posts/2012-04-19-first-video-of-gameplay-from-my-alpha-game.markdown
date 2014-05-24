@@ -9,7 +9,7 @@ categories:
     - Unity3D
     - Dev Diary
 tumblr_url: http://jorgenpt.tumblr.com/post/21899839261/first-video-of-gameplay-from-my-alpha-game
-alias: /post/21899839261/first-video-of-gameplay-from-my-alpha-game
+alias: [/post/21899839261, /post/21899839261/first-video-of-gameplay-from-my-alpha-game]
 ---
 {% youtube OmYaNNHPvvc %}
 

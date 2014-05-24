@@ -9,7 +9,7 @@ categories:
     - Unity3D
     - Game Development
 tumblr_url: http://jorgenpt.tumblr.com/post/33037031622/first-playtest-of-arcane-deathmatch
-alias: /post/33037031622/first-playtest-of-arcane-deathmatch
+alias: [/post/33037031622, /post/33037031622/first-playtest-of-arcane-deathmatch]
 ---
 
 Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I'm going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it'd be ready for the playtest.
