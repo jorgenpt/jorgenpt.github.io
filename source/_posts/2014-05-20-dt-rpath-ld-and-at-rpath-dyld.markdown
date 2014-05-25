@@ -43,11 +43,14 @@ the directory in which our executable lives. DT\_RPATH is transitive,
 meaning it applies to any dependencies of our dependencies (unlike
 DT\_RUNPATH, but I won't talk about that here.) If our executable links
 with libfoo, and libfoo depends on libbar, libfoo will include our rpath
-in its search for libbar.
+in its search for libbar. (**EDIT 2014-05-25**: You might need
+`-Wl,-z,origin` for GCC to allow $ORIGIN to be expanded.)
 
 $ORIGIN is also commonly expanded by bash or zsh, so we use single
 quotes around our `-Wl,-rpath,$ORIGIN/lib` option to prevent that from
-happening.
+happening. To make sure that $ORIGIN didn't get expanded, you can run
+`readelf -d my_executable | grep -i rpath` to see the value of your
+rpath, making sure it starts with `$ORIGIN`.
 
 To specify multiple paths, separate them by a colon, like
 `-Wl,-rpath,$ORIGIN/lib:$ORIGIN/lib/amd64`.
@@ -111,7 +114,7 @@ set, it is checked before the install name (and therefore, @rpath) is
 consulted.
 
 
-## Summary
+## Conclusion
 
 Hopefully this helps you understand some nuances of dynamic linking on
 Mac OS X versus Linux. In my next blog post, I hope to show how you can
