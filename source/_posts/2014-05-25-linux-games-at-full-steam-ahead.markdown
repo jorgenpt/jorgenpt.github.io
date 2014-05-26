@@ -43,13 +43,13 @@ Both of these approaches assume that you've extracted the steam-runtime into a d
 
 In addition, these approaches assume you're already building with [the steam-runtime SDK][steam-runtime]. This is how you make sure your game is depending on the right version of the libraries.
 
-Finally, for simplicity sake I'm assuming you don't mind ~400MB of additional data in your package (that's the size of the entire steam-runtime.) If this is too much for you, you can always manually strip out unneeded libraries from the runtime, e.g. don't ship 32-bit libraries with your 64-bit builds.
+Finally, for simplicity sake I'm assuming you don't mind ~100MB of additional data in your package (that's the size of the steam-runtime for one architecture.) If this is too much for you, you can always manually strip out any unneeded libraries from the runtime.
 
 ## Solution 1: The wrapper script
 
 The less invasive way is to do basically what Steam does: Set up the runtime environment variables via `LD_LIBRARY_PATH`, and launch the main binary.
 
-To make it even easier, I've a little wrapper script that does exactly that. Name the script `foo.sh` or `foo`, and put it in the same directory as your executable (which should be named `foo.bin`.)
+To make it even easier, I've put together [a little wrapper script][wrapper-script] that does exactly that. Name the script `foo.sh` or `foo`, and put it in the same directory as your executable (which should be named `foo.bin`.)
 
 {% gist 35ded51f96cddad8190d wrapper.sh %}
 
@@ -92,10 +92,22 @@ And you would use these option for 64bit:
 
     -Wl,-z,origin -Wl,-rpath,$ORIGIN/steam-runtime/amd64/lib/x86_64-linux-gnu:$ORIGIN/steam-runtime/amd64/lib:$ORIGIN/steam-runtime/amd64/usr/lib/x86_64-linux-gnu:$ORIGIN/steam-runtime/amd64/usr/lib
 
+## Preparing the steam-runtime for your package
+
+I've created [two helper scripts][runtime-helpers], one to make sure you've downloaded the latest runtime, and one to extract the parts of the runtime you care about (to reduce runtime size from 400MB to 100MB, by excluding documentation and whatever architecture you're **not** using.)
+
+They're invoked like this to download the runtime and extract the 64bit libraries from it into the `build/steam-runtime` directory.
+
+    ./update_runtime.sh
+    ./extract_runtime.sh steam-runtime-release_latest.tar.xz amd64 build/steam-runtime
+
+{% gist 07f207aefdd49b61c7b6 update_runtime.sh %}
+
+{% gist 07f207aefdd49b61c7b6 extract_runtime.sh %}
 
 ## Conclusion
 
-With just a small modification to your build system and a ~2-400MB larger package, you can make your executables run across a wide variety of Linux distributions and user setups. I highly recommend the embedded search path solution, which is what I've used for [Planetary Annihilation's Linux release][pa].
+With just a small modification to your build system and a ~100MB larger package, you can make your executables run across a wide variety of Linux distributions and user setups. I highly recommend the embedded search path solution, which is what I've used for [Planetary Annihilation's Linux release][pa].
 
 When shipping your own steam-runtime, you are responsible for updating the runtime. The date of the latest update can be found inside the [runtime MD5 file][runtime-md5]. In addition, you are responsible for respecting the licenses of all the open source packages included in the runtime.
 
@@ -104,3 +116,5 @@ When shipping your own steam-runtime, you are responsible for updating the runti
 [steam-runtime]: https://github.com/ValveSoftware/steam-runtime
 [runtime-md5]: http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5
 [pa]: http://www.uberent.com/pa/
+[runtime-helpers]: https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6
+[wrapper-script]: https://gist.github.com/jorgenpt/35ded51f96cddad8190d
