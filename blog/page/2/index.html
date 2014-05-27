@@ -114,6 +114,66 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-05T16:40:00-07:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/">Requiring a minimum version of the Android SDK</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>(This is similar to <a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
+
+<p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
+
+<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers &ndash; we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
+
+<p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
+
+<p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
+
+<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :&ndash;)</p>
+
+<figure class='code'><figcaption><span>Makefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="cp">ifneq ($(shell $(LOCAL_PATH)/assert_sdk_version.sh &quot;r19&quot;),true)</span>
+</span><span class='line'>  <span class="k">$(</span>error SDK version r19 or greater required<span class="k">)</span>
+</span><span class='line'><span class="cp">endif</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;re curious how this works: It checks the <code>tools/source.properties</code> file in your Android SDK, looking for a line like <code>Pkg.Revision=XX</code>, and extracts the version (<code>XX</code>) from that.</p>
+
+<p>It&rsquo;s pretty straight forward, but I couldn&rsquo;t find anything online on how to check the SDK version from the command line, so I figured I&rsquo;d share it.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-28T16:59:00-07:00" pubdate data-updated="true">May 28<span>th</span>, 2012</time>
         
       </p>
@@ -376,7 +436,7 @@
 
 <h3>Questions? Comments?</h3>
 
-<p>Feel free to contact me on <a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x6a;&#x6f;&#114;&#103;&#x65;&#x6e;&#x70;&#116;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#106;&#x6f;&#114;&#x67;&#x65;&#x6e;&#112;&#116;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+<p>Feel free to contact me on <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#106;&#x6f;&#x72;&#x67;&#101;&#x6e;&#112;&#x74;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x6a;&#111;&#x72;&#x67;&#101;&#110;&#112;&#x74;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 </div>
   
   
@@ -507,137 +567,6 @@
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T00:04:00-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/post/2012/04/21/livecasting-osx-desktop/">Livecasting your desktop in OS X</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
-<strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
-
-<p>Turns out that livecasting your desktop in OS X is surprisingly hard. I found two ways online, none of which satisfied me, so I hunted for my own.</p>
-
-<h3>Adobe Flash Media Live Encoder, CamTwist &amp; Soundflower</h3>
-
-<p>This method, <a href="http://www.mikechambers.com/blog/2011/05/29/setting-up-desktop-streaming-on-mac-os-x/">described by Mike Chambers</a>, relied on three separate GUI tools (one of which was required the Adobe Flash Media Live Encoder), consumed all my CPU, and refused to support my 16:10 aspect ratio. Yikes.</p>
-
-<h3>Ustream Producer</h3>
-
-<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
-
-<h3>My own</h3>
-
-<p>So, based on <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s Linux approach</a>, I tried getting something similar working on OS X. It only used ffmpeg, and seemed to work pretty well.</p>
-
-<p>Surprisingly, my researched ended up with the following results:
- 1. <code>ffmpeg</code> doesn&rsquo;t support screen grabbing on OS X
- 1. <code>ffmpeg</code> doesn&rsquo;t have a single audio input that can read an audio device on OS X (see OpenAL section below)
- 1. <code>ffmpeg</code> can&rsquo;t record a web cam on OS X (this would allow me to use CamTwist as an input source)
- 1. VLC doesn&rsquo;t support streaming to an RTMP server
- 1. VLC can&rsquo;t record from an audio device
- 1. The only other app that&rsquo;d stream audio live from an audio device to a fifo or pipe was <code>sox</code>.</p>
-
-<p>Any of these statements might be wrong, so please tell me if you know a way :)</p>
-
-<p>So, the best I could do was have <a href="http://www.videolan.org/">VLC</a> stream the screen over a FIFO to <code>ffmpeg</code>, redirect audio through <a href="http://code.google.com/p/soundflower/">Soundflower</a>, then use <code>sox</code> to pipe audio to <code>ffmpeg</code>.
-Finally, <code>ffmpeg</code> recodes all that data and sends it to the justin.tv RTMP server. Not very simple, but at least it works.</p>
-
-<p>Turns out that this works best if you do <em>no</em> work in VLC other than spew to a FIFO: no encoding or encapsulating. Even using MPEG-TS had issues in this context. Raw video in a dummy mux is passed over the FIFO to <code>ffmpeg</code>, and <code>ffmpeg</code> is allowed to do all the encoding.</p>
-
-<p>In any case, I figured I should share this with the rest of you.</p>
-
-<p>Here&rsquo;s a modified version of <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s script</a>:</p>
-
-<div><script src='https://gist.github.com/2435006.js?file=stream.sh'></script>
-<noscript><pre><code>#!/bin/sh -xe
-
-API_KEY=&quot;YOUR_API_KEY_GOES_HERE&quot;
-FPS=&quot;10&quot;
-VLC_PATH=&quot;/Applications/VLC.app/Contents/MacOS/VLC&quot;
-# I don&#39;t know how this&#39;ll behave on multimon, so you might want to hard-code.
-# INRES=&#39;1440x900&#39;
-INRES=$(osascript -e &#39;tell application &quot;Finder&quot; to get bounds of window of desktop&#39;|sed &#39;s/, /x/g&#39;|cut -f3- -dx)
-OUTRES=&#39;1280x800&#39;
-# You can change this to record microphone or something else, from man soxformat (under coreaudio):
-# The valid names can be seen in the System Preferences-&gt;Sound menu and then under the Output and Input tabs.
-COREAUDIO_DEVICE=&quot;Soundflower (2ch)&quot;
-
-VIDEO_FIFO=/tmp/vlc-ffmpeg.raw
-AUDIO_FIFO=/tmp/sox-ffmpeg.wav
-
-for fifo in &quot;$VIDEO_FIFO&quot; &quot;$AUDIO_FIFO&quot;; do
-  rm -f &quot;$fifo&quot;
-  mkfifo &quot;$fifo&quot;
-done
-
-# This is called when you ^C or an app quits. It kills all the processes and deletes the FIFOs.
-function cleanup() {
-  trap &quot;&quot; EXIT INT
-
-  [[ ! -z &quot;$vlc_pid&quot; ]] &amp;&amp; kill -9 &quot;$vlc_pid&quot;
-  [[ ! -z &quot;$sox_pid&quot; ]] &amp;&amp; kill -9 &quot;$sox_pid&quot;
-  [[ ! -z &quot;$ffmpeg_pid&quot; ]] &amp;&amp; kill -9 &quot;$ffmpeg_pid&quot;
-  rm -f &quot;$VIDEO_FIFO&quot;
-  rm -f &quot;$AUDIO_FIFO&quot;
-}
-
-trap &quot;cleanup&quot; EXIT INT
-
-# VLC streams screen:// to $VIDEO_FIFO, in a raw BGRA format.
-$VLC_PATH screen:// :screen-fps=&quot;$FPS&quot; -I dummy --sout &quot;file/dummy:$VIDEO_FIFO&quot; &amp;
-vlc_pid=$!
-
-# SOX streams $COREAUDIO_DEVICE to $AUDIO_FIFO (with an increased buffer size, 4MB)
-sox --buffer 4194304 -q -c 2 -t coreaudio &quot;$COREAUDIO_DEVICE&quot; -t wav &quot;$AUDIO_FIFO&quot; &amp;
-sox_pid=$!
-
-# ffmpeg reads raw video from $VIDEO_FIFO, recodes it using libx264, combines it with mp3 that&#39;s been
-# transcoded from $AUDIO_FIFO with LAME, and ships it as FLV to justin.tv&#39;s RTMP server.
-ffmpeg -threads 0 \
-  -f rawvideo -pix_fmt bgra -s &quot;$INRES&quot; -r &quot;$FPS&quot; -i &quot;$VIDEO_FIFO&quot; \
-  -f wav -i &quot;$AUDIO_FIFO&quot; \
-  -vcodec libx264 -s &quot;$OUTRES&quot; \
-  -acodec libmp3lame -ab 128k -ar 44100 \
-  -f flv &quot;rtmp://live.justin.tv/app/$API_KEY&quot; &amp;
-ffmpeg_pid=$!
-
-wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
-
-
-<h4>OpenAL issues</h4>
-
-<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -661,6 +590,8 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
+    
     <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
     
     <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
@@ -668,8 +599,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
     
     <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
-    
-    <a class="list-group-item " href="/post/2012/10/06/arcane-dm-dev-diary-001/">Arcane DM Dev Diary #1</a>
     
   </div>
 </section>

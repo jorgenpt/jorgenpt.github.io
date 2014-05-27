@@ -110,6 +110,87 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00" pubdate data-updated="true">May 26<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Distributing a game on Linux can be a little intimidating, and there are
+definitely pitfalls. The main problem is making sure your game runs on
+all of your users&#8217; machines, and outside of hardware and drivers, the
+root of the problem is usually one of two things:</p>
+
+<ol>
+<li>You make an assumption about what libraries are present on the system.</li>
+<li>You make an assumption about what version of a library is present on the system.</li>
+</ol>
+
+
+<p>This is very easy to accidentally do, as adding <code>-lSDL2</code> to the linker&rsquo;s
+command line might work perfectly fine on your machine, but you forgot
+that you installed SDL2 by hand 4 months ago. Another cause could be
+that while <strong>your</strong> Linux distribution came with SDL2 preinstalled,
+another distribution (that your users use) might not. Finally, maybe
+your distribution came with v2 of some library, but your users only have
+v1.</p>
+
+<p>The best way to avoid this is to make your game distribution &ldquo;hermetic,&rdquo;
+meaning that it contains all of its own dependencies. There are two main
+ways to achieve this:</p>
+
+<ol>
+<li>Statically linking with all of your dependencies.</li>
+<li>Dynamically linking with all of your dependencies, and pointing the
+system&rsquo;s runtime loader at a copy of the libraries you bundle with
+your game.</li>
+</ol>
+
+
+<p>Statically linking comes with its own set of problems, so this post
+talks about solving the problem with dynamic linking.</p>
+
+<h2>Introducing the steam-runtime</h2>
+
+<p>It turns out that Valve has already solved this problem in Steam with
+<a href="https://github.com/ValveSoftware/steam-runtime">something called the steam-runtime</a>. Contrary to what
+its name indicates, it has <strong>no direct dependency on Steam nor does it
+even assume that it is installed</strong>. It is merely a controlled set of
+open source libraries (with some patches) and associated tools to use
+those libraries &ndash; to make your game build hermetic.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Read on &rarr;</a>
+    </footer>
+  
+
+</article>
+
+
+    <article class="post">
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-20T22:06:29-07:00" pubdate data-updated="true">May 20<span>th</span>, 2014</time>
         
       </p>
@@ -514,64 +595,6 @@ don&rsquo;t like GitHub any more.</p>
 <p>So far, updates have been on a weekly schedule. I intend to continue with that pace &ndash; or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
 
 <p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
-</div>
-  
-  
-
-</article>
-
-
-    <article class="post">
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-05T16:40:00-07:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/">Requiring a minimum version of the Android SDK</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>(This is similar to <a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
-
-<p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
-
-<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers &ndash; we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
-
-<p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
-
-<p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
-
-<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :&ndash;)</p>
-
-<figure class='code'><figcaption><span>Makefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="cp">ifneq ($(shell $(LOCAL_PATH)/assert_sdk_version.sh &quot;r19&quot;),true)</span>
-</span><span class='line'>  <span class="k">$(</span>error SDK version r19 or greater required<span class="k">)</span>
-</span><span class='line'><span class="cp">endif</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you&rsquo;re curious how this works: It checks the <code>tools/source.properties</code> file in your Android SDK, looking for a line like <code>Pkg.Revision=XX</code>, and extracts the version (<code>XX</code>) from that.</p>
-
-<p>It&rsquo;s pretty straight forward, but I couldn&rsquo;t find anything online on how to check the SDK version from the command line, so I figured I&rsquo;d share it.</p>
 </div>
   
   

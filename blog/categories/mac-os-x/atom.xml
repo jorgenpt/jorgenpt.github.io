@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac OS X | Jørgen's Blog]]></title>
   <link href="http://jorgen.tjer.no/blog/categories/mac-os-x/atom.xml" rel="self"/>
   <link href="http://jorgen.tjer.no/"/>
-  <updated>2014-05-24T12:11:45-07:00</updated>
+  <updated>2014-05-26T21:48:01-07:00</updated>
   <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -60,11 +60,14 @@ the directory in which our executable lives. DT_RPATH is transitive,
 meaning it applies to any dependencies of our dependencies (unlike
 DT_RUNPATH, but I won&rsquo;t talk about that here.) If our executable links
 with libfoo, and libfoo depends on libbar, libfoo will include our rpath
-in its search for libbar.</p>
+in its search for libbar. (<strong>EDIT 2014-05-25</strong>: You might need
+<code>-Wl,-z,origin</code> for GCC to allow $ORIGIN to be expanded.)</p>
 
 <p>$ORIGIN is also commonly expanded by bash or zsh, so we use single
 quotes around our <code>-Wl,-rpath,$ORIGIN/lib</code> option to prevent that from
-happening.</p>
+happening. To make sure that $ORIGIN didn&rsquo;t get expanded, you can run
+<code>readelf -d my_executable | grep -i rpath</code> to see the value of your
+rpath, making sure it starts with <code>$ORIGIN</code>.</p>
 
 <p>To specify multiple paths, separate them by a colon, like
 <code>-Wl,-rpath,$ORIGIN/lib:$ORIGIN/lib/amd64</code>.</p>
@@ -127,7 +130,7 @@ and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
 
-<h2>Summary</h2>
+<h2>Conclusion</h2>
 
 <p>Hopefully this helps you understand some nuances of dynamic linking on
 Mac OS X versus Linux. In my next blog post, I hope to show how you can

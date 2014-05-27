@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Game Development | Jørgen's Blog]]></title>
   <link href="http://jorgen.tjer.no/blog/categories/game-development/atom.xml" rel="self"/>
   <link href="http://jorgen.tjer.no/"/>
-  <updated>2014-05-24T12:11:45-07:00</updated>
+  <updated>2014-05-26T21:48:01-07:00</updated>
   <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Self-contained game distribution on Linux]]></title>
+    <link href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
+    <updated>2014-05-26T21:10:28-07:00</updated>
+    <id>http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
+    <content type="html"><![CDATA[<p>Distributing a game on Linux can be a little intimidating, and there are
+definitely pitfalls. The main problem is making sure your game runs on
+all of your users' machines, and outside of hardware and drivers, the
+root of the problem is usually one of two things:</p>
+
+<ol>
+<li>You make an assumption about what libraries are present on the system.</li>
+<li>You make an assumption about what version of a library is present on the system.</li>
+</ol>
+
+
+<p>This is very easy to accidentally do, as adding <code>-lSDL2</code> to the linker&rsquo;s
+command line might work perfectly fine on your machine, but you forgot
+that you installed SDL2 by hand 4 months ago. Another cause could be
+that while <strong>your</strong> Linux distribution came with SDL2 preinstalled,
+another distribution (that your users use) might not. Finally, maybe
+your distribution came with v2 of some library, but your users only have
+v1.</p>
+
+<p>The best way to avoid this is to make your game distribution &ldquo;hermetic,&rdquo;
+meaning that it contains all of its own dependencies. There are two main
+ways to achieve this:</p>
+
+<ol>
+<li>Statically linking with all of your dependencies.</li>
+<li>Dynamically linking with all of your dependencies, and pointing the
+system&rsquo;s runtime loader at a copy of the libraries you bundle with
+your game.</li>
+</ol>
+
+
+<p>Statically linking comes with its own set of problems, so this post
+talks about solving the problem with dynamic linking.</p>
+
+<h2>Introducing the steam-runtime</h2>
+
+<p>It turns out that Valve has already solved this problem in Steam with
+<a href="https://github.com/ValveSoftware/steam-runtime">something called the steam-runtime</a>. Contrary to what
+its name indicates, it has <strong>no direct dependency on Steam nor does it
+even assume that it is installed</strong>. It is merely a controlled set of
+open source libraries (with some patches) and associated tools to use
+those libraries &ndash; to make your game build hermetic.</p>
+
+<!-- more -->
+
+
+<p>If your game is running under Steam, you don&rsquo;t need to do much. Build
+your game with the steam-runtime SDK, make sure all of your dependencies
+exist inside of the runtime, and ship the game binaries to Steam. On the
+receiving end, Steam will make sure that your users have the latest
+version of the steam-runtime, and execute your game inside of it.</p>
+
+<p>If you, like many others, also distribute your game outside of Steam,
+you&rsquo;ll need to find another solution. The obvious solution is to build
+on their work &ndash; it&rsquo;s an open source project that solves the problem
+perfectly!</p>
+
+<h2>Workings of the steam-runtime</h2>
+
+<p>When I say that your game is executed &ldquo;inside&rdquo; of the runtime when
+launched through Steam, I specifically mean that:</p>
+
+<ul>
+<li>The steam-runtime being present in some location Steam knows about</li>
+<li>Steam sets the <code>LD_LIBRARY_PATH</code> environment variable before launching
+your game to <a href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80">instructs the dynamic loader to search the specified
+directory for libraries</a>.</li>
+</ul>
+
+
+<p>This way, your game suddenly prefers the runtime versions of libraries
+rather than your own. It&rsquo;s worth noting that if your game depends on a
+library that is <strong>not</strong> present in the runtime, but the user has it
+installed on their system, your game will run without error. This is
+something to be wary of, since you don&rsquo;t know what version of the
+library you&rsquo;re getting, and it&rsquo;ll fail to execute on some users'
+systems.</p>
+
+<p>The <a href="https://github.com/ValveSoftware/steam-runtime">runtime SDK</a> is just a set of tools that have been
+told to look for libraries and headers inside the SDK rather than in the
+system directories, so that the linker and compiler knows about the
+right version of the libraries.</p>
+
+<h2>Contents of the runtime</h2>
+
+<p>Since the steam-runtime doesn&rsquo;t require Steam, let&rsquo;s take a look at what
+the runtime contains, and see if there&rsquo;s a way to use this in our
+non-Steam distributions.</p>
+
+<p>You can find the runtime binaries hosted on the Steam CDN as a tar
+archive:
+<a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz">http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz</a></p>
+
+<p>I&rsquo;ve provided a script on GitHub that you can use to make sure you have
+the latest runtime downloaded to the current directory. <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-update_runtime-sh">The helper
+script is update_runtime.sh</a>.</p>
+
+<p>The runtime tar archive contains some helper scripts, and the various
+files needed for each library, as well as the libraries themselves. For
+each library, there&rsquo;s a 32bit version (in the i386 directory) and a
+64bit version (in the amd64 directory.)</p>
+
+<p>Surprisingly enough, the runtime <em>also</em> contains (as of 2014-05-26) the
+documentation needed for each library, which takes up almost half of the
+space required by an extracted version of the runtime. To strip out the
+documentation, and extract just the architecture you care about, I&rsquo;ve
+written <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-extract_runtime-sh">another little helper script called
+extract_runtime.sh</a>.</p>
+
+<p>With this script, you&rsquo;ll be left with about ~100MB of libraries per
+architecture. You can probably tailor the set of libraries for your
+title to reduce the size even further, but that&rsquo;s left as an exercise
+for the reader.</p>
+
+<h2>Conclusion</h2>
+
+<p>The Steam runtime is a useful collection of libraries that helps solve
+the important problem of operating system fragmentation (different Linux
+distributions, different versions). It has a lot of value outside of
+Steam as well, and should be trivially re-usable for your non-Steam
+distribution.</p>
+
+<p>In my next blog post, I will cover the details of distributing a game
+that relies on the steam-runtime to hermeticize its environment, outside
+of Steam.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
@@ -94,27 +227,6 @@
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/YFKmtO05VjU" allowfullscreen></iframe></div></p>
 
 <p>Hopefully I&rsquo;ll keep making steady progress and I can start very very early tests against real people this week or next.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
-    <updated>2012-09-09T15:10:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
-    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
-
-<p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
-
-<p>Every time you&rsquo;re hit by a spell, you lose some health and get knocked back. The less health you have, the easier you are to knock around. If you get knocked off the map, you&rsquo;ll probably sustain damage wading through a lava pit, be nibbled on by piranhas as you swim to shore, or fall off the map.</p>
-
-<p><img class="center" src="/images/early_adm.png"></p>
-
-<p>So far, I&rsquo;ve got rudimentary networking and gameplay working &ndash; two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much &ndash; but that&rsquo;s never stopped me before! ;&ndash;)</p>
-
-<p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
-
-<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
 ]]></content>
   </entry>
   

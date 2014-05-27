@@ -164,11 +164,14 @@ the directory in which our executable lives. DT_RPATH is transitive,
 meaning it applies to any dependencies of our dependencies (unlike
 DT_RUNPATH, but I won&rsquo;t talk about that here.) If our executable links
 with libfoo, and libfoo depends on libbar, libfoo will include our rpath
-in its search for libbar.</p>
+in its search for libbar. (<strong>EDIT 2014-05-25</strong>: You might need
+<code>-Wl,-z,origin</code> for GCC to allow $ORIGIN to be expanded.)</p>
 
 <p>$ORIGIN is also commonly expanded by bash or zsh, so we use single
 quotes around our <code>-Wl,-rpath,$ORIGIN/lib</code> option to prevent that from
-happening.</p>
+happening. To make sure that $ORIGIN didn&rsquo;t get expanded, you can run
+<code>readelf -d my_executable | grep -i rpath</code> to see the value of your
+rpath, making sure it starts with <code>$ORIGIN</code>.</p>
 
 <p>To specify multiple paths, separate them by a colon, like
 <code>-Wl,-rpath,$ORIGIN/lib:$ORIGIN/lib/amd64</code>.</p>
@@ -231,7 +234,7 @@ and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
 
-<h2>Summary</h2>
+<h2>Conclusion</h2>
 
 <p>Hopefully this helps you understand some nuances of dynamic linking on
 Mac OS X versus Linux. In my next blog post, I hope to show how you can
@@ -304,6 +307,8 @@ your game outside of Steam.</p>
             <li class="previous"><a href="/post/2014/05/19/moving-to-a-new-blog/" title="Previous Post: Moved to a new location!">&laquo; Moved to a new location!</a></li>
             
             
+            <li class="next"><a href="/post/2014/05/26/self-contained-game-distribution-on-linux/" title="Next Post: Self-contained game distribution on Linux">Self-contained game distribution on Linux &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -327,6 +332,8 @@ your game outside of Steam.</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
+    
     <a class="list-group-item active" href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
     
     <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
@@ -334,8 +341,6 @@ your game outside of Steam.</p>
     <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
     
     <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
-    
-    <a class="list-group-item " href="/post/2012/10/06/arcane-dm-dev-diary-001/">Arcane DM Dev Diary #1</a>
     
   </div>
 </section>
