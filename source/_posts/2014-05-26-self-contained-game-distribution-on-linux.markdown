@@ -66,8 +66,8 @@ launched through Steam, I specifically mean that:
 
 * The steam-runtime being present in some location Steam knows about
 * Steam sets the `LD_LIBRARY_PATH` environment variable before launching
-your game to [instructs the dynamic loader to search the specified
-directory for libraries][ld_library_path].
+  your game to [instruct the dynamic loader to search the specified
+  directory for libraries][ld_library_path].
 
 This way, your game suddenly prefers the runtime versions of libraries
 rather than your own. It's worth noting that if your game depends on a
