@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Steam Runtime | Jørgen's Blog]]></title>
   <link href="http://jorgen.tjer.no/blog/categories/steam-runtime/atom.xml" rel="self"/>
   <link href="http://jorgen.tjer.no/"/>
-  <updated>2014-05-26T21:48:01-07:00</updated>
+  <updated>2014-05-26T22:09:45-07:00</updated>
   <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -83,7 +83,7 @@ launched through Steam, I specifically mean that:</p>
 <ul>
 <li>The steam-runtime being present in some location Steam knows about</li>
 <li>Steam sets the <code>LD_LIBRARY_PATH</code> environment variable before launching
-your game to <a href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80">instructs the dynamic loader to search the specified
+your game to <a href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80">instruct the dynamic loader to search the specified
 directory for libraries</a>.</li>
 </ul>
 
