@@ -127,5 +127,5 @@ of Steam.
 
 [steam-runtime]: https://github.com/ValveSoftware/steam-runtime
 [ld_library_path]: http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80
-[extract_runtime]: https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-extract_runtime-sh
-[update_runtime]: https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-update_runtime-sh
+[extract_runtime]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/extract_runtime.sh
+[update_runtime]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/update_runtime.sh
