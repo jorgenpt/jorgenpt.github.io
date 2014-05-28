@@ -59,6 +59,10 @@ you'll need to find another solution. The obvious solution is to build
 on their work - it's an open source project that solves the problem
 perfectly!
 
+(**Update:** If you want to cut directly to the proposed solution, read
+my [follow-up post on the details of using the steam-runtime without
+depending on Steam][steamless-steam-runtime].)
+
 ## Workings of the steam-runtime
 
 When I say that your game is executed "inside" of the runtime when
@@ -121,11 +125,12 @@ distributions, different versions). It has a lot of value outside of
 Steam as well, and should be trivially re-usable for your non-Steam
 distribution.
 
-In my next blog post, I will cover the details of distributing a game
-that relies on the steam-runtime to hermeticize its environment, outside
-of Steam.
+**Update**: In the follow-up post, I cover [the details of distributing
+a game that relies on the steam-runtime to hermeticize its environment,
+without depending on Steam][steamless-steam-runtime].
 
 [steam-runtime]: https://github.com/ValveSoftware/steam-runtime
 [ld_library_path]: http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80
 [extract_runtime]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/extract_runtime.sh
 [update_runtime]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/update_runtime.sh
+[steamless-steam-runtime]: /post/2014/05/28/steam-runtime-without-steam/
