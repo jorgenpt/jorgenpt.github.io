@@ -23,6 +23,7 @@
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -63,6 +64,12 @@
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -157,6 +164,7 @@ your game.</li>
 <p>Statically linking comes with its own set of problems, so this post
 talks about solving the problem with dynamic linking.</p>
 
+<a name="Introducing.the.steam-runtime"></a>
 <h2>Introducing the steam-runtime</h2>
 
 <p>It turns out that Valve has already solved this problem in Steam with
@@ -180,6 +188,11 @@ you&rsquo;ll need to find another solution. The obvious solution is to build
 on their work &ndash; it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
+<p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read
+my <a href="/post/2014/05/28/steam-runtime-without-steam/">follow-up post on the details of using the steam-runtime without
+depending on Steam</a>.)</p>
+
+<a name="Workings.of.the.steam-runtime"></a>
 <h2>Workings of the steam-runtime</h2>
 
 <p>When I say that your game is executed &ldquo;inside&rdquo; of the runtime when
@@ -206,6 +219,7 @@ told to look for libraries and headers inside the SDK rather than in the
 system directories, so that the linker and compiler knows about the
 right version of the libraries.</p>
 
+<a name="Contents.of.the.runtime"></a>
 <h2>Contents of the runtime</h2>
 
 <p>Since the steam-runtime doesn&rsquo;t require Steam, let&rsquo;s take a look at what
@@ -217,7 +231,7 @@ archive:
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz">http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz</a></p>
 
 <p>I&rsquo;ve provided a script on GitHub that you can use to make sure you have
-the latest runtime downloaded to the current directory. <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-update_runtime-sh">The helper
+the latest runtime downloaded to the current directory. <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/update_runtime.sh">The helper
 script is update_runtime.sh</a>.</p>
 
 <p>The runtime tar archive contains some helper scripts, and the various
@@ -229,7 +243,7 @@ each library, there&rsquo;s a 32bit version (in the i386 directory) and a
 documentation needed for each library, which takes up almost half of the
 space required by an extracted version of the runtime. To strip out the
 documentation, and extract just the architecture you care about, I&rsquo;ve
-written <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-extract_runtime-sh">another little helper script called
+written <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/extract_runtime.sh">another little helper script called
 extract_runtime.sh</a>.</p>
 
 <p>With this script, you&rsquo;ll be left with about ~100MB of libraries per
@@ -237,6 +251,7 @@ architecture. You can probably tailor the set of libraries for your
 title to reduce the size even further, but that&rsquo;s left as an exercise
 for the reader.</p>
 
+<a name="Conclusion"></a>
 <h2>Conclusion</h2>
 
 <p>The Steam runtime is a useful collection of libraries that helps solve
@@ -245,9 +260,9 @@ distributions, different versions). It has a lot of value outside of
 Steam as well, and should be trivially re-usable for your non-Steam
 distribution.</p>
 
-<p>In my next blog post, I will cover the details of distributing a game
-that relies on the steam-runtime to hermeticize its environment, outside
-of Steam.</p>
+<p><strong>Update</strong>: In the follow-up post, I cover <a href="/post/2014/05/28/steam-runtime-without-steam/">the details of distributing
+a game that relies on the steam-runtime to hermetically seal its
+environment, without depending on Steam</a>.</p>
 </div>
 
 
@@ -299,6 +314,8 @@ of Steam.</p>
             <li class="previous"><a href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/" title="Previous Post: DT_RPATH (ld) & @rpath (dyld)">&laquo; DT_RPATH (ld) & @rpath (dyld)</a></li>
             
             
+            <li class="next"><a href="/post/2014/05/28/steam-runtime-without-steam/" title="Next Post: steam-runtime without Steam">steam-runtime without Steam &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -322,6 +339,8 @@ of Steam.</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
+    
     <a class="list-group-item active" href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
     
     <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
@@ -329,8 +348,6 @@ of Steam.</p>
     <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
     
     <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
-    
-    <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
     
   </div>
 </section>

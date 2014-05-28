@@ -23,6 +23,7 @@
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -63,6 +64,12 @@
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -128,14 +135,17 @@
 
 <p>Turns out that livecasting your desktop in OS X is surprisingly hard. I found two ways online, none of which satisfied me, so I hunted for my own.</p>
 
+<a name="Adobe.Flash.Media.Live.Encoder..CamTwist..amp..Soundflower"></a>
 <h3>Adobe Flash Media Live Encoder, CamTwist &amp; Soundflower</h3>
 
 <p>This method, <a href="http://www.mikechambers.com/blog/2011/05/29/setting-up-desktop-streaming-on-mac-os-x/">described by Mike Chambers</a>, relied on three separate GUI tools (one of which was required the Adobe Flash Media Live Encoder), consumed all my CPU, and refused to support my 16:10 aspect ratio. Yikes.</p>
 
+<a name="Ustream.Producer"></a>
 <h3>Ustream Producer</h3>
 
 <p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
 
+<a name="My.own"></a>
 <h3>My own</h3>
 
 <p>So, based on <a href="http://unethicalblogger.com/2012/04/04/live-coding-with-ffmpeg.html">Tyler&rsquo;s Linux approach</a>, I tried getting something similar working on OS X. It only used ffmpeg, and seemed to work pretty well.</p>
@@ -215,6 +225,7 @@ ffmpeg_pid=$!
 wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 
 
+<a name="OpenAL.issues"></a>
 <h4>OpenAL issues</h4>
 
 <p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
@@ -294,6 +305,8 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
+    
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
     
     <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
@@ -301,8 +314,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
     
     <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
-    
-    <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
     
   </div>
 </section>

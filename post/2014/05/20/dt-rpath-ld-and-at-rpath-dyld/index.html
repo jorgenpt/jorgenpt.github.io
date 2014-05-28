@@ -23,6 +23,7 @@
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -63,6 +64,12 @@
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -134,6 +141,7 @@ a little jumbled in your mind, so here&rsquo;s a brief overview.</p>
 <!-- more -->
 
 
+<a name="DT_RPATH"></a>
 <h2>DT_RPATH</h2>
 
 <p>DT_RPATH, or more commonly just rpath, is a property set on an ELF
@@ -201,6 +209,7 @@ well-defined: Your rpath is searched first, and anything it can&rsquo;t find
 there it&rsquo;ll look for in LD_LIBRARY_PATH. Finally, if searches the
 system directories<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
 
+<a name="L.rpath"></a>
 <h2>@rpath</h2>
 
 <p>While @rpath is named similarly to its Linux cousin, it behaves a bit
@@ -234,6 +243,7 @@ and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
 
+<a name="Conclusion"></a>
 <h2>Conclusion</h2>
 
 <p>Hopefully this helps you understand some nuances of dynamic linking on
@@ -332,6 +342,8 @@ your game outside of Steam.</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
+    
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
     
     <a class="list-group-item active" href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
@@ -339,8 +351,6 @@ your game outside of Steam.</p>
     <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
     
     <a class="list-group-item " href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a>
-    
-    <a class="list-group-item " href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a>
     
   </div>
 </section>

@@ -23,6 +23,7 @@
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -64,6 +65,12 @@
                 <li >
                     <a href="/blog/archives">Archives</a>
                 </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -91,6 +98,72 @@
       <div id="main" class="container">
         <div id="content">
           
+
+
+    <article class="post">
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00" pubdate data-updated="true">May 28<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>If you&rsquo;ve ever had customers report errors like these, then this post
+might be for you:</p>
+
+<ul>
+<li><code>./foo: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version
+`GLIBCXX_3.4.16` not found (required by ./foo)</code></li>
+<li><code>./foo: error while loading shared libraries: libSDL2-2.0.so.0:
+ cannot open shared object file: No such file or directory</code></li>
+</ul>
+
+
+<p>In my <a href="/post/2014/05/26/self-contained-game-distribution-on-linux/">previous post about self-contained distributions</a>,
+we started looking at how the <a href="https://github.com/ValveSoftware/steam-runtime">steam-runtime project</a>
+works. In this post, we&rsquo;ll make the steam-runtime work for us in a
+self-contained distribution that you can ship without depending on
+Steam.</p>
+
+<p>I will present two possible ways of doing it:</p>
+
+<ol>
+<li>Using <a href="/post/2014/05/28/steam-runtime-without-steam/#Solution.1:.The.wrapper.script">a wrapper script</a>.</li>
+<li>Using <a href="/post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path">an &ldquo;embedded search path&rdquo;</a>.</li>
+</ol>
+
+
+<p>If you&rsquo;re wondering why you would prefer the second approach, that
+section starts with a rundown of the benefits inherent to it!</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/post/2014/05/28/steam-runtime-without-steam/">Read on &rarr;</a>
+    </footer>
+  
+
+</article>
 
 
     <article class="post">
@@ -154,6 +227,7 @@ your game.</li>
 <p>Statically linking comes with its own set of problems, so this post
 talks about solving the problem with dynamic linking.</p>
 
+<a name="Introducing.the.steam-runtime"></a>
 <h2>Introducing the steam-runtime</h2>
 
 <p>It turns out that Valve has already solved this problem in Steam with
@@ -554,47 +628,6 @@ don&rsquo;t like GitHub any more.</p>
 <p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
 
 <p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
-</div>
-  
-  
-
-</article>
-
-
-    <article class="post">
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-18T12:41:38-07:00" pubdate data-updated="true">Jun 18<span>th</span>, 2012</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/post/2012/06/18/lack-of-updates-for-a-few-weeks/">Lack of updates for a few weeks</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>I&rsquo;ve attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.</p>
-
-<p>I&rsquo;m in the middle of organizing a wedding reception, so there won&rsquo;t be any time for working on my projects until after the 26th of June. I look forward to getting back to it!</p>
-
-<p>So far, updates have been on a weekly schedule. I intend to continue with that pace &ndash; or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
-
-<p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
 </div>
   
   

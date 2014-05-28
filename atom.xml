@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="http://jorgen.tjer.no/atom.xml" rel="self"/>
   <link href="http://jorgen.tjer.no/"/>
-  <updated>2014-05-26T22:09:45-07:00</updated>
+  <updated>2014-05-28T08:49:56-07:00</updated>
   <id>http://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,207 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[steam-runtime without Steam]]></title>
+    <link href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
+    <updated>2014-05-28T08:28:28-07:00</updated>
+    <id>http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;ve ever had customers report errors like these, then this post
+might be for you:</p>
+
+<ul>
+<li><code>./foo: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version
+`GLIBCXX_3.4.16` not found (required by ./foo)</code></li>
+<li><code>./foo: error while loading shared libraries: libSDL2-2.0.so.0:
+ cannot open shared object file: No such file or directory</code></li>
+</ul>
+
+
+<p>In my <a href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/">previous post about self-contained distributions</a>,
+we started looking at how the <a href="https://github.com/ValveSoftware/steam-runtime">steam-runtime project</a>
+works. In this post, we&rsquo;ll make the steam-runtime work for us in a
+self-contained distribution that you can ship without depending on
+Steam.</p>
+
+<p>I will present two possible ways of doing it:</p>
+
+<ol>
+<li>Using <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.1:.The.wrapper.script">a wrapper script</a>.</li>
+<li>Using <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path">an &ldquo;embedded search path&rdquo;</a>.</li>
+</ol>
+
+
+<p>If you&rsquo;re wondering why you would prefer the second approach, that
+section starts with a rundown of the benefits inherent to it!</p>
+
+<!-- more -->
+
+
+<a name="Assumptions"></a>
+<h2>Assumptions</h2>
+
+<p>The remainder of this article makes a few assumptions, no matter which
+of the two approaches you choose.</p>
+
+<p>I assume that you&rsquo;ve extracted the steam-runtime into a directory named
+<code>steam-runtime/</code> next to the executable. The easiest way to do this is
+to use the two helper scripts I wrote, see the section on <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Preparing.the.steam-runtime.for.repackaging">repackaging
+the steam-runtime</a>. You should include the steam-runtime
+directory when distributing <em>outside of</em> Steam, and distribute the exact
+same package <strong>except</strong> for the steam-runtime directory when
+distributing <em>through</em> Steam.</p>
+
+<p>Excluding the steam-runtime can be done trivially inside your Steam
+depot build script. Assuming you&rsquo;re building a depot from <code>build/linux</code>
+(relative to your ContentRoot) with the binary living directly in that
+directory, your script would contain something like this:</p>
+
+<pre><code>"DepotBuildConfig"
+{
+    "DepotID" "1001"
+
+    "FileMapping"
+    {
+        "LocalPath" "build\linux\*"
+        "DepotPath" "."
+        "recursive" "1"
+    }
+
+    "FileExclusion" "build\linux\steam-runtime"
+}
+</code></pre>
+
+<p>It&rsquo;s worth noting that the FileExclusion is matched against your local
+paths, not your depot paths, and it is implicitly recursive (the latter
+doesn&rsquo;t seem to be documented <a href="https://partner.steamgames.com/documentation/steampipe">in the SteamPipe docs</a> as
+of 2014-05-28.)</p>
+
+<p>I assume you&rsquo;re already building your game with <a href="https://github.com/ValveSoftware/steam-runtime">the steam-runtime
+SDK</a>. This is how you make sure your game is depending on
+the right version of the libraries.</p>
+
+<p>Finally, for simplicity sake I&rsquo;m also assuming you don&rsquo;t mind ~100MB of
+additional data in your package, which is the size of the entire
+steam-runtime for one architecture. If this is too much for you, you can
+always manually strip out any unneeded libraries from the runtime.</p>
+
+<a name="Preparing.the.steam-runtime.for.repackaging"></a>
+<h3>Preparing the steam-runtime for repackaging</h3>
+
+<p>I&rsquo;ve created <a href="https://github.com/jorgenpt/steam-runtime-helpers">two helper scripts</a>, one to make sure
+you&rsquo;ve <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/update_runtime.sh">downloaded the latest runtime</a>, and one to <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/extract_runtime.sh">extract
+the parts of the runtime you care about</a> (to reduce runtime
+size from 400MB to 100MB, by excluding documentation and whatever
+architecture you&rsquo;re <strong>not</strong> using.)</p>
+
+<p>You would invoke them like this to download the latest runtime and
+extract the 64bit libraries from it into the <code>build/linux/steam-runtime</code>
+directory.</p>
+
+<pre><code>./update_runtime.sh
+./extract_runtime.sh steam-runtime-release_latest.tar.xz amd64 build/linux/steam-runtime
+</code></pre>
+
+<a name="Solution.1:.The.wrapper.script"></a>
+<h2>Solution 1: The wrapper script</h2>
+
+<p>The least invasive way to accomplish what we want is to basically do
+what Steam does: Set up the runtime environment variables via
+<code>LD_LIBRARY_PATH</code>, and launch the main binary.</p>
+
+<p>To make it even easier, I&rsquo;ve put together <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/launch_wrapper.sh">a little wrapper
+script</a> that does exactly that. Name the script <code>foo.sh</code>
+or <code>foo</code>, and put it in the same directory as your executable, which it
+will then assume is named <code>foo.bin</code>.</p>
+
+<p>The script should gracefully handle being launched from Steam, as it&rsquo;ll
+detect that the runtime has already been set up.</p>
+
+<a name="Solution.2:.Embedded.search.path"></a>
+<h2>Solution 2: Embedded search path</h2>
+
+<p>First off, why would you prefer this approach to using a wrapper script?</p>
+
+<ul>
+<li>Shell scripts are fragile &mdash; it&rsquo;s easy to get something wrong, like
+incorrectly handling spaces in filenames, or something equally silly.</li>
+<li>A shell script gives you another file that you have to be careful to
+maintain the executable bit on.</li>
+<li>Shell scripts are text files, and your VCS / publishing process might
+mangle the line endings, which makes everyone sad (<code>bad interpreter:
+/bin/bash^M: no such file or directory</code>)</li>
+<li>A customer could accidentally launch the wrong thing (i.e. the
+<code>.bin</code>-file rather than the script), which might work on some
+machines, fail in subtle ways on other machines, and not work at all
+on the rest of them.</li>
+<li>Launching the game in a debugger requires more complexity in your
+script, like the <code>--gdb</code> logic in
+<a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/launch_wrapper.sh">launcher_wrapper.sh</a>, to make the game, but not the
+debugger, pick up the runtime libraries.</li>
+<li>If you launch any system binaries from outside of the runtime without
+taking care to unset <code>LD_LIBRARY_PATH</code>, they will implicitly be using
+the runtime libraries, which might not cause problems.</li>
+</ul>
+
+
+<p>The alternative to the wrapper script is using <code>DT_RPATH</code>, which I&rsquo;ve
+talked about in <a href="http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">a previous blog post</a>. This approach is a
+little more invasive to your build process, but overall it should
+require less code.</p>
+
+<p>Simply invoke your linker with the <code>-rpath</code> option pointing to various
+subdirectories of the steam-runtime directory. For GCC and Clang, you
+would add <code>-Wl,-rpath,&lt;path1&gt;:&lt;path2&gt;:...</code> to the linking step to
+accomplish this.</p>
+
+<p>These are the paths to the 64bit libraries in the steam-runtime:</p>
+
+<ul>
+<li>amd64/lib/x86_64-linux-gnu</li>
+<li>amd64/lib</li>
+<li>amd64/usr/lib/x86_64-linux-gnu</li>
+<li>amd64/usr/lib</li>
+</ul>
+
+
+<p>These are the paths to the 32bit libraries:</p>
+
+<ul>
+<li>i386/lib/i386-linux-gnu</li>
+<li>i386/lib</li>
+<li>i386/usr/lib/i386-linux-gnu</li>
+<li>i386/usr/lib</li>
+</ul>
+
+
+<p>Assuming you&rsquo;re using GCC and the steam-runtime lives next to the
+executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
+
+<pre><code>-Wl,-z,origin -Wl,-rpath,$ORIGIN/steam-runtime/amd64/lib/x86_64-linux-gnu:$ORIGIN/steam-runtime/amd64/lib:$ORIGIN/steam-runtime/amd64/usr/lib/x86_64-linux-gnu:$ORIGIN/steam-runtime/amd64/usr/lib
+</code></pre>
+
+<p>And you would use these option for a 32bit binary:</p>
+
+<pre><code>-Wl,-z,origin -Wl,-rpath,$ORIGIN/steam-runtime/i386/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/lib:$ORIGIN/steam-runtime/i386/usr/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/usr/lib
+</code></pre>
+
+<a name="Conclusion"></a>
+<h2>Conclusion</h2>
+
+<p>With just a small modification to your build system and a ~100MB larger
+distribution, you can make your executables run across a wide variety of
+Linux distributions and user setups. I highly recommend the embedded
+search path solution, which is what I used for <a href="http://www.uberent.com/pa/">Planetary
+Annihilation</a>&rsquo;s Linux release.</p>
+
+<p>When shipping your own steam-runtime, you are responsible for updating
+the runtime. The date of the latest update can be found inside the
+<a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5">runtime MD5 file</a>. In addition, you are responsible for
+respecting the licenses of all the packages included in the runtime &mdash;
+including any clauses regarding redistribution.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Self-contained game distribution on Linux]]></title>
@@ -52,6 +253,7 @@ your game.</li>
 <p>Statically linking comes with its own set of problems, so this post
 talks about solving the problem with dynamic linking.</p>
 
+<a name="Introducing.the.steam-runtime"></a>
 <h2>Introducing the steam-runtime</h2>
 
 <p>It turns out that Valve has already solved this problem in Steam with
@@ -75,6 +277,11 @@ you&rsquo;ll need to find another solution. The obvious solution is to build
 on their work &ndash; it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
+<p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read
+my <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">follow-up post on the details of using the steam-runtime without
+depending on Steam</a>.)</p>
+
+<a name="Workings.of.the.steam-runtime"></a>
 <h2>Workings of the steam-runtime</h2>
 
 <p>When I say that your game is executed &ldquo;inside&rdquo; of the runtime when
@@ -101,6 +308,7 @@ told to look for libraries and headers inside the SDK rather than in the
 system directories, so that the linker and compiler knows about the
 right version of the libraries.</p>
 
+<a name="Contents.of.the.runtime"></a>
 <h2>Contents of the runtime</h2>
 
 <p>Since the steam-runtime doesn&rsquo;t require Steam, let&rsquo;s take a look at what
@@ -112,7 +320,7 @@ archive:
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz">http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz</a></p>
 
 <p>I&rsquo;ve provided a script on GitHub that you can use to make sure you have
-the latest runtime downloaded to the current directory. <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-update_runtime-sh">The helper
+the latest runtime downloaded to the current directory. <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/update_runtime.sh">The helper
 script is update_runtime.sh</a>.</p>
 
 <p>The runtime tar archive contains some helper scripts, and the various
@@ -124,7 +332,7 @@ each library, there&rsquo;s a 32bit version (in the i386 directory) and a
 documentation needed for each library, which takes up almost half of the
 space required by an extracted version of the runtime. To strip out the
 documentation, and extract just the architecture you care about, I&rsquo;ve
-written <a href="https://gist.github.com/jorgenpt/07f207aefdd49b61c7b6#file-extract_runtime-sh">another little helper script called
+written <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/extract_runtime.sh">another little helper script called
 extract_runtime.sh</a>.</p>
 
 <p>With this script, you&rsquo;ll be left with about ~100MB of libraries per
@@ -132,6 +340,7 @@ architecture. You can probably tailor the set of libraries for your
 title to reduce the size even further, but that&rsquo;s left as an exercise
 for the reader.</p>
 
+<a name="Conclusion"></a>
 <h2>Conclusion</h2>
 
 <p>The Steam runtime is a useful collection of libraries that helps solve
@@ -140,9 +349,9 @@ distributions, different versions). It has a lot of value outside of
 Steam as well, and should be trivially re-usable for your non-Steam
 distribution.</p>
 
-<p>In my next blog post, I will cover the details of distributing a game
-that relies on the steam-runtime to hermeticize its environment, outside
-of Steam.</p>
+<p><strong>Update</strong>: In the follow-up post, I cover <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">the details of distributing
+a game that relies on the steam-runtime to hermetically seal its
+environment, without depending on Steam</a>.</p>
 ]]></content>
   </entry>
   
@@ -162,6 +371,7 @@ a little jumbled in your mind, so here&rsquo;s a brief overview.</p>
 <!-- more -->
 
 
+<a name="DT_RPATH"></a>
 <h2>DT_RPATH</h2>
 
 <p>DT_RPATH, or more commonly just rpath, is a property set on an ELF
@@ -229,6 +439,7 @@ well-defined: Your rpath is searched first, and anything it can&rsquo;t find
 there it&rsquo;ll look for in LD_LIBRARY_PATH. Finally, if searches the
 system directories<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
 
+<a name="L.rpath"></a>
 <h2>@rpath</h2>
 
 <p>While @rpath is named similarly to its Linux cousin, it behaves a bit
@@ -262,6 +473,7 @@ and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
 
+<a name="Conclusion"></a>
 <h2>Conclusion</h2>
 
 <p>Hopefully this helps you understand some nuances of dynamic linking on
@@ -594,33 +806,38 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 
 <p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
 
+<a name="Rooms"></a>
 <h3>Rooms</h3>
 
 <p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
 
 <p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
 
+<a name="Placement"></a>
 <h3>Placement</h3>
 
 <p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
 
 <p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
 
+<a name="Monsters..amp..loot"></a>
 <h3>Monsters &amp; loot</h3>
 
 <p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
 
 <p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
 
+<a name="Paths"></a>
 <h3>Paths</h3>
 
 <p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
 
 <p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
 
+<a name="Questions..Comments."></a>
 <h3>Questions? Comments?</h3>
 
-<p>Feel free to contact me on <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x6a;&#111;&#114;&#x67;&#x65;&#110;&#x70;&#x74;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x6a;&#x6f;&#x72;&#x67;&#101;&#x6e;&#112;&#x74;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+<p>Feel free to contact me on <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#106;&#x6f;&#114;&#x67;&#101;&#x6e;&#x70;&#x74;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#106;&#x6f;&#x72;&#x67;&#101;&#x6e;&#x70;&#x74;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 ]]></content>
   </entry>
   
@@ -648,18 +865,6 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 
 <div class="embed-video-container"><iframe src="http://www.youtube.com/embed/Qf7OgHpw5_M" allowfullscreen></iframe></div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dungeon Fodder Update #2]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/"/>
-    <updated>2012-04-21T02:08:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud</id>
-    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/uH2lyRBXMe0" allowfullscreen></iframe></div>
-
-
-<p>Path finding, HUD, health, and player death.</p>
 ]]></content>
   </entry>
   
