@@ -126,8 +126,8 @@ Steam as well, and should be trivially re-usable for your non-Steam
 distribution.
 
 **Update**: In the follow-up post, I cover [the details of distributing
-a game that relies on the steam-runtime to hermeticize its environment,
-without depending on Steam][steamless-steam-runtime].
+a game that relies on the steam-runtime to hermetically seal its
+environment, without depending on Steam][steamless-steam-runtime].
 
 [steam-runtime]: https://github.com/ValveSoftware/steam-runtime
 [ld_library_path]: http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80
