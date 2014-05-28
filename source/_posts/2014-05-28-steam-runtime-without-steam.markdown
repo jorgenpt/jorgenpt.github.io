@@ -3,7 +3,6 @@ layout: post
 title: "steam-runtime without Steam"
 date: 2014-05-28 08:28:28 -0700
 comments: true
-published: false
 categories:
   - Linux
   - Steam Runtime
