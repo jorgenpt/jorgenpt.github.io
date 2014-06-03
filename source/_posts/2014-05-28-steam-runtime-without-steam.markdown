@@ -9,6 +9,8 @@ categories:
   - Game Development
 ---
 
+**Updated 2014-06-03:** Added information about `STEAM_RUNTIME` variable under [the new embedded search path subsection][runtime-deps-of-runtime].
+
 If you've ever had customers report errors like these, then this post
 might be for you:
 
@@ -166,6 +168,26 @@ And you would use these option for a 32bit binary:
 
     -Wl,-z,origin -Wl,-rpath,$ORIGIN/steam-runtime/i386/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/lib:$ORIGIN/steam-runtime/i386/usr/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/usr/lib
 
+### Runtime dependencies of the steam-runtime
+
+In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and [patched these libraries to look elsewhere][runtime-patches]. In order to know what the "base" of the runtime is, it looks at the `STEAM_RUNTIME` environment variable. 
+
+The first version of this post didn't include this detail, and you might've run into errors like these:
+
+    symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
+
+This is because glib has a [runtime search for plugins][glib-plugins] that directly calls `dlopen()` on an absolute path.
+
+The solution to this problem is to have the first thing in your `main()` method on Linux be:
+
+``` c
+if (!getenv("STEAM_RUNTIME")) {
+    setenv("STEAM_RUNTIME", figureOutSteamRuntimePath(), 1);
+}
+```
+
+A full sample for your `main()` is [available in the helpers GitHub repository][embedded-path-c-sample].
+
 ## Conclusion
 
 With just a small modification to your build system and a ~100MB larger
@@ -194,3 +216,7 @@ including any clauses regarding redistribution.
 [wrapper-solution]: /post/2014/05/28/steam-runtime-without-steam/#Solution.1:.The.wrapper.script
 [embedded-solution]: /post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path
 [repackaging]: /post/2014/05/28/steam-runtime-without-steam/#Preparing.the.steam-runtime.for.repackaging
+[runtime-deps-of-runtime]: /post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime
+[runtime-patches]: https://github.com/ValveSoftware/steam-runtime/tree/master/patches
+[glib-plugins]: https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16
+[embedded-path-c-sample]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/sample_embedded_path_main.c
