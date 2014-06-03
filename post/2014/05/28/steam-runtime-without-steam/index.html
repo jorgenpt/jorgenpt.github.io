@@ -130,7 +130,9 @@
   </header>
 
 
-<div class="entry-content clearfix"><p>If you&rsquo;ve ever had customers report errors like these, then this post
+<div class="entry-content clearfix"><p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+
+<p>If you&rsquo;ve ever had customers report errors like these, then this post
 might be for you:</p>
 
 <ul>
@@ -308,6 +310,31 @@ executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
 
 <pre><code>-Wl,-z,origin -Wl,-rpath,$ORIGIN/steam-runtime/i386/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/lib:$ORIGIN/steam-runtime/i386/usr/lib/i386-linux-gnu:$ORIGIN/steam-runtime/i386/usr/lib
 </code></pre>
+
+<a name="Runtime.dependencies.of.the.steam-runtime"></a>
+<h3>Runtime dependencies of the steam-runtime</h3>
+
+<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/master/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
+
+<p>The first version of this post didn&rsquo;t include this detail, and you might&rsquo;ve run into errors like these:</p>
+
+<pre><code>symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
+</code></pre>
+
+<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
+
+<p>The solution to this problem is to have the first thing in your <code>main()</code> method on Linux be:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;STEAM_RUNTIME&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">setenv</span><span class="p">(</span><span class="s">&quot;STEAM_RUNTIME&quot;</span><span class="p">,</span> <span class="n">figureOutSteamRuntimePath</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A full sample for your <code>main()</code> is <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/sample_embedded_path_main.c">available in the helpers GitHub repository</a>.</p>
 
 <a name="Conclusion"></a>
 <h2>Conclusion</h2>
