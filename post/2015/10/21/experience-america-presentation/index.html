@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Dungeon Fodder Update #4: Dungeon generation - Jørgen's Blog</title>
+  <title>Placeholder for Experience America presentation - Jørgen's Blog</title>
   <meta name="author" content="Jørgen Tjernø">
 
   
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jorgen.tjer.no/post/2012/04/29/dungeon-generation">
+  <link rel="canonical" href="http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
 
@@ -117,60 +117,21 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00" pubdate data-updated="true">Apr 29<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-21T09:30:00-07:00" pubdate data-updated="true">Oct 21<span>st</span>, 2015</time>
         
       </p>
     
     
     <h1 class="entry-title">
-        Dungeon Fodder Update #4: Dungeon generation
+        Placeholder for Experience America presentation
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix"><p>This week I added some rudimentary dungeon generation code to <a href="/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
-
-<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
-
-
-<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms &ndash; some of them will be &ldquo;special&rdquo; rooms.</p>
-
-<p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
-
-<a name="Rooms"></a>
-<h3>Rooms</h3>
-
-<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
-
-<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
-
-<a name="Placement"></a>
-<h3>Placement</h3>
-
-<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
-
-<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
-
-<a name="Monsters..amp..loot"></a>
-<h3>Monsters &amp; loot</h3>
-
-<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
-
-<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
-
-<a name="Paths"></a>
-<h3>Paths</h3>
-
-<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
-
-<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
-
-<a name="Questions..Comments."></a>
-<h3>Questions? Comments?</h3>
-
-<p>Feel free to contact me on <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#106;&#x6f;&#x72;&#x67;&#x65;&#x6e;&#x70;&#x74;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x6a;&#111;&#114;&#103;&#101;&#x6e;&#x70;&#116;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+<div class="entry-content clearfix"><p>This is just a placeholder. After the presentation I will take the time
+to publish the presentation here!</p>
 </div>
 
 
@@ -194,13 +155,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00" pubdate data-updated="true">Apr 29<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-21T09:30:00-07:00" pubdate data-updated="true">Oct 21<span>st</span>, 2015</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/game-development/'>Game Development</a>
   
 </span>
 
@@ -209,7 +170,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/" data-via="" data-counturl="http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/" data-via="" data-counturl="http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/" >Tweet</a>
   
   
   
@@ -219,10 +180,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/post/2012/04/27/inventory-minimap/" title="Previous Post: Inventory, minimap">&laquo; Inventory, minimap</a></li>
+            <li class="previous"><a href="/post/2014/05/28/steam-runtime-without-steam/" title="Previous Post: steam-runtime without Steam">&laquo; steam-runtime without Steam</a></li>
             
-            
-            <li class="next"><a href="/post/2012/05/05/its-a-party/" title="Next Post: Dungeon Fodder Update #5">Dungeon Fodder Update #5 &raquo;</a></li>
             
           </ul>
         
@@ -247,7 +206,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a>
+    <a class="list-group-item active" href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a>
     
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
@@ -293,8 +252,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/';
-        var disqus_url = 'http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/';
+        var disqus_identifier = 'http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/';
+        var disqus_url = 'http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/';
         var disqus_script = 'embed.js';
       
     (function () {
