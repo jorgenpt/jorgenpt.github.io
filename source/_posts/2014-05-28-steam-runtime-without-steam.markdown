@@ -11,6 +11,8 @@ categories:
 
 **Updated 2014-06-03:** Added information about `STEAM_RUNTIME` variable under [the new embedded search path subsection][runtime-deps-of-runtime].
 
+**Updated 2016-01-03:** Fixed dead links to Valve's steam-runtime patches collection.
+
 If you've ever had customers report errors like these, then this post
 might be for you:
 
@@ -217,6 +219,6 @@ including any clauses regarding redistribution.
 [embedded-solution]: /post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path
 [repackaging]: /post/2014/05/28/steam-runtime-without-steam/#Preparing.the.steam-runtime.for.repackaging
 [runtime-deps-of-runtime]: /post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime
-[runtime-patches]: https://github.com/ValveSoftware/steam-runtime/tree/master/patches
-[glib-plugins]: https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16
+[runtime-patches]: https://github.com/ValveSoftware/steam-runtime/tree/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches
+[glib-plugins]: https://github.com/ValveSoftware/steam-runtime/blob/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches/glib2.0/01_steam_runtime_path.patch#L16
 [embedded-path-c-sample]: https://github.com/jorgenpt/steam-runtime-helpers/blob/master/sample_embedded_path_main.c
