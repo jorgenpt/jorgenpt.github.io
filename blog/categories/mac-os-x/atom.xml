@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Mac OS X | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/mac-os-x/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: mac os x | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/mac-os-x/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[DT_RPATH (ld) & @rpath (dyld)]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
     <updated>2014-05-20T22:06:29-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
+    <id>https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
     <content type="html"><![CDATA[<p>Mac and Linux have two similarly named concepts that both deal with
 dynamic loading, that behave quite differently: <code>@rpath</code> (under Mac OS
 X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux' ld.)</p>
@@ -40,20 +40,13 @@ link-time with the <code>-rpath</code> option to <code>ld</code>.  If you invoke
 option to pass arguments through to <code>ld</code>. You use commas to separate
 arguments passed to <code>-Wl</code>.</p>
 
-<p>```
-$ gcc program.c -lm -o program &lsquo;-Wl,-rpath,$ORIGIN/lib&rsquo;
-$ ldd program | grep libm</p>
-
-<pre><code>    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f3b9ad94000)
+<pre><code>$ gcc program.c -lm -o program '-Wl,-rpath,$ORIGIN/lib'
+$ ldd program | grep libm
+        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f3b9ad94000)
+$ mkdir lib &amp;&amp; cp /lib/x86_64-linux-gnu/libm.so.6
+$ ldd program | grep libm
+        libm.so.6 =&gt; /home/jorgenpt/lib/libm.so.6 (0x00007f1440b0c000)
 </code></pre>
-
-<p>$ mkdir lib &amp;&amp; cp /lib/x86_64-linux-gnu/libm.so.6
-$ ldd program | grep libm</p>
-
-<pre><code>    libm.so.6 =&gt; /home/jorgenpt/lib/libm.so.6 (0x00007f1440b0c000)
-</code></pre>
-
-<p>```</p>
 
 <p>The snippet above also shows one of the three special variables<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> you
 can include in an rpath, $ORIGIN. $ORIGIN gets replaced at runtime with
@@ -89,7 +82,7 @@ than the system libraries.</p>
 <p>The benefit of using LD_LIBRARY_PATH is that it can be set for
 applications you cannot edit, but the downside is that it also applies
 to any applications launched by the application in question. Say that
-you have an application that launches <code>dbus-send</code> or <code>aplay</code> &mdash; since
+you have an application that launches <code>dbus-send</code> or <code>aplay</code> &ndash; since
 they&rsquo;re system applications, you&rsquo;d want them to pick their dependencies
 from the system, not your LD_LIBRARY_PATH.</p>
 
@@ -121,13 +114,13 @@ details, <a href="https://wincent.com/wiki/@executable_path,_@load_path_and_@rpa
 <a href="https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html">this blog post by Mike Ash</a>.</p>
 
 <p>This rpath does <em>not</em> do anything by default. To make it take effect,
-the install name for the shared library has to start with <code>@rpath/</code> &mdash;
+the install name for the shared library has to start with <code>@rpath/</code> &ndash;
 and the dynamic linker will then substitute each of the possible values
 for <code>@rpath</code> in order. This means that you&rsquo;ll typically change the
 install name of the dylib (if it&rsquo;s a dylib you built yourself) or change
 the install name inside the application.</p>
 
-<p>Under Mac OS X, you have the DYLD_LIBRARY_PATH environment variable &mdash;
+<p>Under Mac OS X, you have the DYLD_LIBRARY_PATH environment variable &ndash;
 and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
@@ -143,7 +136,7 @@ your game outside of Steam.</p>
 <hr/>
 <ol>
 <li id="fn:1">
-<p>This also applies to .so&rsquo;s &ndash; when one of your dynamically loaded libraries load another dynamic library, their rpath is searched first (if any), then your main application&rsquo;s rpath is searched.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>This also applies to .so&rsquo;s - when one of your dynamically loaded libraries load another dynamic library, their rpath is searched first (if any), then your main application&rsquo;s rpath is searched.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
 <p>The other two variables are <code>$LIB</code> and <code>$PLATFORM</code>, and they deal with finding architecture-specific binaries.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
@@ -160,9 +153,9 @@ your game outside of Steam.</p>
   
   <entry>
     <title type="html"><![CDATA[Livecasting your desktop in OS X]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/"/>
+    <link href="https://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/"/>
     <updated>2012-04-21T00:04:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop</id>
+    <id>https://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop</id>
     <content type="html"><![CDATA[<p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
 <strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
 
@@ -176,7 +169,7 @@ your game outside of Steam.</p>
 <a name="Ustream.Producer"></a>
 <h3>Ustream Producer</h3>
 
-<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
+<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; - but no thanks.</p>
 
 <a name="My.own"></a>
 <h3>My own</h3>
@@ -261,18 +254,18 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 <a name="OpenAL.issues"></a>
 <h4>OpenAL issues</h4>
 
-<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
+<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL - which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[The secret to the home-relative Sandbox entitlement]]></title>
-    <link href="http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
+    <link href="https://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
     <updated>2011-07-26T16:45:55-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
+    <id>https://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
     <content type="html"><![CDATA[<p>With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.</p>
 
-<p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &mdash; which falls under this category.</p>
+<p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &ndash; which falls under this category.</p>
 
 <p>I&rsquo;ve been spending some time today trying to figure out how to get the <code>com.apple.security.temporary-exception.files.home-relative-path.read-only</code> entitlement working. The documentation is sparse, and there&rsquo;re no samples as far as I can tell. After many attempts, I finally figured out the key piece of information keeping me from getting this working: The path you specify in the entitlement needs to <strong>start with a slash</strong>. For example, instead of specifying <code>Desktop</code>, you specify <code>/Desktop</code>.</p>
 
@@ -281,26 +274,23 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 <p>```xml Info.plist</p>
 
 <p><pre>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
-&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+&lt;!DOCTYPE plist PUBLIC &ldquo;-//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
 <plist version="1.0">
-<dict></p>
-
-<pre><code>    &lt;key&gt;com.apple.security.app-sandbox&lt;/key&gt;
-    &lt;true/&gt;
-    &lt;key&gt;com.apple.security.temporary-exception.files.home-relative-path.read-only&lt;/key&gt;
-    &lt;array&gt;
-            &lt;string&gt;/Desktop&lt;/string&gt;
-            &lt;string&gt;/Dropbox&lt;/string&gt;
-    &lt;/array&gt;
-</code></pre>
-
-<p></dict>
+<dict>
+        <key>com.apple.security.app-sandbox</key>
+        <true/>
+        <key>com.apple.security.temporary-exception.files.home-relative-path.read-only</key>
+        <array>
+                <string>/Desktop</string>
+                <string>/Dropbox</string>
+        </array>
+</dict>
 </plist>
 ```</p>
 
 <p>I assume this applies to the <code>com.apple.security.temporary-exception.files.home-relative-path.read-write</code> entitlement as well.</p>
 
-<p>I hope this saves other people trying to get this working a little bit of time. :&ndash;)</p>
+<p>I hope this saves other people trying to get this working a little bit of time. :-)</p>
 
 <p>[dev-library-sandbox]: <a href="http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7">http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7</a>
 [ars-lion-review]: <a href="http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing">http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing</a></p>

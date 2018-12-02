@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Steam Runtime | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/steam-runtime/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: steam runtime | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/steam-runtime/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,10 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[steam-runtime without Steam]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
     <updated>2014-05-28T08:28:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
+    <id>https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
     <content type="html"><![CDATA[<p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+
+<p><strong>Updated 2016-01-03:</strong> Fixed dead links to Valve&rsquo;s steam-runtime patches collection.</p>
 
 <p>If you&rsquo;ve ever had customers report errors like these, then this post
 might be for you:</p>
@@ -137,7 +139,7 @@ detect that the runtime has already been set up.</p>
 <p>First off, why would you prefer this approach to using a wrapper script?</p>
 
 <ul>
-<li>Shell scripts are fragile &mdash; it&rsquo;s easy to get something wrong, like
+<li>Shell scripts are fragile &ndash; it&rsquo;s easy to get something wrong, like
 incorrectly handling spaces in filenames, or something equally silly.</li>
 <li>A shell script gives you another file that you have to be careful to
 maintain the executable bit on.</li>
@@ -202,25 +204,21 @@ executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
 <a name="Runtime.dependencies.of.the.steam-runtime"></a>
 <h3>Runtime dependencies of the steam-runtime</h3>
 
-<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/master/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
+<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
 
 <p>The first version of this post didn&rsquo;t include this detail, and you might&rsquo;ve run into errors like these:</p>
 
 <pre><code>symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
 </code></pre>
 
-<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
+<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
 
 <p>The solution to this problem is to have the first thing in your <code>main()</code> method on Linux be:</p>
 
-<p>``` c
-if (!getenv(&ldquo;STEAM_RUNTIME&rdquo;)) {</p>
-
-<pre><code>setenv("STEAM_RUNTIME", figureOutSteamRuntimePath(), 1);
+<pre><code class="c">if (!getenv("STEAM_RUNTIME")) {
+    setenv("STEAM_RUNTIME", figureOutSteamRuntimePath(), 1);
+}
 </code></pre>
-
-<p>}
-```</p>
 
 <p>A full sample for your <code>main()</code> is <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/sample_embedded_path_main.c">available in the helpers GitHub repository</a>.</p>
 
@@ -236,16 +234,16 @@ Annihilation</a>&rsquo;s Linux release.</p>
 <p>When shipping your own steam-runtime, you are responsible for updating
 the runtime. The date of the latest update can be found inside the
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5">runtime MD5 file</a>. In addition, you are responsible for
-respecting the licenses of all the packages included in the runtime &mdash;
+respecting the licenses of all the packages included in the runtime &ndash;
 including any clauses regarding redistribution.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Self-contained game distribution on Linux]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
     <updated>2014-05-26T21:10:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
+    <id>https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
     <content type="html"><![CDATA[<p>Distributing a game on Linux can be a little intimidating, and there are
 definitely pitfalls. The main problem is making sure your game runs on
 all of your users' machines, and outside of hardware and drivers, the
@@ -288,7 +286,7 @@ talks about solving the problem with dynamic linking.</p>
 its name indicates, it has <strong>no direct dependency on Steam nor does it
 even assume that it is installed</strong>. It is merely a controlled set of
 open source libraries (with some patches) and associated tools to use
-those libraries &ndash; to make your game build hermetic.</p>
+those libraries - to make your game build hermetic.</p>
 
 <!-- more -->
 
@@ -301,7 +299,7 @@ version of the steam-runtime, and execute your game inside of it.</p>
 
 <p>If you, like many others, also distribute your game outside of Steam,
 you&rsquo;ll need to find another solution. The obvious solution is to build
-on their work &ndash; it&rsquo;s an open source project that solves the problem
+on their work - it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
 <p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read

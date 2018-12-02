@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
   <title>Self-contained game distribution on Linux - Jørgen's Blog</title>
@@ -16,40 +14,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux">
+  <link rel="canonical" href="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
 
-  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/">
+  <meta property="og:title" content="Self-contained game distribution on Linux - Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-51279149-1']);
-    _gaq.push(['_trackPageview']);
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
   </script>
 
 
 </head>
 
   <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
     <div id="wrap">
       <header role="banner">
         <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -60,7 +69,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="/">Blog</a>
+                    <a rel="index" href="/">Blog</a>
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
@@ -82,8 +91,8 @@
                 
             </ul>
             
-                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:jorgen.tjer.no">
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -95,11 +104,14 @@
 
 
       </header>
-      <div id="main" class="container">
+      <div id="main" role="main" class="container">
         <div id="content">
           <div class="row">
-  <div class="page-content col-md-9">
-    <article class="hentry" role="article">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Jørgen's Blog" />
+    
+    <meta itemprop="url" content="https://jorgen.tjer.no" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
   <header class="page-header">
     
@@ -117,12 +129,12 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00" pubdate data-updated="true">May 26<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 May, 2014</time>
         
       </p>
     
     
-    <h1 class="entry-title">
+    <h1 class="entry-title" itemprop="name headline">
         Self-contained game distribution on Linux
         
     </h1>
@@ -130,9 +142,9 @@
   </header>
 
 
-<div class="entry-content clearfix"><p>Distributing a game on Linux can be a little intimidating, and there are
+<div class="entry-content clearfix" itemprop="articleBody description"><p>Distributing a game on Linux can be a little intimidating, and there are
 definitely pitfalls. The main problem is making sure your game runs on
-all of your users&#8217; machines, and outside of hardware and drivers, the
+all of your users' machines, and outside of hardware and drivers, the
 root of the problem is usually one of two things:</p>
 
 <ol>
@@ -172,7 +184,7 @@ talks about solving the problem with dynamic linking.</p>
 its name indicates, it has <strong>no direct dependency on Steam nor does it
 even assume that it is installed</strong>. It is merely a controlled set of
 open source libraries (with some patches) and associated tools to use
-those libraries &ndash; to make your game build hermetic.</p>
+those libraries - to make your game build hermetic.</p>
 
 <!-- more -->
 
@@ -185,7 +197,7 @@ version of the steam-runtime, and execute your game inside of it.</p>
 
 <p>If you, like many others, also distribute your game outside of Steam,
 you&rsquo;ll need to find another solution. The obvious solution is to build
-on their work &ndash; it&rsquo;s an open source project that solves the problem
+on their work - it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
 <p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read
@@ -211,7 +223,7 @@ rather than your own. It&rsquo;s worth noting that if your game depends on a
 library that is <strong>not</strong> present in the runtime, but the user has it
 installed on their system, your game will run without error. This is
 something to be wary of, since you don&rsquo;t know what version of the
-library you&rsquo;re getting, and it&rsquo;ll fail to execute on some users&#8217;
+library you&rsquo;re getting, and it&rsquo;ll fail to execute on some users'
 systems.</p>
 
 <p>The <a href="https://github.com/ValveSoftware/steam-runtime">runtime SDK</a> is just a set of tools that have been
@@ -271,7 +283,7 @@ environment, without depending on Steam</a>.</p>
           
   
 
-<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Jørgen Tjernø</span></span>
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Jørgen Tjernø</span></span>
 
           
 
@@ -286,13 +298,13 @@ environment, without depending on Steam</a>.</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00" pubdate data-updated="true">May 26<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 May, 2014</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>Steam Runtime</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>steam runtime</a>
   
 </span>
 
@@ -301,7 +313,7 @@ environment, without depending on Steam</a>.</p>
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/" data-via="" data-counturl="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/" data-via="" data-counturl="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/" >Tweet</a>
   
   
   
@@ -322,7 +334,7 @@ environment, without depending on Steam</a>.</p>
     </article>
     
       <section>
-        <h1>Comments</h1>
+        <h2>Comments</h2>
         <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
       </section>
@@ -339,7 +351,7 @@ environment, without depending on Steam</a>.</p>
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a>
+    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
     
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
@@ -367,7 +379,7 @@ environment, without depending on Steam</a>.</p>
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Jørgen Tjernø<br>
+  Copyright &copy; 2018 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
@@ -376,22 +388,20 @@ environment, without depending on Steam</a>.</p>
 
 </div>
 </footer>
-    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/javascripts/modernizr-2.0.js"></script>
-
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'jorgenpt';
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/';
-        var disqus_url = 'http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/';
+        var disqus_identifier = 'https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/';
+        var disqus_url = 'https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/';
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -413,7 +423,8 @@ environment, without depending on Steam</a>.</p>
   </script>
 
 
-
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
 
   </body>

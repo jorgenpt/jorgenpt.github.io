@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Jørgen's Blog</title>
+  <meta name="author" content="Jørgen Tjernø">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://jorgen.tjer.no/posts/2/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/posts/2/">
+  <meta property="og:title" content="Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jørgen's Blog</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Jørgen's Blog" />
+    
+    <meta itemprop="url" content="https://jorgen.tjer.no" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-09-09T15:10:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 9 Sep, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/09/09/announcing-arcane-deathmatch/" itemprop="url">Announcing Arcane Deathmatch</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder - and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
+
+<p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
+
+<p>Every time you&rsquo;re hit by a spell, you lose some health and get knocked back. The less health you have, the easier you are to knock around. If you get knocked off the map, you&rsquo;ll probably sustain damage wading through a lava pit, be nibbled on by piranhas as you swim to shore, or fall off the map.</p>
+
+<p><img class="center" src="/images/early_adm.png"></p>
+
+<p>So far, I&rsquo;ve got rudimentary networking and gameplay working - two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much - but that&rsquo;s never stopped me before! ;-)</p>
+
+<p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
+
+<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :-)</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-18T12:41:38-07:00"  data-updated="true" itemprop="datePublished dateCreated">18 Jun, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/06/18/lack-of-updates-for-a-few-weeks/" itemprop="url">Lack of updates for a few weeks</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I&rsquo;ve attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.</p>
+
+<p>I&rsquo;m in the middle of organizing a wedding reception, so there won&rsquo;t be any time for working on my projects until after the 26th of June. I look forward to getting back to it!</p>
+
+<p>So far, updates have been on a weekly schedule. I intend to continue with that pace - or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
+
+<p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-05T16:40:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 5 Jun, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/" itemprop="url">Requiring a minimum version of the Android SDK</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>(This is similar to <a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
+
+<p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
+
+<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers - we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
+
+<p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
+
+<p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
+
+<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :-)</p>
+
+<figure class='code'><figcaption><span>Makefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="cp">ifneq ($(shell $(LOCAL_PATH)/assert_sdk_version.sh &quot;r19&quot;),true)</span>
+</span><span class='line'>  <span class="k">$(</span>error SDK version r19 or greater required<span class="k">)</span>
+</span><span class='line'><span class="cp">endif</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;re curious how this works: It checks the <code>tools/source.properties</code> file in your Android SDK, looking for a line like <code>Pkg.Revision=XX</code>, and extracts the version (<code>XX</code>) from that.</p>
+
+<p>It&rsquo;s pretty straight forward, but I couldn&rsquo;t find anything online on how to check the SDK version from the command line, so I figured I&rsquo;d share it.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-28T16:59:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 May, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/05/28/dev-diary-007/" itemprop="url">Dungeon Fodder Update #7</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div>
+
+
+<p>A little busy the past two weeks (Diablo 3 and a lot to do at work), but here&rsquo;s what I had time to do:</p>
+
+<ul>
+<li>Reworked minimap</li>
+<li>Inventory management</li>
+<li>New spell, &ldquo;Barrier&rdquo;</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI - he now shoots at enemies!</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-26T14:39:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 May, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/05/26/inventory-management/" itemprop="url">Inventory management</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I added some rudimentary (but functional) inventory management:</p>
+
+<p><img class="center" src="http://i.imgur.com/7nQjQ.gif"></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-19T13:58:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">19 May, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/05/19/minimap-cleanup/" itemprop="url">Minimap cleanup</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Didn&rsquo;t get too much done this week, but I cleaned up the minimap:</p>
+
+<p>Minimap before:<br/>
+<img src="http://i.imgur.com/0z7oB.png" title="&#34;Minimap before&#34;" alt="&#34;Minimap before&#34;"></p>
+
+<p>Minimap after:<br/>
+<img src="http://i.imgur.com/9wMdz.png" title="&#34;Minimap after&#34;" alt="&#34;Minimap after&#34;"></p>
+
+<p>I also added a dungeon level indicator:<br/>
+<img src="http://i.imgur.com/dXnTI.png" title="&#34;Dungeon level indicator&#34;" alt="&#34;Dungeon level indicator&#34;"></p>
+
+<p>And finally I switched the non-player character to use the same AI engine as the zombies (<a href="http://angryant.com/behave">AngryAnt&rsquo;s Behave</a>), though with a different behavior tree. So far this just means that the non-player character actually attacks enemies. Woo!</p>
+
+<p>Hopefully I&rsquo;ll have time to make the inventory management more complete and do a dev diary this weekend. We&rsquo;ll see.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-12T22:21:10-07:00"  data-updated="true" itemprop="datePublished dateCreated">12 May, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/" itemprop="url">Dungeon Fodder Update #6</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/kHIqzAOQwIM" allowfullscreen></iframe></div>
+
+
+<p>This week I added level transitions and automatic saves! :)</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-05T17:31:27-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 5 May, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/05/05/its-a-party/" itemprop="url">Dungeon Fodder Update #5</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/HopI5Rfcf8k" allowfullscreen></iframe></div>
+
+
+<p>Not too much time this week: I added a second (simultaneous) character and some more rudimentary UI.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">29 Apr, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/04/29/dungeon-generation/" itemprop="url">Dungeon Fodder Update #4: Dungeon generation</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>This week I added some rudimentary dungeon generation code to <a href="/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
+
+
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms - some of them will be &ldquo;special&rdquo; rooms.</p>
+
+<p>There&rsquo;re a lot of improvements that can be made to this approach - and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+
+<a name="Rooms"></a>
+<h3>Rooms</h3>
+
+<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
+
+<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
+
+<a name="Placement"></a>
+<h3>Placement</h3>
+
+<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
+
+<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
+
+<a name="Monsters..amp..loot"></a>
+<h3>Monsters &amp; loot</h3>
+
+<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
+
+<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
+
+<a name="Paths"></a>
+<h3>Paths</h3>
+
+<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
+
+<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
+
+<a name="Questions..Comments."></a>
+<h3>Questions? Comments?</h3>
+
+<p>Feel free to contact me on <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x6a;&#x6f;&#x72;&#103;&#x65;&#110;&#112;&#116;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#106;&#111;&#x72;&#103;&#x65;&#110;&#x70;&#116;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-27T11:02:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">27 Apr, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/04/27/inventory-minimap/" itemprop="url">Inventory, minimap</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>This week I&rsquo;ve been deep in non-visible changes, working on a dungeon generator. While there&rsquo;s not any good visible output yet, here&rsquo;s the other stuff I had time to do this week:</p>
+
+<p>Basic inventory, supports drag, still missing drop (and on-hover descriptions) ^_^<br/>
+<img src="/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
+
+<p>Initial minimap - should probably not render lighting etc, but it works!<br/>
+<img src="/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous"><a href="/posts/3">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/index.html">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
+    
+    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
+    
+    <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
+    
+    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
+    
+    <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - Jørgen Tjernø<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'jorgenpt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

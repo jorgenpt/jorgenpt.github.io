@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Cocoa | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/cocoa/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: cocoa | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/cocoa/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,12 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[The secret to the home-relative Sandbox entitlement]]></title>
-    <link href="http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
+    <link href="https://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/"/>
     <updated>2011-07-26T16:45:55-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
+    <id>https://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement</id>
     <content type="html"><![CDATA[<p>With the launch of Lion, Apple added a new security feature to the operating system: The Application Sandbox. It encourages application authors to specify what subset of system functionality their app needs to function correctly, in order to reduce the impact of a malicious or compromised app. See the [Mac OS X Developer Library][dev-library-sandbox] or the [ars technica Lion review][ars-lion-review] for more info on this.</p>
 
-<p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &mdash; which falls under this category.</p>
+<p>As a part of this, Apple added a set of entitlements labeled &ldquo;temporary exceptions&rdquo; (<a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/CodeSigningGuide/ApplicationSandboxingEntitlementKeys/ApplicationSandboxingEntitlementKeys.html">here&rsquo;s a complete list</a>), most likely to simplify and speed up adoption of this new technology. Your app can claim to need one of these &ldquo;temporary&rdquo; entitlements to do certain things that otherwise wouldn&rsquo;t be allowed by the Sandbox. For <a href="http://grabbox.devsoft.no">GrabBox</a> I need to have read-only access the users desktop &ndash; which falls under this category.</p>
 
 <p>I&rsquo;ve been spending some time today trying to figure out how to get the <code>com.apple.security.temporary-exception.files.home-relative-path.read-only</code> entitlement working. The documentation is sparse, and there&rsquo;re no samples as far as I can tell. After many attempts, I finally figured out the key piece of information keeping me from getting this working: The path you specify in the entitlement needs to <strong>start with a slash</strong>. For example, instead of specifying <code>Desktop</code>, you specify <code>/Desktop</code>.</p>
 
@@ -29,26 +29,23 @@
 <p>```xml Info.plist</p>
 
 <p><pre>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
-&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+&lt;!DOCTYPE plist PUBLIC &ldquo;-//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
 <plist version="1.0">
-<dict></p>
-
-<pre><code>    &lt;key&gt;com.apple.security.app-sandbox&lt;/key&gt;
-    &lt;true/&gt;
-    &lt;key&gt;com.apple.security.temporary-exception.files.home-relative-path.read-only&lt;/key&gt;
-    &lt;array&gt;
-            &lt;string&gt;/Desktop&lt;/string&gt;
-            &lt;string&gt;/Dropbox&lt;/string&gt;
-    &lt;/array&gt;
-</code></pre>
-
-<p></dict>
+<dict>
+        <key>com.apple.security.app-sandbox</key>
+        <true/>
+        <key>com.apple.security.temporary-exception.files.home-relative-path.read-only</key>
+        <array>
+                <string>/Desktop</string>
+                <string>/Dropbox</string>
+        </array>
+</dict>
 </plist>
 ```</p>
 
 <p>I assume this applies to the <code>com.apple.security.temporary-exception.files.home-relative-path.read-write</code> entitlement as well.</p>
 
-<p>I hope this saves other people trying to get this working a little bit of time. :&ndash;)</p>
+<p>I hope this saves other people trying to get this working a little bit of time. :-)</p>
 
 <p>[dev-library-sandbox]: <a href="http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7">http://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/AppRuntime/AppRuntime.html#//apple_ref/doc/uid/TP40010543-CH2-SW7</a>
 [ars-lion-review]: <a href="http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing">http://arstechnica.com/apple/2011/07/mac-os-x-10-7.ars/9#sandboxing</a></p>
@@ -57,10 +54,10 @@
   
   <entry>
     <title type="html"><![CDATA[GUI frustration]]></title>
-    <link href="http://jorgen.tjer.no/post/2011/02/21/gui-frustration/"/>
+    <link href="https://jorgen.tjer.no/post/2011/02/21/gui-frustration/"/>
     <updated>2011-02-21T19:14:00-08:00</updated>
-    <id>http://jorgen.tjer.no/post/2011/02/21/gui-frustration</id>
-    <content type="html"><![CDATA[<p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos &ndash; a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
+    <id>https://jorgen.tjer.no/post/2011/02/21/gui-frustration</id>
+    <content type="html"><![CDATA[<p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos - a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
 
 <p>Ideally, I&rsquo;d write this app in Ruby, but I have had only bad experiences trying to get a useful, good GUI written in either Ruby or Python. Years ago I looked into GTK, QT and WxWidgets, but none of them convinced me they were capable. So I googled around for &ldquo;simple GUI ruby&rdquo;, and &ldquo;Shoes&rdquo; caught my eye. I tried it out, and it was indeed simple, but sadly <strong>too</strong> simple. It was hellbent on not letting me do anything complex, even when it&rsquo;s &ldquo;intuitive behavior&rdquo; was wrong.</p>
 
@@ -68,7 +65,7 @@
 
 <p><img class="center" src="/images/image_vetter.jpg"></p>
 
-<p>Is this really the state of GUI frameworks for Ruby and the likes (say, Python and Perl) &ndash; or have things improved significantly since I last looked at GTK, WxWidgets and QT? Is there nothing that can even remotely compete with Interface Builder and Cocoa? I&rsquo;m by no means a fanboy, and I&rsquo;d love to be able to do this as efficiently in Ruby or Python! Please post a comment if you have any tips or thoughts on this. :)</p>
+<p>Is this really the state of GUI frameworks for Ruby and the likes (say, Python and Perl) - or have things improved significantly since I last looked at GTK, WxWidgets and QT? Is there nothing that can even remotely compete with Interface Builder and Cocoa? I&rsquo;m by no means a fanboy, and I&rsquo;d love to be able to do this as efficiently in Ruby or Python! Please post a comment if you have any tips or thoughts on this. :)</p>
 
 <p><em>If you wonder what was wrong with Shoes: Things like the image class <strong>only</strong> letting you load data by providing a path or an URL, and having some caching behavior that rendered the app very slow after changing the ~4MB displayed image tens of times.</em></p>
 ]]></content>

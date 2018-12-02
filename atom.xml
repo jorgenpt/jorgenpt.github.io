@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <link href="https://jorgen.tjer.no/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -14,21 +14,32 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Placeholder for Experience America presentation]]></title>
-    <link href="http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/"/>
+    <title type="html"><![CDATA[Experience America presentation slides]]></title>
+    <link href="https://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/"/>
     <updated>2015-10-21T09:30:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation</id>
-    <content type="html"><![CDATA[<p>This is just a placeholder. After the presentation I will take the time
-to publish the presentation here!</p>
+    <id>https://jorgen.tjer.no/post/2015/10/21/experience-america-presentation</id>
+    <content type="html"><![CDATA[<p>I gave a brief presentation followed by a Q&amp;A for a class of Danish high
+school students who were in Seattle via the Experience America program.
+As a part of that process, local game developers were invited to speak.</p>
+
+<p>Here are the slides from that talk:</p>
+
+<ul>
+<li><a href="https://jorgen.tjer.no/static/2015-10-21-experience-america.pdf">PDF slides</a></li>
+<li><a href="https://jorgen.tjer.no/static/2015-10-21-experience-america-with-notes.pdf">PDF slides with speaker notes</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[steam-runtime without Steam]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
     <updated>2014-05-28T08:28:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
-    <content type="html"><![CDATA[<p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+    <id>https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
+    <content type="html"><![CDATA[<p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+
+<p><strong>Updated 2016-01-03:</strong> Fixed dead links to Valve&rsquo;s steam-runtime patches collection.</p>
 
 <p>If you&rsquo;ve ever had customers report errors like these, then this post
 might be for you:</p>
@@ -41,7 +52,7 @@ might be for you:</p>
 </ul>
 
 
-<p>In my <a href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/">previous post about self-contained distributions</a>,
+<p>In my <a href="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/">previous post about self-contained distributions</a>,
 we started looking at how the <a href="https://github.com/ValveSoftware/steam-runtime">steam-runtime project</a>
 works. In this post, we&rsquo;ll make the steam-runtime work for us in a
 self-contained distribution that you can ship without depending on
@@ -50,8 +61,8 @@ Steam.</p>
 <p>I will present two possible ways of doing it:</p>
 
 <ol>
-<li>Using <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.1:.The.wrapper.script">a wrapper script</a>.</li>
-<li>Using <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path">an &ldquo;embedded search path&rdquo;</a>.</li>
+<li>Using <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.1:.The.wrapper.script">a wrapper script</a>.</li>
+<li>Using <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Solution.2:.Embedded.search.path">an &ldquo;embedded search path&rdquo;</a>.</li>
 </ol>
 
 
@@ -69,7 +80,7 @@ of the two approaches you choose.</p>
 
 <p>I assume that you&rsquo;ve extracted the steam-runtime into a directory named
 <code>steam-runtime/</code> next to the executable. The easiest way to do this is
-to use the two helper scripts I wrote, see the section on <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Preparing.the.steam-runtime.for.repackaging">repackaging
+to use the two helper scripts I wrote, see the section on <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/#Preparing.the.steam-runtime.for.repackaging">repackaging
 the steam-runtime</a>. You should include the steam-runtime
 directory when distributing <em>outside of</em> Steam, and distribute the exact
 same package <strong>except</strong> for the steam-runtime directory when
@@ -147,7 +158,7 @@ detect that the runtime has already been set up.</p>
 <p>First off, why would you prefer this approach to using a wrapper script?</p>
 
 <ul>
-<li>Shell scripts are fragile &mdash; it&rsquo;s easy to get something wrong, like
+<li>Shell scripts are fragile &ndash; it&rsquo;s easy to get something wrong, like
 incorrectly handling spaces in filenames, or something equally silly.</li>
 <li>A shell script gives you another file that you have to be careful to
 maintain the executable bit on.</li>
@@ -169,7 +180,7 @@ the runtime libraries, which might not cause problems.</li>
 
 
 <p>The alternative to the wrapper script is using <code>DT_RPATH</code>, which I&rsquo;ve
-talked about in <a href="http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">a previous blog post</a>. This approach is a
+talked about in <a href="https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">a previous blog post</a>. This approach is a
 little more invasive to your build process, but overall it should
 require less code.</p>
 
@@ -212,14 +223,14 @@ executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
 <a name="Runtime.dependencies.of.the.steam-runtime"></a>
 <h3>Runtime dependencies of the steam-runtime</h3>
 
-<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/master/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
+<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
 
 <p>The first version of this post didn&rsquo;t include this detail, and you might&rsquo;ve run into errors like these:</p>
 
 <pre><code>symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
 </code></pre>
 
-<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
+<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
 
 <p>The solution to this problem is to have the first thing in your <code>main()</code> method on Linux be:</p>
 
@@ -246,19 +257,19 @@ Annihilation</a>&rsquo;s Linux release.</p>
 <p>When shipping your own steam-runtime, you are responsible for updating
 the runtime. The date of the latest update can be found inside the
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5">runtime MD5 file</a>. In addition, you are responsible for
-respecting the licenses of all the packages included in the runtime &mdash;
+respecting the licenses of all the packages included in the runtime &ndash;
 including any clauses regarding redistribution.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Self-contained game distribution on Linux]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
     <updated>2014-05-26T21:10:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
+    <id>https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
     <content type="html"><![CDATA[<p>Distributing a game on Linux can be a little intimidating, and there are
 definitely pitfalls. The main problem is making sure your game runs on
-all of your users&#8217; machines, and outside of hardware and drivers, the
+all of your users' machines, and outside of hardware and drivers, the
 root of the problem is usually one of two things:</p>
 
 <ol>
@@ -298,7 +309,7 @@ talks about solving the problem with dynamic linking.</p>
 its name indicates, it has <strong>no direct dependency on Steam nor does it
 even assume that it is installed</strong>. It is merely a controlled set of
 open source libraries (with some patches) and associated tools to use
-those libraries &ndash; to make your game build hermetic.</p>
+those libraries - to make your game build hermetic.</p>
 
 <!-- more -->
 
@@ -311,11 +322,11 @@ version of the steam-runtime, and execute your game inside of it.</p>
 
 <p>If you, like many others, also distribute your game outside of Steam,
 you&rsquo;ll need to find another solution. The obvious solution is to build
-on their work &ndash; it&rsquo;s an open source project that solves the problem
+on their work - it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
 <p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read
-my <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">follow-up post on the details of using the steam-runtime without
+my <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">follow-up post on the details of using the steam-runtime without
 depending on Steam</a>.)</p>
 
 <a name="Workings.of.the.steam-runtime"></a>
@@ -337,7 +348,7 @@ rather than your own. It&rsquo;s worth noting that if your game depends on a
 library that is <strong>not</strong> present in the runtime, but the user has it
 installed on their system, your game will run without error. This is
 something to be wary of, since you don&rsquo;t know what version of the
-library you&rsquo;re getting, and it&rsquo;ll fail to execute on some users&#8217;
+library you&rsquo;re getting, and it&rsquo;ll fail to execute on some users'
 systems.</p>
 
 <p>The <a href="https://github.com/ValveSoftware/steam-runtime">runtime SDK</a> is just a set of tools that have been
@@ -386,7 +397,7 @@ distributions, different versions). It has a lot of value outside of
 Steam as well, and should be trivially re-usable for your non-Steam
 distribution.</p>
 
-<p><strong>Update</strong>: In the follow-up post, I cover <a href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">the details of distributing
+<p><strong>Update</strong>: In the follow-up post, I cover <a href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">the details of distributing
 a game that relies on the steam-runtime to hermetically seal its
 environment, without depending on Steam</a>.</p>
 ]]></content>
@@ -394,12 +405,12 @@ environment, without depending on Steam</a>.</p>
   
   <entry>
     <title type="html"><![CDATA[DT_RPATH (ld) & @rpath (dyld)]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/"/>
     <updated>2014-05-20T22:06:29-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
+    <id>https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld</id>
     <content type="html"><![CDATA[<p>Mac and Linux have two similarly named concepts that both deal with
 dynamic loading, that behave quite differently: <code>@rpath</code> (under Mac OS
-X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux&#8217; ld.)</p>
+X&rsquo;s dyld) and <code>DT_RPATH</code> (or just rpath, under Linux' ld.)</p>
 
 <p>Having done development (and more importantly, deployment) on both of
 these platforms, I&rsquo;ve experienced first-hand how those concepts can get
@@ -467,7 +478,7 @@ than the system libraries.</p>
 <p>The benefit of using LD_LIBRARY_PATH is that it can be set for
 applications you cannot edit, but the downside is that it also applies
 to any applications launched by the application in question. Say that
-you have an application that launches <code>dbus-send</code> or <code>aplay</code> &mdash; since
+you have an application that launches <code>dbus-send</code> or <code>aplay</code> &ndash; since
 they&rsquo;re system applications, you&rsquo;d want them to pick their dependencies
 from the system, not your LD_LIBRARY_PATH.</p>
 
@@ -499,13 +510,13 @@ details, <a href="https://wincent.com/wiki/@executable_path,_@load_path_and_@rpa
 <a href="https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html">this blog post by Mike Ash</a>.</p>
 
 <p>This rpath does <em>not</em> do anything by default. To make it take effect,
-the install name for the shared library has to start with <code>@rpath/</code> &mdash;
+the install name for the shared library has to start with <code>@rpath/</code> &ndash;
 and the dynamic linker will then substitute each of the possible values
 for <code>@rpath</code> in order. This means that you&rsquo;ll typically change the
 install name of the dylib (if it&rsquo;s a dylib you built yourself) or change
 the install name inside the application.</p>
 
-<p>Under Mac OS X, you have the DYLD_LIBRARY_PATH environment variable &mdash;
+<p>Under Mac OS X, you have the DYLD_LIBRARY_PATH environment variable &ndash;
 and this behaves just like it does on Linux. When DYLD_LIBRARY_PATH is
 set, it is checked before the install name (and therefore, @rpath) is
 consulted.</p>
@@ -521,7 +532,7 @@ your game outside of Steam.</p>
 <hr/>
 <ol>
 <li id="fn:1">
-<p>This also applies to .so&rsquo;s &ndash; when one of your dynamically loaded libraries load another dynamic library, their rpath is searched first (if any), then your main application&rsquo;s rpath is searched.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>This also applies to .so&rsquo;s - when one of your dynamically loaded libraries load another dynamic library, their rpath is searched first (if any), then your main application&rsquo;s rpath is searched.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
 <p>The other two variables are <code>$LIB</code> and <code>$PLATFORM</code>, and they deal with finding architecture-specific binaries.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
@@ -538,9 +549,9 @@ your game outside of Steam.</p>
   
   <entry>
     <title type="html"><![CDATA[Moved to a new location!]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog/"/>
     <updated>2014-05-19T19:36:01-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog</id>
+    <id>https://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog</id>
     <content type="html"><![CDATA[<p>I have decided to retire my old <a href="http://jorgenpt.tumblr.com/">tumblr blog</a> in favor of this
 new <a href="http://jorgen.tjer.no">octopress blog</a>. The reason for doing so is both that when it
 comes to a blog, I&rsquo;d really like to own my own data, and that tumblr&rsquo;s
@@ -563,7 +574,7 @@ anything, I can.</p>
 would be one I owned, so I can easily move the blog to another host if
 it came to it, unlike what I could with my old tumblr blog.</p>
 
-<p>I chose to use my tjer.no domain &ndash; and now the URL is jorgen.tjer.no!</p>
+<p>I chose to use my tjer.no domain - and now the URL is jorgen.tjer.no!</p>
 
 <p>Now I just need to actually keep posting to it on a semi-regular basis.</p>
 ]]></content>
@@ -571,16 +582,16 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
+    <link href="https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
     <updated>2014-03-19T14:04:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
+    <id>https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
     <content type="html"><![CDATA[<p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
 
 <p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
 
 <p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
 
-<p>Lastly, Epic is trying to encourage an open development process &ndash; both by them and by their licensees. That&rsquo;s pretty cool &ndash; I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
+<p>Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That&rsquo;s pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
 
 <p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
 ]]></content>
@@ -588,14 +599,14 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Droidcon UK 2012: Slides & recap]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap/"/>
     <updated>2012-10-28T09:09:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap</id>
+    <id>https://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap</id>
     <content type="html"><![CDATA[<p>On Friday I spoke at <a href="http://uk.droidcon.com">Droidcon UK 2012</a>, and it was my very first conference talk, titled <a href="http://uk.droidcon.com/2012/sessions/the-butler-did-it-continuously-building-enforcing-app-quality-using-jenkins/">The Butler Did It: Continuously building &amp; enforcing app quality using Jenkins</a>.</p>
 
 <p>I did the talk together with <a href="http://chris.orr.me.uk/+">Christopher Orr</a>, and the topic was using <a href="http://jenkins-ci.org/">Jenkins CI</a> and <a href="http://code.google.com/p/gerrit/">Gerrit</a> to improve app quality when building Android software. It also included a short rant about the Android NDK. I thought it went surprisingly well, especially considering I was fueled by only 5 hours of sleep!</p>
 
-<p>The turn-out was great &ndash; every seat was occupied, and we got a lot of interest in the form of questions afterwards. Here you can find the source material for our talk &ndash; our slides are pretty light on text, so we also have a version with a more fleshed out version of our speaker notes.</p>
+<p>The turn-out was great - every seat was occupied, and we got a lot of interest in the form of questions afterwards. Here you can find the source material for our talk - our slides are pretty light on text, so we also have a version with a more fleshed out version of our speaker notes.</p>
 
 <p>I&rsquo;ve been told by the Droidcon organizers that they&rsquo;ll publish the video from the talk. I&rsquo;ll post an update once that&rsquo;s available.</p>
 
@@ -616,9 +627,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
     <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
 
 <div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div>
@@ -629,7 +640,7 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 <ul>
 <li>Working networking</li>
 <li>Simple network lobby</li>
-<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Basic UI - leaderboard, spell shop</li>
 <li>Three initial spells (magic missile, infernal nova, teleport)</li>
 <li>A very boring level</li>
 <li>A reward system for kills</li>
@@ -641,33 +652,33 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
     <updated>2012-10-06T15:24:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
 
-<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
+<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects - it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
 
 <p>Some very useful things I learned include:</p>
 
 <ul>
 <li>Controls need to be thought about very carefully, and tested on real people. What seems fine when you&rsquo;re just testing around the environment is experienced completely differently when you&rsquo;re in an action-packed fight.</li>
-<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important &ndash; even early on. People need to find the information and actions they care about!</li>
-<li>Pacing is very important, and hard to get right &ndash; there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
+<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important - even early on. People need to find the information and actions they care about!</li>
+<li>Pacing is very important, and hard to get right - there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
 </ul>
 
 
 <p>There were a lot of other subtle bugs and improvements I found through this little hour of gameplay. As an example, camera movement is currently not animated, which makes Teleport <strong>very</strong> jarring.</p>
 
-<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) &ndash; and then I can get a better feel for how pacing and balancing needs to be done.</p>
+<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) - and then I can get a better feel for how pacing and balancing needs to be done.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Arcane DM: First progress update]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/"/>
     <updated>2012-10-01T23:58:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update</id>
+    <id>https://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update</id>
     <content type="html"><![CDATA[<p>While work is keeping me busy, over the past few weeks I&rsquo;ve had a couple of good evenings to work on Arcane Deathmatch.</p>
 
 <p>Last weekend I poked around with a second spell, &ldquo;Infernal Nova&rdquo;:</p>
@@ -686,35 +697,35 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
     <updated>2012-09-09T15:10:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
-    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
+    <id>https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
+    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder - and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
 
 <p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
 
 <p>Every time you&rsquo;re hit by a spell, you lose some health and get knocked back. The less health you have, the easier you are to knock around. If you get knocked off the map, you&rsquo;ll probably sustain damage wading through a lava pit, be nibbled on by piranhas as you swim to shore, or fall off the map.</p>
 
-<p><img class="center" src="http://jorgen.tjer.no/images/early_adm.png"></p>
+<p><img class="center" src="https://jorgen.tjer.no/images/early_adm.png"></p>
 
-<p>So far, I&rsquo;ve got rudimentary networking and gameplay working &ndash; two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much &ndash; but that&rsquo;s never stopped me before! ;&ndash;)</p>
+<p>So far, I&rsquo;ve got rudimentary networking and gameplay working - two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much - but that&rsquo;s never stopped me before! ;-)</p>
 
 <p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
 
-<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
+<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :-)</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Lack of updates for a few weeks]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/"/>
+    <link href="https://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/"/>
     <updated>2012-06-18T12:41:38-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks</id>
+    <id>https://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.</p>
 
 <p>I&rsquo;m in the middle of organizing a wedding reception, so there won&rsquo;t be any time for working on my projects until after the 26th of June. I look forward to getting back to it!</p>
 
-<p>So far, updates have been on a weekly schedule. I intend to continue with that pace &ndash; or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
+<p>So far, updates have been on a weekly schedule. I intend to continue with that pace - or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
 
 <p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
 ]]></content>
@@ -722,20 +733,20 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Requiring a minimum version of the Android SDK]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
+    <link href="https://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/"/>
     <updated>2012-06-05T16:40:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
-    <content type="html"><![CDATA[<p>(This is similar to <a href="http://jorgen.tjer.no/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
+    <id>https://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk</id>
+    <content type="html"><![CDATA[<p>(This is similar to <a href="https://jorgen.tjer.no/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a>, but for SDK versions)</p>
 
 <p>Again, I was tinkering with our build system at work, which is a set of small Makefiles that are responsible for invoking ndk-build (to build our C component) and ant (for the Java component). These files also maintain the dependency graph for the cross-domain dependencies, so things like header files being generated from class-files using <code>javah</code> and APKs depending on the produced shared libraries.</p>
 
-<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers &ndash; we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
+<p>I recently made some changes to the <code>ant</code> build step by creating <a href="https://gist.github.com/2878806">our own <code>custom_rules.xml</code></a>, exposing the &ldquo;hidden&rdquo; -compile target. What I noticed was that <code>build.xml</code> only did an <code>&lt;import file="custom_rules.xml" optional="true" /&gt;</code> if you were on a fairly recent Android SDK version. This isn&rsquo;t a problem for our Jenkins builds, since we&rsquo;ve got an in-house system that ensures a strict version dependency between a specific source checkout and SDK/NDK versions, so they were always using the newer SDK. It was a problem for our developers - we&rsquo;ve yet to roll this system to our development machines, so developers are responsible for checking out and updating their own SDKs.</p>
 
 <p>To prevent this from getting in the way, I wrote a little snippet of bash that&rsquo;s run from the Makefile, that ensures that the SDK version is at least the given version.</p>
 
 <p>You can find <a href="https://gist.github.com/2878774">the shellscript as a gist on GitHub</a></p>
 
-<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :&ndash;)</p>
+<p>Put the script into <code>assert_sdk_version.sh</code>, and put the following at the top of your <code>Makefile</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :-)</p>
 
 <figure class='code'><figcaption><span>Makefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -754,9 +765,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #7]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
     <updated>2012-05-28T16:59:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
+    <id>https://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
     <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div>
 
 
@@ -766,7 +777,7 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 <li>Reworked minimap</li>
 <li>Inventory management</li>
 <li>New spell, &ldquo;Barrier&rdquo;</li>
-<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI &ndash; he now shoots at enemies!</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI - he now shoots at enemies!</li>
 </ul>
 
 ]]></content>
@@ -774,9 +785,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Inventory management]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/26/inventory-management/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/26/inventory-management/"/>
     <updated>2012-05-26T14:39:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/26/inventory-management</id>
+    <id>https://jorgen.tjer.no/post/2012/05/26/inventory-management</id>
     <content type="html"><![CDATA[<p>I added some rudimentary (but functional) inventory management:</p>
 
 <p><img class="center" src="http://i.imgur.com/7nQjQ.gif"></p>
@@ -785,9 +796,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Minimap cleanup]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/"/>
     <updated>2012-05-19T13:58:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/19/minimap-cleanup</id>
+    <id>https://jorgen.tjer.no/post/2012/05/19/minimap-cleanup</id>
     <content type="html"><![CDATA[<p>Didn&rsquo;t get too much done this week, but I cleaned up the minimap:</p>
 
 <p>Minimap before:<br/>
@@ -807,9 +818,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #6]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
     <updated>2012-05-12T22:21:10-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
+    <id>https://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
     <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/kHIqzAOQwIM" allowfullscreen></iframe></div>
 
 
@@ -819,9 +830,9 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #5]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/05/its-a-party/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/05/its-a-party/"/>
     <updated>2012-05-05T17:31:27-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/05/its-a-party</id>
+    <id>https://jorgen.tjer.no/post/2012/05/05/its-a-party</id>
     <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/HopI5Rfcf8k" allowfullscreen></iframe></div>
 
 
@@ -831,17 +842,17 @@ it came to it, unlike what I could with my old tumblr blog.</p>
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #4: Dungeon generation]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/"/>
+    <link href="https://jorgen.tjer.no/post/2012/04/29/dungeon-generation/"/>
     <updated>2012-04-29T20:23:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/29/dungeon-generation</id>
-    <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="http://jorgen.tjer.no/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
+    <id>https://jorgen.tjer.no/post/2012/04/29/dungeon-generation</id>
+    <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="https://jorgen.tjer.no/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
 
 <div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
 
 
-<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms &ndash; some of them will be &ldquo;special&rdquo; rooms.</p>
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms - some of them will be &ldquo;special&rdquo; rooms.</p>
 
-<p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+<p>There&rsquo;re a lot of improvements that can be made to this approach - and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
 
 <a name="Rooms"></a>
 <h3>Rooms</h3>
@@ -874,22 +885,22 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 <a name="Questions..Comments."></a>
 <h3>Questions? Comments?</h3>
 
-<p>Feel free to contact me on <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#106;&#x6f;&#x72;&#x67;&#x65;&#x6e;&#x70;&#x74;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x6a;&#111;&#114;&#103;&#101;&#x6e;&#x70;&#116;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+<p>Feel free to contact me on <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x6a;&#x6f;&#x72;&#103;&#x65;&#110;&#112;&#116;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#106;&#111;&#x72;&#103;&#x65;&#110;&#x70;&#116;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Inventory, minimap]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/27/inventory-minimap/"/>
+    <link href="https://jorgen.tjer.no/post/2012/04/27/inventory-minimap/"/>
     <updated>2012-04-27T11:02:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/27/inventory-minimap</id>
+    <id>https://jorgen.tjer.no/post/2012/04/27/inventory-minimap</id>
     <content type="html"><![CDATA[<p>This week I&rsquo;ve been deep in non-visible changes, working on a dungeon generator. While there&rsquo;s not any good visible output yet, here&rsquo;s the other stuff I had time to do this week:</p>
 
 <p>Basic inventory, supports drag, still missing drop (and on-hover descriptions) ^_^<br/>
-<img src="http://jorgen.tjer.no/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
+<img src="https://jorgen.tjer.no/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
 
-<p>Initial minimap &ndash; should probably not render lighting etc, but it works!<br/>
-<img src="http://jorgen.tjer.no/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
+<p>Initial minimap - should probably not render lighting etc, but it works!<br/>
+<img src="https://jorgen.tjer.no/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
 ]]></content>
   </entry>
   

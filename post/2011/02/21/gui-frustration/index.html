@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
   <title>GUI frustration - Jørgen's Blog</title>
@@ -16,40 +14,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jorgen.tjer.no/post/2011/02/21/gui-frustration">
+  <link rel="canonical" href="https://jorgen.tjer.no/post/2011/02/21/gui-frustration/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
 
-  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/post/2011/02/21/gui-frustration/">
+  <meta property="og:title" content="GUI frustration - Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-51279149-1']);
-    _gaq.push(['_trackPageview']);
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
   </script>
 
 
 </head>
 
   <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
     <div id="wrap">
       <header role="banner">
         <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -60,7 +69,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="/">Blog</a>
+                    <a rel="index" href="/">Blog</a>
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
@@ -82,8 +91,8 @@
                 
             </ul>
             
-                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:jorgen.tjer.no">
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -95,11 +104,14 @@
 
 
       </header>
-      <div id="main" class="container">
+      <div id="main" role="main" class="container">
         <div id="content">
           <div class="row">
-  <div class="page-content col-md-9">
-    <article class="hentry" role="article">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Jørgen's Blog" />
+    
+    <meta itemprop="url" content="https://jorgen.tjer.no" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
   <header class="page-header">
     
@@ -117,12 +129,12 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2011</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00"  data-updated="true" itemprop="datePublished dateCreated">21 Feb, 2011</time>
         
       </p>
     
     
-    <h1 class="entry-title">
+    <h1 class="entry-title" itemprop="name headline">
         GUI frustration
         
     </h1>
@@ -130,7 +142,7 @@
   </header>
 
 
-<div class="entry-content clearfix"><p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos &ndash; a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos - a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
 
 <p>Ideally, I&rsquo;d write this app in Ruby, but I have had only bad experiences trying to get a useful, good GUI written in either Ruby or Python. Years ago I looked into GTK, QT and WxWidgets, but none of them convinced me they were capable. So I googled around for &ldquo;simple GUI ruby&rdquo;, and &ldquo;Shoes&rdquo; caught my eye. I tried it out, and it was indeed simple, but sadly <strong>too</strong> simple. It was hellbent on not letting me do anything complex, even when it&rsquo;s &ldquo;intuitive behavior&rdquo; was wrong.</p>
 
@@ -138,7 +150,7 @@
 
 <p><img class="center" src="/images/image_vetter.jpg"></p>
 
-<p>Is this really the state of GUI frameworks for Ruby and the likes (say, Python and Perl) &ndash; or have things improved significantly since I last looked at GTK, WxWidgets and QT? Is there nothing that can even remotely compete with Interface Builder and Cocoa? I&rsquo;m by no means a fanboy, and I&rsquo;d love to be able to do this as efficiently in Ruby or Python! Please post a comment if you have any tips or thoughts on this. :)</p>
+<p>Is this really the state of GUI frameworks for Ruby and the likes (say, Python and Perl) - or have things improved significantly since I last looked at GTK, WxWidgets and QT? Is there nothing that can even remotely compete with Interface Builder and Cocoa? I&rsquo;m by no means a fanboy, and I&rsquo;d love to be able to do this as efficiently in Ruby or Python! Please post a comment if you have any tips or thoughts on this. :)</p>
 
 <p><em>If you wonder what was wrong with Shoes: Things like the image class <strong>only</strong> letting you load data by providing a path or an URL, and having some caching behavior that rendered the app very slow after changing the ~4MB displayed image tens of times.</em></p>
 </div>
@@ -149,7 +161,7 @@
           
   
 
-<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Jørgen Tjernø</span></span>
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Jørgen Tjernø</span></span>
 
           
 
@@ -164,13 +176,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2011</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00"  data-updated="true" itemprop="datePublished dateCreated">21 Feb, 2011</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocoa/'>Cocoa</a>, <a class='category' href='/blog/categories/gui/'>GUI</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+    <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/gui/'>gui</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -179,7 +191,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgen.tjer.no/post/2011/02/21/gui-frustration/" data-via="" data-counturl="http://jorgen.tjer.no/post/2011/02/21/gui-frustration/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://jorgen.tjer.no/post/2011/02/21/gui-frustration/" data-via="" data-counturl="https://jorgen.tjer.no/post/2011/02/21/gui-frustration/" >Tweet</a>
   
   
   
@@ -200,7 +212,7 @@
     </article>
     
       <section>
-        <h1>Comments</h1>
+        <h2>Comments</h2>
         <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
       </section>
@@ -217,7 +229,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a>
+    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
     
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
@@ -245,7 +257,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Jørgen Tjernø<br>
+  Copyright &copy; 2018 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
@@ -254,22 +266,20 @@
 
 </div>
 </footer>
-    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/javascripts/modernizr-2.0.js"></script>
-
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'jorgenpt';
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jorgen.tjer.no/post/2011/02/21/gui-frustration/';
-        var disqus_url = 'http://jorgen.tjer.no/post/2011/02/21/gui-frustration/';
+        var disqus_identifier = 'https://jorgen.tjer.no/post/2011/02/21/gui-frustration/';
+        var disqus_url = 'https://jorgen.tjer.no/post/2011/02/21/gui-frustration/';
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -291,7 +301,8 @@
   </script>
 
 
-
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
 
   </body>

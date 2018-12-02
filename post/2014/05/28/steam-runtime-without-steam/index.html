@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
   <title>steam-runtime without Steam - Jørgen's Blog</title>
@@ -16,40 +14,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam">
+  <link rel="canonical" href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
 
-  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/">
+  <meta property="og:title" content="steam-runtime without Steam - Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-51279149-1']);
-    _gaq.push(['_trackPageview']);
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
   </script>
 
 
 </head>
 
   <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
     <div id="wrap">
       <header role="banner">
         <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -60,7 +69,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="/">Blog</a>
+                    <a rel="index" href="/">Blog</a>
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
@@ -82,8 +91,8 @@
                 
             </ul>
             
-                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:jorgen.tjer.no">
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -95,11 +104,14 @@
 
 
       </header>
-      <div id="main" class="container">
+      <div id="main" role="main" class="container">
         <div id="content">
           <div class="row">
-  <div class="page-content col-md-9">
-    <article class="hentry" role="article">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Jørgen's Blog" />
+    
+    <meta itemprop="url" content="https://jorgen.tjer.no" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
   <header class="page-header">
     
@@ -117,12 +129,12 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00" pubdate data-updated="true">May 28<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 May, 2014</time>
         
       </p>
     
     
-    <h1 class="entry-title">
+    <h1 class="entry-title" itemprop="name headline">
         steam-runtime without Steam
         
     </h1>
@@ -130,7 +142,9 @@
   </header>
 
 
-<div class="entry-content clearfix"><p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+
+<p><strong>Updated 2016-01-03:</strong> Fixed dead links to Valve&rsquo;s steam-runtime patches collection.</p>
 
 <p>If you&rsquo;ve ever had customers report errors like these, then this post
 might be for you:</p>
@@ -249,7 +263,7 @@ detect that the runtime has already been set up.</p>
 <p>First off, why would you prefer this approach to using a wrapper script?</p>
 
 <ul>
-<li>Shell scripts are fragile &mdash; it&rsquo;s easy to get something wrong, like
+<li>Shell scripts are fragile &ndash; it&rsquo;s easy to get something wrong, like
 incorrectly handling spaces in filenames, or something equally silly.</li>
 <li>A shell script gives you another file that you have to be careful to
 maintain the executable bit on.</li>
@@ -314,14 +328,14 @@ executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
 <a name="Runtime.dependencies.of.the.steam-runtime"></a>
 <h3>Runtime dependencies of the steam-runtime</h3>
 
-<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/master/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
+<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
 
 <p>The first version of this post didn&rsquo;t include this detail, and you might&rsquo;ve run into errors like these:</p>
 
 <pre><code>symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
 </code></pre>
 
-<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
+<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
 
 <p>The solution to this problem is to have the first thing in your <code>main()</code> method on Linux be:</p>
 
@@ -348,7 +362,7 @@ Annihilation</a>&rsquo;s Linux release.</p>
 <p>When shipping your own steam-runtime, you are responsible for updating
 the runtime. The date of the latest update can be found inside the
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5">runtime MD5 file</a>. In addition, you are responsible for
-respecting the licenses of all the packages included in the runtime &mdash;
+respecting the licenses of all the packages included in the runtime &ndash;
 including any clauses regarding redistribution.</p>
 </div>
 
@@ -358,7 +372,7 @@ including any clauses regarding redistribution.</p>
           
   
 
-<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Jørgen Tjernø</span></span>
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Jørgen Tjernø</span></span>
 
           
 
@@ -373,13 +387,13 @@ including any clauses regarding redistribution.</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00" pubdate data-updated="true">May 28<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 May, 2014</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>Steam Runtime</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>steam runtime</a>
   
 </span>
 
@@ -388,7 +402,7 @@ including any clauses regarding redistribution.</p>
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/" data-via="" data-counturl="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/" data-via="" data-counturl="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/" >Tweet</a>
   
   
   
@@ -401,7 +415,7 @@ including any clauses regarding redistribution.</p>
             <li class="previous"><a href="/post/2014/05/26/self-contained-game-distribution-on-linux/" title="Previous Post: Self-contained game distribution on Linux">&laquo; Self-contained game distribution on Linux</a></li>
             
             
-            <li class="next"><a href="/post/2015/10/21/experience-america-presentation/" title="Next Post: Placeholder for Experience America presentation">Placeholder for Experience America presentation &raquo;</a></li>
+            <li class="next"><a href="/post/2015/10/21/experience-america-presentation/" title="Next Post: Experience America presentation slides">Experience America presentation slides &raquo;</a></li>
             
           </ul>
         
@@ -409,7 +423,7 @@ including any clauses regarding redistribution.</p>
     </article>
     
       <section>
-        <h1>Comments</h1>
+        <h2>Comments</h2>
         <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
       </section>
@@ -426,7 +440,7 @@ including any clauses regarding redistribution.</p>
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a>
+    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
     
     <a class="list-group-item active" href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
@@ -454,7 +468,7 @@ including any clauses regarding redistribution.</p>
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Jørgen Tjernø<br>
+  Copyright &copy; 2018 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
@@ -463,22 +477,20 @@ including any clauses regarding redistribution.</p>
 
 </div>
 </footer>
-    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/javascripts/modernizr-2.0.js"></script>
-
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'jorgenpt';
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/';
-        var disqus_url = 'http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/';
+        var disqus_identifier = 'https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/';
+        var disqus_url = 'https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/';
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -500,7 +512,8 @@ including any clauses regarding redistribution.</p>
   </script>
 
 
-
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
 
   </body>

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://jorgen.tjer.no/sitemap.xml 
+Sitemap: https://jorgen.tjer.no/sitemap.xml 

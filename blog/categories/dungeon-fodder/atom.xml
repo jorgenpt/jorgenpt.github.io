@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Dungeon Fodder | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/dungeon-fodder/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: dungeon fodder | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/dungeon-fodder/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
     <updated>2012-09-09T15:10:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
-    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
+    <id>https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
+    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder - and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
 
 <p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
 
@@ -26,24 +26,24 @@
 
 <p><img class="center" src="/images/early_adm.png"></p>
 
-<p>So far, I&rsquo;ve got rudimentary networking and gameplay working &ndash; two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much &ndash; but that&rsquo;s never stopped me before! ;&ndash;)</p>
+<p>So far, I&rsquo;ve got rudimentary networking and gameplay working - two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much - but that&rsquo;s never stopped me before! ;-)</p>
 
 <p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
 
-<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
+<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :-)</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Lack of updates for a few weeks]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/"/>
+    <link href="https://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/"/>
     <updated>2012-06-18T12:41:38-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks</id>
+    <id>https://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve attracted some people who are following the progress of this project, so I figured I should give a quick update on my (lack of) progress.</p>
 
 <p>I&rsquo;m in the middle of organizing a wedding reception, so there won&rsquo;t be any time for working on my projects until after the 26th of June. I look forward to getting back to it!</p>
 
-<p>So far, updates have been on a weekly schedule. I intend to continue with that pace &ndash; or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
+<p>So far, updates have been on a weekly schedule. I intend to continue with that pace - or maybe biweekly, depending on how much time I have. Right before this lack of updates began, I started prototyping a game based on some of the same concepts, but with a smaller scope. I might pursue that so that I have a playable, &ldquo;done&rdquo; game at an earlier point. If so, it&rsquo;ll be featured in an upcoming post. :)</p>
 
 <p>Thank you all for your feedback and interest! This is exactly why I publish this publicly!</p>
 ]]></content>
@@ -51,9 +51,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #7]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
     <updated>2012-05-28T16:59:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
+    <id>https://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
     <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div></p>
 
 <p>A little busy the past two weeks (Diablo 3 and a lot to do at work), but here&rsquo;s what I had time to do:</p>
@@ -62,7 +62,7 @@
 <li>Reworked minimap</li>
 <li>Inventory management</li>
 <li>New spell, &ldquo;Barrier&rdquo;</li>
-<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI &ndash; he now shoots at enemies!</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI - he now shoots at enemies!</li>
 </ul>
 
 ]]></content>
@@ -70,9 +70,9 @@
   
   <entry>
     <title type="html"><![CDATA[Inventory management]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/26/inventory-management/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/26/inventory-management/"/>
     <updated>2012-05-26T14:39:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/26/inventory-management</id>
+    <id>https://jorgen.tjer.no/post/2012/05/26/inventory-management</id>
     <content type="html"><![CDATA[<p>I added some rudimentary (but functional) inventory management:</p>
 
 <p><img class="center <a" src="href="http://i.imgur.com/7nQjQ.gif">http://i.imgur.com/7nQjQ.gif</a>"></p>
@@ -81,9 +81,9 @@
   
   <entry>
     <title type="html"><![CDATA[Minimap cleanup]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/"/>
     <updated>2012-05-19T13:58:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/19/minimap-cleanup</id>
+    <id>https://jorgen.tjer.no/post/2012/05/19/minimap-cleanup</id>
     <content type="html"><![CDATA[<p>Didn&rsquo;t get too much done this week, but I cleaned up the minimap:</p>
 
 <p>Minimap before:<br/>

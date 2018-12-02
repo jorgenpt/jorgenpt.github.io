@@ -1,195 +1,448 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2010/12/06/chocolate-landscape/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2011/02/21/gui-frustration/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/04/14/dungeon-fodder/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/04/19/first-video-of-gameplay-from-my-alpha-game/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/04/20/unity-utilities/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/04/27/inventory-minimap/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/05/05/its-a-party/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/05/26/inventory-management/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/05/28/dev-diary-007/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/
-        </loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog/</loc>
-        <lastmod>2014-05-24T11:24:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/</loc>
-        <lastmod>2014-05-25T16:54:08-07:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/
-        </loc>
-        <lastmod>2014-05-27T23:51:47-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/</loc>
-        <lastmod>2014-06-03T00:55:07-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/archives/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/about.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/components.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/css.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/customize.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/getting-started.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/javascript.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/assets/bootstrap/docs/migration.html</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/blog/archives/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/blog/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/</loc>
-        <lastmod>2015-10-21T22:02:18-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jorgen.tjer.no/robots.txt</loc>
-        <lastmod>2014-05-22T23:34:26-07:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/</loc>
+<lastmod>2015-10-21T09:30:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/</loc>
+<lastmod>2014-05-28T08:28:28-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/</loc>
+<lastmod>2014-05-26T21:10:28-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/</loc>
+<lastmod>2014-05-20T22:06:29-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2014/05/19/moving-to-a-new-blog/</loc>
+<lastmod>2014-05-19T19:36:01-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/</loc>
+<lastmod>2014-03-19T14:04:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/10/28/droidcon-uk-2012-slides-recap/</loc>
+<lastmod>2012-10-28T09:09:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/</loc>
+<lastmod>2012-10-06T15:41:16-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/</loc>
+<lastmod>2012-10-06T15:24:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/</loc>
+<lastmod>2012-10-01T23:58:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/</loc>
+<lastmod>2012-09-09T15:10:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/06/18/lack-of-updates-for-a-few-weeks/</loc>
+<lastmod>2012-06-18T12:41:38-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/</loc>
+<lastmod>2012-06-05T16:40:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/05/28/dev-diary-007/</loc>
+<lastmod>2012-05-28T16:59:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/05/26/inventory-management/</loc>
+<lastmod>2012-05-26T14:39:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/05/19/minimap-cleanup/</loc>
+<lastmod>2012-05-19T13:58:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/</loc>
+<lastmod>2012-05-12T22:21:10-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/05/05/its-a-party/</loc>
+<lastmod>2012-05-05T17:31:27-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/29/dungeon-generation/</loc>
+<lastmod>2012-04-29T20:23:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/27/inventory-minimap/</loc>
+<lastmod>2012-04-27T11:02:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/</loc>
+<lastmod>2012-04-23T00:31:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/</loc>
+<lastmod>2012-04-21T02:08:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/</loc>
+<lastmod>2012-04-21T00:04:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/20/unity-utilities/</loc>
+<lastmod>2012-04-20T18:50:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/19/first-video-of-gameplay-from-my-alpha-game/</loc>
+<lastmod>2012-04-19T00:32:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/04/14/dungeon-fodder/</loc>
+<lastmod>2012-04-14T19:31:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/</loc>
+<lastmod>2012-03-02T13:22:00-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2011/07/26/home-relative-sandbox-entitlement/</loc>
+<lastmod>2011-07-26T16:45:55-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/</loc>
+<lastmod>2011-04-02T20:07:27-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2011/02/21/gui-frustration/</loc>
+<lastmod>2011-02-21T19:14:00-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2010/12/06/chocolate-landscape/</loc>
+<lastmod>2010-12-06T04:40:04-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/archives/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/archives/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/photos/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/objective-c/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/cocoa/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/ruby/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/gui/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/sandbox/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/mac-os-x/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/android/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/android-ndk/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/dungeon-fodder/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/game-development/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/unity3d/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/dev-diary/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/ffmpeg/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/vlc/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/sox/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/openal/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/justin-dot-tv/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/livecasting/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/android-sdk/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/arcane-deathmatch/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/playtesting/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/presentation/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/droidcon-uk/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/jenkins/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/gerrit/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/linux/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/blog/categories/steam-runtime/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/posts/2/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/posts/3/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/posts/4/</loc>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/static/2015-10-21-experience-america.pdf</loc>
+<lastmod>2015-10-21T22:20:11-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/static/2015-10-21-experience-america-with-notes.pdf</loc>
+<lastmod>2015-10-21T22:20:27-07:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2122970403/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/2122970403/chocolate-landscape/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/3437297505/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/3437297505/gui-frustration/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/4300684454/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/4300684454/the-beautiful-fjords-of-norway-from-our-trip-this/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/8105269529/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/8105269529/home-relative-sandbox-entitlement/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/18620908643/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/18620908643/requiring-a-minimum-version-of-the-android-ndk/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899748740/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899748740/dungeon-fodder/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899839261/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899839261/first-video-of-gameplay-from-my-alpha-game/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21900062758/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21900062758/unity-utilities/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21484803576/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21484803576/livecasting-osx-desktop/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899889764/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899889764/second-video-of-dungeon-fodder-path-finding-hud/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899932368/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21899932368/dungeon-fodder-update-not-too-much-time-this/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21921096803/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/21921096803/inventory-minimap/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22102329394/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22102329394/dungeon-generation/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22482234500/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22482234500/its-a-party/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22953753755/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/22953753755/this-week-i-added-level-transitions-and-automatic/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23370470293/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23370470293/minimap-cleanup/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23953438602/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23953438602/inventory-management/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23962832741/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/23962832741/dev-diary-007/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/24502661219/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/24502661219/requiring-a-minimum-version-of-the-android-sdk/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/25380034342/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/25380034342/lack-of-updates-for-a-few-weeks/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/31229056278/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/31229056278/announcing-arcane-deathmatch/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/32725599443/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/32725599443/arcane-dm-first-progress-update/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/33037031622/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/33037031622/first-playtest-of-arcane-deathmatch/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/33038177406/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/33038177406/arcane-dm-dev-diary-001/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/34491749309/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/34491749309/droidcon-uk-2012-slides-recap/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/80097448178/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
+<url>
+<loc>https://jorgen.tjer.no/post/80097448178/thoughts-on-unreal-engine-4/index.html</loc>
+<lastmod>2018-12-02T12:46:34-08:00</lastmod>
+</url>
 </urlset>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
   <title>Blog Archives - Jørgen's Blog</title>
@@ -16,40 +14,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jorgen.tjer.no/archives">
+  <link rel="canonical" href="https://jorgen.tjer.no/archives/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
 
-  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/archives/">
+  <meta property="og:title" content="Blog Archives - Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-51279149-1']);
-    _gaq.push(['_trackPageview']);
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
   </script>
 
 
 </head>
 
   <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
     <div id="wrap">
       <header role="banner">
         <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -60,7 +69,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li >
-                    <a href="/">Blog</a>
+                    <a rel="index" href="/">Blog</a>
                 </li>
                 <li >
                     <a href="/blog/archives">Archives</a>
@@ -82,8 +91,8 @@
                 
             </ul>
             
-                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:jorgen.tjer.no">
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -95,11 +104,11 @@
 
 
       </header>
-      <div id="main" class="container">
+      <div id="main" role="main" class="container">
         <div id="content">
           
 	
-<h1><a href="/post/2015/10/21/experience-america-presentation/">Placeholder for Experience America presentation</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2015/10/21/experience-america-presentation/" itemprop="url">Experience America presentation slides</a></h2>
 <p class="meta text-muted">
   
 
@@ -114,13 +123,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-21T09:30:00-07:00" pubdate data-updated="true">Oct 21<span>st</span>, 2015</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-21T09:30:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">21 Oct, 2015</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>
   
 </span>
 
@@ -129,7 +138,7 @@
 
 
 	
-<h1><a href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2014/05/28/steam-runtime-without-steam/" itemprop="url">steam-runtime without Steam</a></h2>
 <p class="meta text-muted">
   
 
@@ -144,13 +153,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00" pubdate data-updated="true">May 28<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-28T08:28:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 May, 2014</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>Steam Runtime</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>steam runtime</a>
   
 </span>
 
@@ -159,7 +168,7 @@
 
 
 	
-<h1><a href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2014/05/26/self-contained-game-distribution-on-linux/" itemprop="url">Self-contained game distribution on Linux</a></h2>
 <p class="meta text-muted">
   
 
@@ -174,13 +183,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00" pubdate data-updated="true">May 26<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-26T21:10:28-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 May, 2014</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>Steam Runtime</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/steam-runtime/'>steam runtime</a>
   
 </span>
 
@@ -189,7 +198,7 @@
 
 
 	
-<h1><a href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/" itemprop="url">DT_RPATH (ld) & @rpath (dyld)</a></h2>
 <p class="meta text-muted">
   
 
@@ -204,13 +213,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-20T22:06:29-07:00" pubdate data-updated="true">May 20<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-20T22:06:29-07:00"  data-updated="true" itemprop="datePublished dateCreated">20 May, 2014</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/mac-os-x/'>mac os x</a>
   
 </span>
 
@@ -219,7 +228,7 @@
 
 
 	
-<h1><a href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2014/05/19/moving-to-a-new-blog/" itemprop="url">Moved to a new location!</a></h2>
 <p class="meta text-muted">
   
 
@@ -234,7 +243,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-19T19:36:01-07:00" pubdate data-updated="true">May 19<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-19T19:36:01-07:00"  data-updated="true" itemprop="datePublished dateCreated">19 May, 2014</time>
   
 
 
@@ -242,7 +251,7 @@
 
 
 	
-<h1><a href="/post/2014/03/19/thoughts-on-unreal-engine-4/">Thoughts on Unreal Engine 4</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2014/03/19/thoughts-on-unreal-engine-4/" itemprop="url">Thoughts on Unreal Engine 4</a></h2>
 <p class="meta text-muted">
   
 
@@ -257,13 +266,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-19T14:04:00-07:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-19T14:04:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">19 Mar, 2014</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -272,7 +281,7 @@
 
 
 	
-<h1><a href="/post/2012/10/28/droidcon-uk-2012-slides-recap/">Droidcon UK 2012: Slides & recap</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/10/28/droidcon-uk-2012-slides-recap/" itemprop="url">Droidcon UK 2012: Slides & recap</a></h2>
 <p class="meta text-muted">
   
 
@@ -287,13 +296,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-28T09:09:00-07:00" pubdate data-updated="true">Oct 28<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-28T09:09:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 Oct, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/android-ndk/'>Android NDK</a>, <a class='category' href='/blog/categories/droidcon-uk/'>DroidCon UK</a>, <a class='category' href='/blog/categories/gerrit/'>Gerrit</a>, <a class='category' href='/blog/categories/jenkins/'>Jenkins</a>, <a class='category' href='/blog/categories/presentation/'>Presentation</a>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/android-ndk/'>android ndk</a>, <a class='category' href='/blog/categories/droidcon-uk/'>droidcon uk</a>, <a class='category' href='/blog/categories/gerrit/'>gerrit</a>, <a class='category' href='/blog/categories/jenkins/'>jenkins</a>, <a class='category' href='/blog/categories/presentation/'>presentation</a>
   
 </span>
 
@@ -302,7 +311,7 @@
 
 
 	
-<h1><a href="/post/2012/10/06/arcane-dm-dev-diary-001/">Arcane DM Dev Diary #1</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/10/06/arcane-dm-dev-diary-001/" itemprop="url">Arcane DM Dev Diary #1</a></h2>
 <p class="meta text-muted">
   
 
@@ -317,13 +326,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-06T15:41:16-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-06T15:41:16-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 6 Oct, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/arcane-deathmatch/'>Arcane Deathmatch</a>, <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/arcane-deathmatch/'>arcane deathmatch</a>, <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -332,7 +341,7 @@
 
 
 	
-<h1><a href="/post/2012/10/06/first-playtest-of-arcane-deathmatch/">First playtest of Arcane Deathmatch</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/10/06/first-playtest-of-arcane-deathmatch/" itemprop="url">First playtest of Arcane Deathmatch</a></h2>
 <p class="meta text-muted">
   
 
@@ -347,13 +356,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-06T15:24:00-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-06T15:24:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 6 Oct, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/arcane-deathmatch/'>Arcane Deathmatch</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/playtesting/'>Playtesting</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/arcane-deathmatch/'>arcane deathmatch</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/playtesting/'>playtesting</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -362,7 +371,7 @@
 
 
 	
-<h1><a href="/post/2012/10/01/arcane-dm-first-progress-update/">Arcane DM: First progress update</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/10/01/arcane-dm-first-progress-update/" itemprop="url">Arcane DM: First progress update</a></h2>
 <p class="meta text-muted">
   
 
@@ -377,13 +386,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-01T23:58:00-07:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-01T23:58:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 1 Oct, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/arcane-deathmatch/'>Arcane Deathmatch</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/arcane-deathmatch/'>arcane deathmatch</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -392,7 +401,7 @@
 
 
 	
-<h1><a href="/post/2012/09/09/announcing-arcane-deathmatch/">Announcing Arcane Deathmatch</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/09/09/announcing-arcane-deathmatch/" itemprop="url">Announcing Arcane Deathmatch</a></h2>
 <p class="meta text-muted">
   
 
@@ -407,13 +416,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-09-09T15:10:00-07:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-09-09T15:10:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 9 Sep, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/arcane-deathmatch/'>Arcane Deathmatch</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/arcane-deathmatch/'>arcane deathmatch</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -422,7 +431,7 @@
 
 
 	
-<h1><a href="/post/2012/06/18/lack-of-updates-for-a-few-weeks/">Lack of updates for a few weeks</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/06/18/lack-of-updates-for-a-few-weeks/" itemprop="url">Lack of updates for a few weeks</a></h2>
 <p class="meta text-muted">
   
 
@@ -437,13 +446,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-18T12:41:38-07:00" pubdate data-updated="true">Jun 18<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-18T12:41:38-07:00"  data-updated="true" itemprop="datePublished dateCreated">18 Jun, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -452,7 +461,7 @@
 
 
 	
-<h1><a href="/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/">Requiring a minimum version of the Android SDK</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/06/05/requiring-a-minimum-version-of-the-android-sdk/" itemprop="url">Requiring a minimum version of the Android SDK</a></h2>
 <p class="meta text-muted">
   
 
@@ -467,13 +476,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-05T16:40:00-07:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-06-05T16:40:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 5 Jun, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/android-sdk/'>Android SDK</a>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/android-sdk/'>android sdk</a>
   
 </span>
 
@@ -482,7 +491,7 @@
 
 
 	
-<h1><a href="/post/2012/05/28/dev-diary-007/">Dungeon Fodder Update #7</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/05/28/dev-diary-007/" itemprop="url">Dungeon Fodder Update #7</a></h2>
 <p class="meta text-muted">
   
 
@@ -497,13 +506,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-28T16:59:00-07:00" pubdate data-updated="true">May 28<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-28T16:59:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">28 May, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -512,7 +521,7 @@
 
 
 	
-<h1><a href="/post/2012/05/26/inventory-management/">Inventory management</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/05/26/inventory-management/" itemprop="url">Inventory management</a></h2>
 <p class="meta text-muted">
   
 
@@ -527,13 +536,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-26T14:39:00-07:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-26T14:39:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 May, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -542,7 +551,7 @@
 
 
 	
-<h1><a href="/post/2012/05/19/minimap-cleanup/">Minimap cleanup</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/05/19/minimap-cleanup/" itemprop="url">Minimap cleanup</a></h2>
 <p class="meta text-muted">
   
 
@@ -557,13 +566,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-19T13:58:00-07:00" pubdate data-updated="true">May 19<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-19T13:58:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">19 May, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -572,7 +581,7 @@
 
 
 	
-<h1><a href="/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/">Dungeon Fodder Update #6</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/" itemprop="url">Dungeon Fodder Update #6</a></h2>
 <p class="meta text-muted">
   
 
@@ -587,13 +596,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-12T22:21:10-07:00" pubdate data-updated="true">May 12<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-12T22:21:10-07:00"  data-updated="true" itemprop="datePublished dateCreated">12 May, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -602,7 +611,7 @@
 
 
 	
-<h1><a href="/post/2012/05/05/its-a-party/">Dungeon Fodder Update #5</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/05/05/its-a-party/" itemprop="url">Dungeon Fodder Update #5</a></h2>
 <p class="meta text-muted">
   
 
@@ -617,13 +626,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-05T17:31:27-07:00" pubdate data-updated="true">May 5<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-05-05T17:31:27-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 5 May, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -632,7 +641,7 @@
 
 
 	
-<h1><a href="/post/2012/04/29/dungeon-generation/">Dungeon Fodder Update #4: Dungeon generation</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/29/dungeon-generation/" itemprop="url">Dungeon Fodder Update #4: Dungeon generation</a></h2>
 <p class="meta text-muted">
   
 
@@ -647,13 +656,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00" pubdate data-updated="true">Apr 29<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">29 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -662,7 +671,7 @@
 
 
 	
-<h1><a href="/post/2012/04/27/inventory-minimap/">Inventory, minimap</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/27/inventory-minimap/" itemprop="url">Inventory, minimap</a></h2>
 <p class="meta text-muted">
   
 
@@ -677,13 +686,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-27T11:02:00-07:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-27T11:02:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">27 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -692,7 +701,7 @@
 
 
 	
-<h1><a href="/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/">Dungeon Fodder Update #3</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/23/dungeon-fodder-update-not-too-much-time-this/" itemprop="url">Dungeon Fodder Update #3</a></h2>
 <p class="meta text-muted">
   
 
@@ -707,13 +716,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-23T00:31:00-07:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-23T00:31:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">23 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -722,7 +731,7 @@
 
 
 	
-<h1><a href="/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/">Dungeon Fodder Update #2</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/21/second-video-of-dungeon-fodder-path-finding-hud/" itemprop="url">Dungeon Fodder Update #2</a></h2>
 <p class="meta text-muted">
   
 
@@ -737,13 +746,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T02:08:00-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T02:08:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">21 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -752,7 +761,7 @@
 
 
 	
-<h1><a href="/post/2012/04/21/livecasting-osx-desktop/">Livecasting your desktop in OS X</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/21/livecasting-osx-desktop/" itemprop="url">Livecasting your desktop in OS X</a></h2>
 <p class="meta text-muted">
   
 
@@ -767,13 +776,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T00:04:00-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-21T00:04:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">21 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/livecasting/'>Livecasting</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>, <a class='category' href='/blog/categories/openal/'>OpenAL</a>, <a class='category' href='/blog/categories/vlc/'>VLC</a>, <a class='category' href='/blog/categories/ffmpeg/'>ffmpeg</a>, <a class='category' href='/blog/categories/justin-dot-tv/'>justin.tv</a>, <a class='category' href='/blog/categories/sox/'>sox</a>
+    <a class='category' href='/blog/categories/ffmpeg/'>ffmpeg</a>, <a class='category' href='/blog/categories/justin-dot-tv/'>justin.tv</a>, <a class='category' href='/blog/categories/livecasting/'>livecasting</a>, <a class='category' href='/blog/categories/mac-os-x/'>mac os x</a>, <a class='category' href='/blog/categories/openal/'>openal</a>, <a class='category' href='/blog/categories/sox/'>sox</a>, <a class='category' href='/blog/categories/vlc/'>vlc</a>
   
 </span>
 
@@ -782,7 +791,7 @@
 
 
 	
-<h1><a href="/post/2012/04/20/unity-utilities/">Unity Utilities</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/20/unity-utilities/" itemprop="url">Unity Utilities</a></h2>
 <p class="meta text-muted">
   
 
@@ -797,13 +806,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-20T18:50:00-07:00" pubdate data-updated="true">Apr 20<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-20T18:50:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">20 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -812,7 +821,7 @@
 
 
 	
-<h1><a href="/post/2012/04/19/first-video-of-gameplay-from-my-alpha-game/">Dungeon Fodder Update #1</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/19/first-video-of-gameplay-from-my-alpha-game/" itemprop="url">Dungeon Fodder Update #1</a></h2>
 <p class="meta text-muted">
   
 
@@ -827,13 +836,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-19T00:32:00-07:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-19T00:32:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">19 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dev-diary/'>Dev Diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dev-diary/'>dev diary</a>, <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -842,7 +851,7 @@
 
 
 	
-<h1><a href="/post/2012/04/14/dungeon-fodder/">Dungeon Fodder</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/04/14/dungeon-fodder/" itemprop="url">Dungeon Fodder</a></h2>
 <p class="meta text-muted">
   
 
@@ -857,13 +866,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-14T19:31:00-07:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-14T19:31:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">14 Apr, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dungeon-fodder/'>Dungeon Fodder</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>, <a class='category' href='/blog/categories/unity3d/'>Unity3D</a>
+    <a class='category' href='/blog/categories/dungeon-fodder/'>dungeon fodder</a>, <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
   
 </span>
 
@@ -872,7 +881,7 @@
 
 
 	
-<h1><a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/">Requiring a minimum version of the Android NDK</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/" itemprop="url">Requiring a minimum version of the Android NDK</a></h2>
 <p class="meta text-muted">
   
 
@@ -887,13 +896,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-03-02T13:22:00-08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-03-02T13:22:00-08:00"  data-updated="true" itemprop="datePublished dateCreated"> 2 Mar, 2012</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/android-ndk/'>Android NDK</a>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/android-ndk/'>android ndk</a>
   
 </span>
 
@@ -902,7 +911,7 @@
 
 
 	
-<h1><a href="/post/2011/07/26/home-relative-sandbox-entitlement/">The secret to the home-relative Sandbox entitlement</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2011/07/26/home-relative-sandbox-entitlement/" itemprop="url">The secret to the home-relative Sandbox entitlement</a></h2>
 <p class="meta text-muted">
   
 
@@ -917,13 +926,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-07-26T16:45:55-07:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-07-26T16:45:55-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 Jul, 2011</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocoa/'>Cocoa</a>, <a class='category' href='/blog/categories/mac-os-x/'>Mac OS X</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>, <a class='category' href='/blog/categories/sandbox/'>Sandbox</a>
+    <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/mac-os-x/'>mac os x</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a>, <a class='category' href='/blog/categories/sandbox/'>sandbox</a>
   
 </span>
 
@@ -932,7 +941,7 @@
 
 
 	
-<h1><a href="/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/">The beautiful fjords of Norway, from our trip this past Christmas.</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/" itemprop="url">The beautiful fjords of Norway, from our trip this past Christmas.</a></h2>
 <p class="meta text-muted">
   
 
@@ -947,13 +956,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-04-02T20:07:27-07:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2011</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-04-02T20:07:27-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 2 Apr, 2011</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/photos/'>Photos</a>
+    <a class='category' href='/blog/categories/photos/'>photos</a>
   
 </span>
 
@@ -962,7 +971,7 @@
 
 
 	
-<h1><a href="/post/2011/02/21/gui-frustration/">GUI frustration</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2011/02/21/gui-frustration/" itemprop="url">GUI frustration</a></h2>
 <p class="meta text-muted">
   
 
@@ -977,13 +986,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2011</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00"  data-updated="true" itemprop="datePublished dateCreated">21 Feb, 2011</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocoa/'>Cocoa</a>, <a class='category' href='/blog/categories/gui/'>GUI</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+    <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/gui/'>gui</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -992,7 +1001,7 @@
 
 
 	
-<h1><a href="/post/2010/12/06/chocolate-landscape/">Chocolate landscape</a></h1>
+<h2 class="post-title" itemprop="name headline"><a href="/post/2010/12/06/chocolate-landscape/" itemprop="url">Chocolate landscape</a></h2>
 <p class="meta text-muted">
   
 
@@ -1007,13 +1016,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-12-06T04:40:04-08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2010</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-12-06T04:40:04-08:00"  data-updated="true" itemprop="datePublished dateCreated"> 6 Dec, 2010</time>
   
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/photos/'>Photos</a>
+    <a class='category' href='/blog/categories/photos/'>photos</a>
   
 </span>
 
@@ -1026,7 +1035,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Jørgen Tjernø<br>
+  Copyright &copy; 2018 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
@@ -1035,9 +1044,7 @@
 
 </div>
 </footer>
-    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/javascripts/modernizr-2.0.js"></script>
-
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'jorgenpt';
@@ -1047,7 +1054,7 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -1069,7 +1076,8 @@
   </script>
 
 
-
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
 
   </body>

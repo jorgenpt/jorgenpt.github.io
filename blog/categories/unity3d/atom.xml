@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Unity3D | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/unity3d/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: unity3d | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/unity3d/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,16 +15,16 @@
   
   <entry>
     <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
+    <link href="https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
     <updated>2014-03-19T14:04:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
+    <id>https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
     <content type="html"><![CDATA[<p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
 
 <p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
 
 <p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
 
-<p>Lastly, Epic is trying to encourage an open development process &ndash; both by them and by their licensees. That&rsquo;s pretty cool &ndash; I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
+<p>Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That&rsquo;s pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
 
 <p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
 ]]></content>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
     <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
 
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
@@ -44,7 +44,7 @@
 <ul>
 <li>Working networking</li>
 <li>Simple network lobby</li>
-<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Basic UI - leaderboard, spell shop</li>
 <li>Three initial spells (magic missile, infernal nova, teleport)</li>
 <li>A very boring level</li>
 <li>A reward system for kills</li>
@@ -56,33 +56,33 @@
   
   <entry>
     <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
     <updated>2012-10-06T15:24:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
 
-<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
+<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects - it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
 
 <p>Some very useful things I learned include:</p>
 
 <ul>
 <li>Controls need to be thought about very carefully, and tested on real people. What seems fine when you&rsquo;re just testing around the environment is experienced completely differently when you&rsquo;re in an action-packed fight.</li>
-<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important &ndash; even early on. People need to find the information and actions they care about!</li>
-<li>Pacing is very important, and hard to get right &ndash; there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
+<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important - even early on. People need to find the information and actions they care about!</li>
+<li>Pacing is very important, and hard to get right - there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
 </ul>
 
 
 <p>There were a lot of other subtle bugs and improvements I found through this little hour of gameplay. As an example, camera movement is currently not animated, which makes Teleport <strong>very</strong> jarring.</p>
 
-<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) &ndash; and then I can get a better feel for how pacing and balancing needs to be done.</p>
+<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) - and then I can get a better feel for how pacing and balancing needs to be done.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Arcane DM: First progress update]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update/"/>
     <updated>2012-10-01T23:58:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update</id>
+    <id>https://jorgen.tjer.no/post/2012/10/01/arcane-dm-first-progress-update</id>
     <content type="html"><![CDATA[<p>While work is keeping me busy, over the past few weeks I&rsquo;ve had a couple of good evenings to work on Arcane Deathmatch.</p>
 
 <p>Last weekend I poked around with a second spell, &ldquo;Infernal Nova&rdquo;:</p>
@@ -99,10 +99,10 @@
   
   <entry>
     <title type="html"><![CDATA[Announcing Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch/"/>
     <updated>2012-09-09T15:10:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
-    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder &ndash; and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
+    <id>https://jorgen.tjer.no/post/2012/09/09/announcing-arcane-deathmatch</id>
+    <content type="html"><![CDATA[<p>The last few months it&rsquo;s been busy with three weddings (including my own) and a vacation. Every once in a while I&rsquo;ve been tinkering with a game prototype with a smaller scope than Dungeon Fodder - and now I&rsquo;ve finally reached a point where I can say that I&rsquo;ll be pursuing this concept instead of Dungeon Fodder. I first had to make sure Unity&rsquo;s (fairly lacking) networking APIs would be suitable for developing this.</p>
 
 <p>The game is tentatively named &ldquo;Arcane Deathmatch&rdquo;, and it&rsquo;s a third person / top down, fast paced, RPG-inspired multiplayer action game. The gameplay is similar to the Warcraft 3 custom map &ldquo;Warlocks&rdquo; (I think?): You control a wizard/warlock on a relatively small battlefield. You&rsquo;re pitted against a few adversaries, all of you armed with whatever spells you&rsquo;ve purchased. As you survive and kill off your opponents you&rsquo;re awarded gold with which to purchase new spells between rounds.</p>
 
@@ -110,11 +110,11 @@
 
 <p><img class="center" src="/images/early_adm.png"></p>
 
-<p>So far, I&rsquo;ve got rudimentary networking and gameplay working &ndash; two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much &ndash; but that&rsquo;s never stopped me before! ;&ndash;)</p>
+<p>So far, I&rsquo;ve got rudimentary networking and gameplay working - two or more players can connect to eachother and fight it out (armed with Magic Missile!), and getting knocked off the map means falling to your death. It doesn&rsquo;t look like much - but that&rsquo;s never stopped me before! ;-)</p>
 
 <p>Vital things that are missing are more spells, rewards, a way to buy said spells, more interesting maps / terrain / obstacles, and a scoreboard. (Probably in that order)</p>
 
-<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :&ndash;)</p>
+<p>I hope you&rsquo;ll follow my blog as I post status updates and my experiences developing this game :-)</p>
 ]]></content>
   </entry>
   

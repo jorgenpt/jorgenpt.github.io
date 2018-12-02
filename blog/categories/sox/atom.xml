@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: sox | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/sox/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <link href="https://jorgen.tjer.no/blog/categories/sox/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Livecasting your desktop in OS X]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/"/>
+    <link href="https://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop/"/>
     <updated>2012-04-21T00:04:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop</id>
+    <id>https://jorgen.tjer.no/post/2012/04/21/livecasting-osx-desktop</id>
     <content type="html"><![CDATA[<p><strong>EDIT</strong>: Found a way to get audio using Soundflower &amp; sox.<br/>
 <strong>EDIT 2</strong>: RTP+SDP was somehow garbling the output, new and improved script now uses FIFOs!</p>
 
@@ -31,7 +31,7 @@
 <a name="Ustream.Producer"></a>
 <h3>Ustream Producer</h3>
 
-<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; &ndash; but no thanks.</p>
+<p><a href="http://www.ustream.tv/producer">One simple app</a> to do everything, but sadly it only supports streaming to Ucast, downscales to somewhere near the resolution of a feature-phone from 2000, and still constantly complains that I don&rsquo;t have enough bandwidth. You can get the &ldquo;Pro&rdquo; version for $200 which gives you &ldquo;HD Broadcasting&rdquo; - but no thanks.</p>
 
 <a name="My.own"></a>
 <h3>My own</h3>
@@ -116,7 +116,7 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 <a name="OpenAL.issues"></a>
 <h4>OpenAL issues</h4>
 
-<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL &ndash; which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
+<p><code>ffmpeg</code> can theoretically record input devices on OS X using OpenAL - which ships with OS X by default. I spent some time trying to get homebrew to build it (<a href="https://github.com/jorgenpt/homebrew/commit/d69e9d22ef2b0d04fc4f429e91918c034e19a068">patch here</a>), but when I finally got it building I realized <a href="http://ffmpeg.org/trac/ffmpeg/ticket/314">it was completely broken</a>. Yay!</p>
 ]]></content>
   </entry>
   

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Photos | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/photos/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: photos | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/photos/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[The beautiful fjords of Norway, from our trip this past Christmas.]]></title>
-    <link href="http://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/"/>
+    <link href="https://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/"/>
     <updated>2011-04-02T20:07:27-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this</id>
+    <id>https://jorgen.tjer.no/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this</id>
     <content type="html"><![CDATA[<p><img class="center" src="/images/fjords_of_norway.jpg"></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Chocolate landscape]]></title>
-    <link href="http://jorgen.tjer.no/post/2010/12/06/chocolate-landscape/"/>
+    <link href="https://jorgen.tjer.no/post/2010/12/06/chocolate-landscape/"/>
     <updated>2010-12-06T04:40:04-08:00</updated>
-    <id>http://jorgen.tjer.no/post/2010/12/06/chocolate-landscape</id>
+    <id>https://jorgen.tjer.no/post/2010/12/06/chocolate-landscape</id>
     <content type="html"><![CDATA[<p><img class="center" src="/images/chocolate_landscape.jpg"></p>
 ]]></content>
   </entry>

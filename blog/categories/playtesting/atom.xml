@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Playtesting | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/playtesting/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: playtesting | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/playtesting/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,25 +15,25 @@
   
   <entry>
     <title type="html"><![CDATA[First playtest of Arcane Deathmatch]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch/"/>
     <updated>2012-10-06T15:24:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/first-playtest-of-arcane-deathmatch</id>
     <content type="html"><![CDATA[<p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
 
-<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects &ndash; it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
+<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects - it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
 
 <p>Some very useful things I learned include:</p>
 
 <ul>
 <li>Controls need to be thought about very carefully, and tested on real people. What seems fine when you&rsquo;re just testing around the environment is experienced completely differently when you&rsquo;re in an action-packed fight.</li>
-<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important &ndash; even early on. People need to find the information and actions they care about!</li>
-<li>Pacing is very important, and hard to get right &ndash; there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
+<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important - even early on. People need to find the information and actions they care about!</li>
+<li>Pacing is very important, and hard to get right - there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
 </ul>
 
 
 <p>There were a lot of other subtle bugs and improvements I found through this little hour of gameplay. As an example, camera movement is currently not animated, which makes Teleport <strong>very</strong> jarring.</p>
 
-<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) &ndash; and then I can get a better feel for how pacing and balancing needs to be done.</p>
+<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) - and then I can get a better feel for how pacing and balancing needs to be done.</p>
 ]]></content>
   </entry>
   

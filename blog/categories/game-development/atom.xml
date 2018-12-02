@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Game Development | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/game-development/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: game development | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/game-development/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -14,21 +14,32 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Placeholder for Experience America presentation]]></title>
-    <link href="http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/"/>
+    <title type="html"><![CDATA[Experience America presentation slides]]></title>
+    <link href="https://jorgen.tjer.no/post/2015/10/21/experience-america-presentation/"/>
     <updated>2015-10-21T09:30:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2015/10/21/experience-america-presentation</id>
-    <content type="html"><![CDATA[<p>This is just a placeholder. After the presentation I will take the time
-to publish the presentation here!</p>
+    <id>https://jorgen.tjer.no/post/2015/10/21/experience-america-presentation</id>
+    <content type="html"><![CDATA[<p>I gave a brief presentation followed by a Q&amp;A for a class of Danish high
+school students who were in Seattle via the Experience America program.
+As a part of that process, local game developers were invited to speak.</p>
+
+<p>Here are the slides from that talk:</p>
+
+<ul>
+<li><a href="/static/2015-10-21-experience-america.pdf">PDF slides</a></li>
+<li><a href="/static/2015-10-21-experience-america-with-notes.pdf">PDF slides with speaker notes</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[steam-runtime without Steam]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam/"/>
     <updated>2014-05-28T08:28:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
+    <id>https://jorgen.tjer.no/post/2014/05/28/steam-runtime-without-steam</id>
     <content type="html"><![CDATA[<p><strong>Updated 2014-06-03:</strong> Added information about <code>STEAM_RUNTIME</code> variable under <a href="/post/2014/05/28/steam-runtime-without-steam/#Runtime.dependencies.of.the.steam-runtime">the new embedded search path subsection</a>.</p>
+
+<p><strong>Updated 2016-01-03:</strong> Fixed dead links to Valve&rsquo;s steam-runtime patches collection.</p>
 
 <p>If you&rsquo;ve ever had customers report errors like these, then this post
 might be for you:</p>
@@ -147,7 +158,7 @@ detect that the runtime has already been set up.</p>
 <p>First off, why would you prefer this approach to using a wrapper script?</p>
 
 <ul>
-<li>Shell scripts are fragile &mdash; it&rsquo;s easy to get something wrong, like
+<li>Shell scripts are fragile &ndash; it&rsquo;s easy to get something wrong, like
 incorrectly handling spaces in filenames, or something equally silly.</li>
 <li>A shell script gives you another file that you have to be careful to
 maintain the executable bit on.</li>
@@ -212,25 +223,21 @@ executable, you&rsquo;d use these GCC options for a 64bit binary:</p>
 <a name="Runtime.dependencies.of.the.steam-runtime"></a>
 <h3>Runtime dependencies of the steam-runtime</h3>
 
-<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/master/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
+<p>In addition to redirecting the ELF loader to the steam-runtime, there are some runtime dependencies within those dynamic libraries that need to be redirected as well. Luckily, Valve has done this work for us, and <a href="https://github.com/ValveSoftware/steam-runtime/tree/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches">patched these libraries to look elsewhere</a>. In order to know what the &ldquo;base&rdquo; of the runtime is, it looks at the <code>STEAM_RUNTIME</code> environment variable.</p>
 
 <p>The first version of this post didn&rsquo;t include this detail, and you might&rsquo;ve run into errors like these:</p>
 
 <pre><code>symbol lookup error: /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so: undefined symbol: g_mapped_file_get_bytes
 </code></pre>
 
-<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/master/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
+<p>This is because glib has a <a href="https://github.com/ValveSoftware/steam-runtime/blob/1a9c7173fc2092a7214eacdd0ffcbff3c5afe1e5/patches/glib2.0/01_steam_runtime_path.patch#L16">runtime search for plugins</a> that directly calls <code>dlopen()</code> on an absolute path.</p>
 
 <p>The solution to this problem is to have the first thing in your <code>main()</code> method on Linux be:</p>
 
-<p>``` c
-if (!getenv(&ldquo;STEAM_RUNTIME&rdquo;)) {</p>
-
-<pre><code>setenv("STEAM_RUNTIME", figureOutSteamRuntimePath(), 1);
+<pre><code class="c">if (!getenv("STEAM_RUNTIME")) {
+    setenv("STEAM_RUNTIME", figureOutSteamRuntimePath(), 1);
+}
 </code></pre>
-
-<p>}
-```</p>
 
 <p>A full sample for your <code>main()</code> is <a href="https://github.com/jorgenpt/steam-runtime-helpers/blob/master/sample_embedded_path_main.c">available in the helpers GitHub repository</a>.</p>
 
@@ -246,16 +253,16 @@ Annihilation</a>&rsquo;s Linux release.</p>
 <p>When shipping your own steam-runtime, you are responsible for updating
 the runtime. The date of the latest update can be found inside the
 <a href="http://media.steampowered.com/client/runtime/steam-runtime-release_latest.tar.xz.md5">runtime MD5 file</a>. In addition, you are responsible for
-respecting the licenses of all the packages included in the runtime &mdash;
+respecting the licenses of all the packages included in the runtime &ndash;
 including any clauses regarding redistribution.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Self-contained game distribution on Linux]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
+    <link href="https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux/"/>
     <updated>2014-05-26T21:10:28-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
+    <id>https://jorgen.tjer.no/post/2014/05/26/self-contained-game-distribution-on-linux</id>
     <content type="html"><![CDATA[<p>Distributing a game on Linux can be a little intimidating, and there are
 definitely pitfalls. The main problem is making sure your game runs on
 all of your users' machines, and outside of hardware and drivers, the
@@ -298,7 +305,7 @@ talks about solving the problem with dynamic linking.</p>
 its name indicates, it has <strong>no direct dependency on Steam nor does it
 even assume that it is installed</strong>. It is merely a controlled set of
 open source libraries (with some patches) and associated tools to use
-those libraries &ndash; to make your game build hermetic.</p>
+those libraries - to make your game build hermetic.</p>
 
 <!-- more -->
 
@@ -311,7 +318,7 @@ version of the steam-runtime, and execute your game inside of it.</p>
 
 <p>If you, like many others, also distribute your game outside of Steam,
 you&rsquo;ll need to find another solution. The obvious solution is to build
-on their work &ndash; it&rsquo;s an open source project that solves the problem
+on their work - it&rsquo;s an open source project that solves the problem
 perfectly!</p>
 
 <p>(<strong>Update:</strong> If you want to cut directly to the proposed solution, read
@@ -394,16 +401,16 @@ environment, without depending on Steam</a>.</p>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
-    <link href="http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
+    <link href="https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
     <updated>2014-03-19T14:04:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
+    <id>https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
     <content type="html"><![CDATA[<p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
 
 <p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
 
 <p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
 
-<p>Lastly, Epic is trying to encourage an open development process &ndash; both by them and by their licensees. That&rsquo;s pretty cool &ndash; I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
+<p>Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That&rsquo;s pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
 
 <p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
 ]]></content>
@@ -411,9 +418,9 @@ environment, without depending on Steam</a>.</p>
   
   <entry>
     <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
     <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
 
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
@@ -423,7 +430,7 @@ environment, without depending on Steam</a>.</p>
 <ul>
 <li>Working networking</li>
 <li>Simple network lobby</li>
-<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Basic UI - leaderboard, spell shop</li>
 <li>Three initial spells (magic missile, infernal nova, teleport)</li>
 <li>A very boring level</li>
 <li>A reward system for kills</li>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Dev Diary | Jørgen's Blog]]></title>
-  <link href="http://jorgen.tjer.no/blog/categories/dev-diary/atom.xml" rel="self"/>
-  <link href="http://jorgen.tjer.no/"/>
-  <updated>2015-10-21T22:16:11-07:00</updated>
-  <id>http://jorgen.tjer.no/</id>
+  <title><![CDATA[Category: dev diary | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/dev-diary/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2018-12-02T12:46:34-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
+    <link href="https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
     <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
+    <id>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
 
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
@@ -27,7 +27,7 @@
 <ul>
 <li>Working networking</li>
 <li>Simple network lobby</li>
-<li>Basic UI &ndash; leaderboard, spell shop</li>
+<li>Basic UI - leaderboard, spell shop</li>
 <li>Three initial spells (magic missile, infernal nova, teleport)</li>
 <li>A very boring level</li>
 <li>A reward system for kills</li>
@@ -39,9 +39,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #7]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/28/dev-diary-007/"/>
     <updated>2012-05-28T16:59:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
+    <id>https://jorgen.tjer.no/post/2012/05/28/dev-diary-007</id>
     <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/yX0M2LjnyOc" allowfullscreen></iframe></div></p>
 
 <p>A little busy the past two weeks (Diablo 3 and a lot to do at work), but here&rsquo;s what I had time to do:</p>
@@ -50,7 +50,7 @@
 <li>Reworked minimap</li>
 <li>Inventory management</li>
 <li>New spell, &ldquo;Barrier&rdquo;</li>
-<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI &ndash; he now shoots at enemies!</li>
+<li>Non-active player switched to <a href="http://angryant.com/behave">Behave</a>-based AI - he now shoots at enemies!</li>
 </ul>
 
 ]]></content>
@@ -58,9 +58,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #6]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic/"/>
     <updated>2012-05-12T22:21:10-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
+    <id>https://jorgen.tjer.no/post/2012/05/12/this-week-i-added-level-transitions-and-automatic</id>
     <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/kHIqzAOQwIM" allowfullscreen></iframe></div></p>
 
 <p>This week I added level transitions and automatic saves! :)</p>
@@ -69,9 +69,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #5]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/05/05/its-a-party/"/>
+    <link href="https://jorgen.tjer.no/post/2012/05/05/its-a-party/"/>
     <updated>2012-05-05T17:31:27-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/05/05/its-a-party</id>
+    <id>https://jorgen.tjer.no/post/2012/05/05/its-a-party</id>
     <content type="html"><![CDATA[<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/HopI5Rfcf8k" allowfullscreen></iframe></div></p>
 
 <p>Not too much time this week: I added a second (simultaneous) character and some more rudimentary UI.</p>
@@ -80,16 +80,16 @@
   
   <entry>
     <title type="html"><![CDATA[Dungeon Fodder Update #4: Dungeon generation]]></title>
-    <link href="http://jorgen.tjer.no/post/2012/04/29/dungeon-generation/"/>
+    <link href="https://jorgen.tjer.no/post/2012/04/29/dungeon-generation/"/>
     <updated>2012-04-29T20:23:00-07:00</updated>
-    <id>http://jorgen.tjer.no/post/2012/04/29/dungeon-generation</id>
+    <id>https://jorgen.tjer.no/post/2012/04/29/dungeon-generation</id>
     <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
 
 <p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div></p>
 
-<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms &ndash; some of them will be &ldquo;special&rdquo; rooms.</p>
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms - some of them will be &ldquo;special&rdquo; rooms.</p>
 
-<p>There&rsquo;re a lot of improvements that can be made to this approach &ndash; and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+<p>There&rsquo;re a lot of improvements that can be made to this approach - and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
 
 <a name="Rooms"></a>
 <h3>Rooms</h3>
@@ -122,7 +122,7 @@
 <a name="Questions..Comments."></a>
 <h3>Questions? Comments?</h3>
 
-<p>Feel free to contact me on <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#106;&#x6f;&#x72;&#103;&#x65;&#x6e;&#112;&#116;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#111;&#x72;&#x67;&#101;&#110;&#112;&#116;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+<p>Feel free to contact me on <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#x6a;&#111;&#x72;&#103;&#101;&#x6e;&#x70;&#x74;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#106;&#111;&#114;&#103;&#x65;&#110;&#x70;&#x74;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 ]]></content>
   </entry>
   
