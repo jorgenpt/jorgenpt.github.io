@@ -1,1 +1,1 @@
-../external-repos/jekyll_alias_generator/_plugins/alias_generator.rb
+../external-repos/jekyll_alias_generator/alias_generator.rb
