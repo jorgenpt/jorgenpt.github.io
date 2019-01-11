@@ -133,6 +133,49 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-27T11:02:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">27 Apr, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/04/27/inventory-minimap/" itemprop="url">Inventory, minimap</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>This week I&rsquo;ve been deep in non-visible changes, working on a dungeon generator. While there&rsquo;s not any good visible output yet, here&rsquo;s the other stuff I had time to do this week:</p>
+
+<p>Basic inventory, supports drag, still missing drop (and on-hover descriptions) ^_^<br/>
+<img src="/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
+
+<p>Initial minimap - should probably not render lighting etc, but it works!<br/>
+<img src="/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-23T00:31:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">23 Apr, 2012</time>
         
       </p>
@@ -620,53 +663,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-02-21T19:14:00-08:00"  data-updated="true" itemprop="datePublished dateCreated">21 Feb, 2011</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/post/2011/02/21/gui-frustration/" itemprop="url">GUI frustration</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Yesterday I needed to whip together a simple little app to &ldquo;vet&rdquo; photos - a tool to quickly let me go through each photo in a directory and choose between &ldquo;thumbs up&rdquo; or &ldquo;boo&rdquo;, then give me a list of the ones I said &ldquo;boo&rdquo; to.</p>
-
-<p>Ideally, I&rsquo;d write this app in Ruby, but I have had only bad experiences trying to get a useful, good GUI written in either Ruby or Python. Years ago I looked into GTK, QT and WxWidgets, but none of them convinced me they were capable. So I googled around for &ldquo;simple GUI ruby&rdquo;, and &ldquo;Shoes&rdquo; caught my eye. I tried it out, and it was indeed simple, but sadly <strong>too</strong> simple. It was hellbent on not letting me do anything complex, even when it&rsquo;s &ldquo;intuitive behavior&rdquo; was wrong.</p>
-
-<p>I&rsquo;ve been writing Objective-C since last summer (<a href="http://grabbox.devsoft.no">GrabBox</a> is written in it), so I gave up on my Ruby track and tried putting something together using Interface Builder and Cocoa. To my amazement, writing the whole app took me much less time than researching &ldquo;simple&rdquo; GUI frameworks for Ruby: ~1 hour from scratch to working app:</p>
-
-<p><img class="center" src="/images/image_vetter.jpg"></p>
-
-<p>Is this really the state of GUI frameworks for Ruby and the likes (say, Python and Perl) - or have things improved significantly since I last looked at GTK, WxWidgets and QT? Is there nothing that can even remotely compete with Interface Builder and Cocoa? I&rsquo;m by no means a fanboy, and I&rsquo;d love to be able to do this as efficiently in Ruby or Python! Please post a comment if you have any tips or thoughts on this. :)</p>
-
-<p><em>If you wonder what was wrong with Shoes: Things like the image class <strong>only</strong> letting you load data by providing a path or an URL, and having some caching behavior that rendered the app very slow after changing the ~4MB displayed image tens of times.</em></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -690,6 +686,8 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
+    
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
     
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
@@ -697,8 +695,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
     
     <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
-    
-    <a class="list-group-item " href="/post/2014/05/19/moving-to-a-new-blog/">Moved to a new location!</a>
     
   </div>
 </section>
@@ -718,7 +714,7 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2018 - Jørgen Tjernø<br>
+  Copyright &copy; 2019 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: game development | Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/blog/categories/game-development/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2018-12-02T12:46:34-08:00</updated>
+  <updated>2019-01-10T17:31:05-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AIE presentation slides]]></title>
+    <link href="https://jorgen.tjer.no/post/2019/01/10/aie-presentation/"/>
+    <updated>2019-01-10T17:31:00-07:00</updated>
+    <id>https://jorgen.tjer.no/post/2019/01/10/aie-presentation</id>
+    <content type="html"><![CDATA[<p>I gave a brief presentation followed by a Q&amp;A for a class at the <a href="https://aie.edu/">Academy of
+Interactive Entertainment</a> at their Seattle campus. It was
+a part of their &ldquo;Lunchbox Speaker&rdquo; series where they host various speakers
+from the game development industry.</p>
+
+<p>It talks about some of the challenges we at <a href="https://www.undeadlabs.com">Undead Labs</a>
+encountered developing State of Decay 2, and both practical steps we took to address it as
+well as some of my opinions on how to avoid or address those things in the future.</p>
+
+<p>Here are the slides from that talk:</p>
+
+<ul>
+<li><a href="/static/2019-01-09-aie.pdf">PDF slides</a></li>
+<li><a href="/static/2019-01-09-aie-with-notes.pdf">PDF slides with speaker notes</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Experience America presentation slides]]></title>
@@ -413,30 +437,6 @@ environment, without depending on Steam</a>.</p>
 <p>Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That&rsquo;s pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
 
 <p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Arcane DM Dev Diary #1]]></title>
-    <link href="https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001/"/>
-    <updated>2012-10-06T15:41:16-07:00</updated>
-    <id>https://jorgen.tjer.no/post/2012/10/06/arcane-dm-dev-diary-001</id>
-    <content type="html"><![CDATA[<p>Here&rsquo;s the first &ldquo;dev diary&rdquo; video for Arcane Deathmatch.</p>
-
-<p><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/cYxfSR7fj2Q" allowfullscreen></iframe></div></p>
-
-<p>So far the game has:</p>
-
-<ul>
-<li>Working networking</li>
-<li>Simple network lobby</li>
-<li>Basic UI - leaderboard, spell shop</li>
-<li>Three initial spells (magic missile, infernal nova, teleport)</li>
-<li>A very boring level</li>
-<li>A reward system for kills</li>
-<li>A round system with a &ldquo;last man standing&rdquo; victory condition</li>
-</ul>
-
 ]]></content>
   </entry>
   

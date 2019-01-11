@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2018-12-02T12:46:34-08:00</updated>
+  <updated>2019-01-10T17:31:05-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AIE presentation slides]]></title>
+    <link href="https://jorgen.tjer.no/post/2019/01/10/aie-presentation/"/>
+    <updated>2019-01-10T17:31:00-07:00</updated>
+    <id>https://jorgen.tjer.no/post/2019/01/10/aie-presentation</id>
+    <content type="html"><![CDATA[<p>I gave a brief presentation followed by a Q&amp;A for a class at the <a href="https://aie.edu/">Academy of
+Interactive Entertainment</a> at their Seattle campus. It was
+a part of their &ldquo;Lunchbox Speaker&rdquo; series where they host various speakers
+from the game development industry.</p>
+
+<p>It talks about some of the challenges we at <a href="https://www.undeadlabs.com">Undead Labs</a>
+encountered developing State of Decay 2, and both practical steps we took to address it as
+well as some of my opinions on how to avoid or address those things in the future.</p>
+
+<p>Here are the slides from that talk:</p>
+
+<ul>
+<li><a href="https://jorgen.tjer.no/static/2019-01-09-aie.pdf">PDF slides</a></li>
+<li><a href="https://jorgen.tjer.no/static/2019-01-09-aie-with-notes.pdf">PDF slides with speaker notes</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Experience America presentation slides]]></title>
@@ -885,22 +909,7 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 <a name="Questions..Comments."></a>
 <h3>Questions? Comments?</h3>
 
-<p>Feel free to contact me on <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x6a;&#x6f;&#x72;&#103;&#x65;&#110;&#112;&#116;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#106;&#111;&#x72;&#103;&#x65;&#110;&#x70;&#116;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Inventory, minimap]]></title>
-    <link href="https://jorgen.tjer.no/post/2012/04/27/inventory-minimap/"/>
-    <updated>2012-04-27T11:02:00-07:00</updated>
-    <id>https://jorgen.tjer.no/post/2012/04/27/inventory-minimap</id>
-    <content type="html"><![CDATA[<p>This week I&rsquo;ve been deep in non-visible changes, working on a dungeon generator. While there&rsquo;s not any good visible output yet, here&rsquo;s the other stuff I had time to do this week:</p>
-
-<p>Basic inventory, supports drag, still missing drop (and on-hover descriptions) ^_^<br/>
-<img src="https://jorgen.tjer.no/images/basic_inventory_dfodder.png" title="&#34;Basic inventory&#34;" alt="&#34;Basic inventory&#34;"></p>
-
-<p>Initial minimap - should probably not render lighting etc, but it works!<br/>
-<img src="https://jorgen.tjer.no/images/initial_minimap_dfodder.png" title="&#34;Initial minimap&#34;" alt="&#34;Initial minimap&#34;"></p>
+<p>Feel free to contact me on <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#106;&#111;&#x72;&#103;&#101;&#x6e;&#x70;&#116;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;">&#106;&#111;&#114;&#103;&#x65;&#110;&#x70;&#x74;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 ]]></content>
   </entry>
   
