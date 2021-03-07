@@ -234,7 +234,11 @@ end
 desc "copy dot files for deployment"
 task :copydot, :source, :dest do |t, args|
   FileList["#{args.source}/**/.*"].exclude("**/.", "**/..", "**/.DS_Store", "**/._*").each do |file|
-    cp_r file, file.gsub(/#{args.source}/, "#{args.dest}") unless File.directory?(file)
+    if File.directory?(file)
+      dst_file = file.gsub(/#{args.source}/, "#{args.dest}")
+      mkdir_p File.dirname(dst_file)
+      cp_r file, dst_file
+    end
   end
 end
 
