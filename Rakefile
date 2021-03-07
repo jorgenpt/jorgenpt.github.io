@@ -32,6 +32,12 @@ if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
   `chcp 65001`
 end
 
+desc "Clones the deploy branch for you, if using push"
+file deploy_dir do |t|
+  url = `git remote get-url origin`.chomp
+  system "git clone -b #{deploy_branch} #{url} #{t.name}"
+end
+
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
   if File.directory?(source_dir) || File.directory?("sass")
@@ -253,7 +259,7 @@ task :rsync do
 end
 
 desc "deploy public directory to github pages"
-multitask :push do
+multitask :push => [deploy_dir] do
   puts "## Deploying branch to Github Pages "
   puts "## Pulling any updates from Github Pages "
   cd "#{deploy_dir}" do 
