@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2021-03-13T20:31:30-08:00</updated>
+  <updated>2021-03-14T12:42:25-07:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -332,6 +332,10 @@
 <h2>In closing</h2>
 
 <p>If you&rsquo;re looking to just drop this in to your own project, I would suggest you look at <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">the full example in bichrome&rsquo;s src/windows.rs</a>, which has all the various parts in two methods (<code>register_urlhandler</code> and <code>refresh_shell</code>).</p>
+
+<p>Once you&rsquo;ve done all this, your application should show up like any other browser in the <code>Default apps</code> selection in Windows 10, like <a href="https://github.com/jorgenpt/bichrome">bichrome</a> in this screenshot:</p>
+
+<p><img class="center" src="https://jorgen.tjer.no/images/default_apps.png"></p>
 
 <p>Please let me know if you have any questions or just to say that this was helpful to you! You can leave a comment, hit me up on <a href="https://twitter.com/jorgenpt">twitter (@jorgenpt)</a>, or send me <a href="mailto:jorgenpt@gmail.com">a quick email</a>.</p>
 ]]></content>
