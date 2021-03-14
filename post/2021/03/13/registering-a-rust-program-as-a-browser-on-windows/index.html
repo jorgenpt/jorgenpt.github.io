@@ -442,6 +442,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<a name="Being.suave.about.it"></a>
+<h2>Being suave about it</h2>
+
+<p>By default Rust applications use the &ldquo;console&rdquo; subsystem on Windows &ndash; this means you can more or less always write to the console and have it show up somewhere. The downside of this is that if the application is run outside of a console window, e.g. by double-clicking the EXE or when invoked as a browser by the OS, you&rsquo;ll see a console window pop up. Luckily, since Rust 1.18, it&rsquo;s quite trivial to switch to the Windows subsystem. Just add the following to the top of your <code>main.rs</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="err">#</span><span class="o">!</span><span class="p">[</span><span class="n">windows_subsystem</span> <span class="o">=</span> <span class="s">&quot;windows&quot;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <a name="In.closing"></a>
 <h2>In closing</h2>
 

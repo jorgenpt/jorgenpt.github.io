@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rust | Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/blog/categories/rust/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2021-03-13T20:12:13-08:00</updated>
+  <updated>2021-03-13T20:31:30-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -208,6 +208,14 @@ fn main() {
   windows::build!(windows::win32::shell::*);
 }
 </code></p>
+
+<a name="Being.suave.about.it"></a>
+<h2>Being suave about it</h2>
+
+<p>By default Rust applications use the &ldquo;console&rdquo; subsystem on Windows &ndash; this means you can more or less always write to the console and have it show up somewhere. The downside of this is that if the application is run outside of a console window, e.g. by double-clicking the EXE or when invoked as a browser by the OS, you&rsquo;ll see a console window pop up. Luckily, since Rust 1.18, it&rsquo;s quite trivial to switch to the Windows subsystem. Just add the following to the top of your <code>main.rs</code>:</p>
+
+<pre><code class="rust">#![windows_subsystem = "windows"]
+</code></pre>
 
 <a name="In.closing"></a>
 <h2>In closing</h2>
