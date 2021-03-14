@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rust | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/rust/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2021-03-13T20:12:13-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
+  <author>
+    <name><![CDATA[Jørgen Tjernø]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Registering a (Rust) program as a browser on Windows]]></title>
+    <link href="https://jorgen.tjer.no/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/"/>
+    <updated>2021-03-13T17:43:00-08:00</updated>
+    <id>https://jorgen.tjer.no/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows</id>
+    <content type="html"><![CDATA[<p>Registering as a potential web browser in modern Windows versions is mostly just about configuring a handful of registry keys, and there&rsquo;s nothing particularly tricky about doing so in Rust. Exactly what you need to configure (and why) can be hard to divine, and so I&rsquo;ll walk through the various registry keys that are expected, why, and show sample Rust code for setting them. In addition, there&rsquo;s a small call to <code>SHChangeNotify</code> that&rsquo;s required to refresh the OS' notion of available browsers, and that requires a snippet of unsafe Rust code.</p>
+
+<p>I figured out all this while writing an app that pretends to be a browser and forwards URLs to the appropriate browser based on pattern matching. I named it <a href="https://github.com/jorgenpt/bichrome">bichrome</a>, and you can find a <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">full example of URL registration in bichrome&rsquo;s src/windows.rs</a>, or keep reading to learn why these parts are needed and how to adapt it to your program!</p>
+
+<!-- more -->
+
+
+<p>You&rsquo;ll need to pick a couple of arbitrary identifiers. There&rsquo;s a &ldquo;canonical name&rdquo; for your browser (for <a href="https://github.com/jorgenpt/bichrome">bichrome</a> I chose <code>bichrome.exe</code>) and a program ID for your URL associations (for <a href="https://github.com/jorgenpt/bichrome">bichrome</a> I chose <code>bichromeHTML</code>), and these will be referred to as <code>CANONICAL_NAME</code> and <code>PROGID</code> in the samples. You&rsquo;ll also need <code>DISPLAY_NAME</code> and <code>DESCRIPTION</code>, which are simply user-facing names &amp; descriptions for your application.</p>
+
+<pre><code class="rust">const CANONICAL_NAME: &amp;str = "bichrome.exe";
+const PROGID: &amp;str = "bichromeHTML";
+const DISPLAY_NAME: &amp;str = "bichrome";
+const DESCRIPTION: &amp;str = "Pick the right Chrome profile for each URL";
+</code></pre>
+
+<p>The samples will use the <a href="https://crates.io/crates/const_format">const_format</a> crate for its <a href="https://docs.rs/const_format/0.2.13/const_format/macro.concatcp.html"><code>concatcp!</code></a> macro, the <a href="https://crates.io/crates/winreg">winreg</a> crate to write to the registry, and <a href="https://crates.io/crates/windows">windows-rs</a> to call <code>SHChangeNotify</code>.</p>
+
+<a name="ProgID.registration"></a>
+<h2>ProgID registration</h2>
+
+<p>Registering the ProgID we&rsquo;ve picked lets us use the ProgID in file &amp; URL associations, so that Windows knows what commands to invoke when a particular file or URL gets handled by our ProgID.  The registration happens by configuring <code>SOFTWARE\CLASSES\&lt;PROGID&gt;</code> and it&rsquo;s subkeys <code>DefaultIcon</code> and <code>shell\open\command</code>. The latter is what gets invoked when our ProgID is asked to handle something.</p>
+
+<pre><code class="rust">use std::env::current_exe;
+
+// Find the current executable's name, which we'll use to register
+let exe_path = current_exe()?;
+let exe_name = exe_path
+    .file_name()
+    .map(|s| s.to_str())
+    .flatten()
+    .unwrap_or_default()
+    .to_owned();
+let exe_path = exe_path.to_str().unwrap_or_default().to_owned();
+
+// We're assuming that the registration will use the icon resource of our EXE
+let icon_path = format!("\"{}\",0", exe_path);
+// This is the command that will get invoked
+let open_command = format!("\"{}\" \"%1\"", exe_path);
+
+// We write to the local user's registry, so that it does not require administrative
+// privileges to update.
+let hkcu = RegKey::predef(HKEY_CURRENT_USER);
+
+const PROGID_CLASS_PATH: &amp;str = concatcp!(r"SOFTWARE\Classes\", PROGID);
+let (progid_class, _) = hkcu.create_subkey(PROGID_CLASS_PATH)?;
+progid_class.set_value("", &amp;DISPLAY_NAME)?;
+
+let (progid_class_defaulticon, _) = progid_class.create_subkey("DefaultIcon")?;
+progid_class_defaulticon.set_value("", &amp;icon_path)?;
+
+let (progid_class_shell_open_command, _) = progid_class.create_subkey(r"shell\open\command")?;
+progid_class_shell_open_command.set_value("", &amp;open_command)?;
+</code></pre>
+
+<a name="Configuring.the.Default.Programs"></a>
+<h2>Configuring the Default Programs</h2>
+
+<p>Default Programs is the user flow that Windows 10 uses to let the user configure defaults for their browser, email client, et cetera. You can read about it in detail <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs">on the MSDN page</a>.</p>
+
+<p>To become a valid browser, we need to register some information about our application, let the OS know we&rsquo;re a browser-type application, tell it which URLs and file types we&rsquo;re capable of handling, and let it know how to launch, register, and unregister us.</p>
+
+<p>First, we set up the high level information &ndash; display name, our icon, and name &amp; description:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kr">const</span> <span class="n">DPROG_PATH</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="kt">str</span> <span class="o">=</span> <span class="n">concatcp</span><span class="o">!</span><span class="p">(</span><span class="n">r</span><span class="s">&quot;SOFTWARE\Clients\StartMenuInternet\&amp;ldquo;, CANONICAL_NAME);</span>
+</span><span class='line'><span class="s">let (dprog, _) = hkcu.create_subkey(DPROG_PATH)?;</span>
+</span><span class='line'><span class="s">dprog.set_value(&amp;rdquo;&amp;ldquo;, &amp;amp;DISPLAY_NAME)?;</span>
+</span><span class='line'><span class="s">dprog.set_value(&quot;</span><span class="n">LocalizedString</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_defaulticon</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">DefaultIcon</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_defaulticon</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">icon_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_capabilites</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Capabilities</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">ApplicationName</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">ApplicationIcon</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">icon_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">ApplicationDescription</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">DESCRIPTION</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Then we tell the OS we have a <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#startmenu">StartMenuInternet capability</a>, and then link this browser&rsquo;s URL &amp; file associations to the program ID we chose (and registered above).</p>
+
+<pre><code class="rust">let (dprog_capabilities_startmenu, _) = dprog_capabilites.create_subkey("Startmenu")?;
+dprog_capabilities_startmenu.set_value("StartMenuInternet", &amp;CANONICAL_NAME)?;
+
+// Register for various URL protocols that our target browsers might support.
+let (dprog_capabilities_urlassociations, _) =
+    dprog_capabilites.create_subkey("URLAssociations")?;
+for protocol in &amp;["ftp", "http", "https", "webcal"] {
+    dprog_capabilities_urlassociations.set_value(protocol, &amp;PROGID)?;
+}
+
+// Register for various file types, so that we'll be invoked for file:// URLs for these types (e.g.
+// by `cargo doc --open`.)
+let (dprog_capabilities_fileassociations, _) =
+    dprog_capabilites.create_subkey("FileAssociations")?;
+for filetype in &amp;[
+    ".htm", ".html", ".pdf", ".shtml", ".svg", ".webp", ".xht", ".xhtml",
+] {
+    dprog_capabilities_fileassociations.set_value(filetype, &amp;PROGID)?;
+}
+</code></pre>
+
+<p>To finalize the Default Programs configuration, we set up the <a href="https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#registering-installation-information">installation information</a> which allows the OS to register &amp; unregister us. You can read about the expectations for e.g. the reinstall command <a href="https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#the-reinstall-command">on this MSDN page</a>.</p>
+
+<pre><code class="rust">// Set up reinstallation and show/hide icon commands (https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#registering-installation-information)
+let (dprog_installinfo, _) = dprog.create_subkey("InstallInfo")?;
+dprog_installinfo.set_value("ReinstallCommand", &amp;format!("\"{}\" register", exe_path))?;
+dprog_installinfo.set_value("HideIconsCommand", &amp;format!("\"{}\" hide-icons", exe_path))?;
+dprog_installinfo.set_value("ShowIconsCommand", &amp;format!("\"{}\" show-icons", exe_path))?;
+
+// Only update IconsVisible if it hasn't been set already
+if let Err(_) = dprog_installinfo.get_value::&lt;u32, _&gt;("IconsVisible") {
+    dprog_installinfo.set_value("IconsVisible", &amp;1u32)?;
+}
+
+let (dprog_shell_open_command, _) = dprog.create_subkey(r"shell\open\command")?;
+dprog_shell_open_command.set_value("", &amp;open_command)?;
+</code></pre>
+
+<a name="Tying.it.all.together"></a>
+<h2>Tying it all together</h2>
+
+<p>Finally, we just need to create a <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#registeredapplications">Registered Application</a> that maps our application name to the Default Programs capabilities we listed, and set up an app path for convenience sake &ndash; so that <code>myprogram.exe</code> can resolve to our program without needing to modify the <code>PATH</code>.</p>
+
+<pre><code class="rust">// Set up a registered application for our Default Programs capabilities (https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#registeredapplications)
+let (registered_applications, _) =
+    hkcu.create_subkey(r"SOFTWARE\RegisteredApplications")?;
+let dprog_capabilities_path = format!(r"{}\Capabilities", DPROG_PATH);
+registered_applications.set_value(DISPLAY_NAME, &amp;dprog_capabilities_path)?;
+
+// Application Registration (https://docs.microsoft.com/en-us/windows/win32/shell/app-registration)
+let appreg_path = format!(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\{}", exe_name);
+let (appreg, _) = hkcu.create_subkey(APPREG_PATH)?;
+// This is used to resolve "myprogram.exe" -&gt; full path, if needed.
+appreg.set_value("", &amp;exe_path)?;
+// UseUrl indicates that we don't need the shell to download a file for us -- we can handle direct
+// HTTP URLs.
+appreg.set_value("UseUrl", &amp;1u32)?;
+</code></pre>
+
+<a name="Letting.the.OS.know.we.re.good.to.go"></a>
+<h2>Letting the OS know we&rsquo;re good to go</h2>
+
+<p>As one last step, we <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#becoming-the-default-browser">notify the OS that the available URL handlers have changed</a>, so that it will refresh the list of browsers, and if this is our first registration, automatically prompt the user if they&rsquo;d like to change their default.</p>
+
+<pre><code class="rust">mod windows_bindings {
+    ::windows::include_bindings!();
+}
+
+use windows_bindings::windows::win32::shell::{SHChangeNotify, SHCNE_ID, SHCNF_FLAGS};
+
+// Notify the shell about the updated URL associations. (https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#becoming-the-default-browser)
+unsafe {
+    SHChangeNotify(
+        SHCNE_ID::SHCNE_ASSOCCHANGED,
+        SHCNF_FLAGS::SHCNF_DWORD | SHCNF_FLAGS::SHCNF_FLUSH,
+        std::ptr::null_mut(),
+        std::ptr::null_mut(),
+    );
+}
+</code></pre>
+
+<p>Setting up windows-rs is a little bit heavier weight than most crates &ndash; you can find documentation on <a href="https://crates.io/crates/windows">the crates.io page for the windows crate</a>, but a minimal example is shown below. First, add the following to your <code>Cargo.toml</code>:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='toml'><span class='line'><span class="p">[</span><span class="n">dependencies</span><span class="p">]</span>
+</span><span class='line'><span class="n">windows</span> <span class="o">=</span> <span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">0.4.0</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&lt;/</span><span class="n">p</span><span class="err">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="n">p</span><span class="err">&gt;</span><span class="p">[</span><span class="n">build-dependencies</span><span class="p">]</span>
+</span><span class='line'><span class="n">windows</span> <span class="o">=</span> <span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">0.4.0</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Then you&rsquo;ll also need to specify a <code>build.rs</code> script that generates the appropriate bindings for you:
+<code>rust
+fn main() {
+  windows::build!(windows::win32::shell::*);
+}
+</code></p>
+
+<a name="In.closing"></a>
+<h2>In closing</h2>
+
+<p>If you&rsquo;re looking to just drop this in to your own project, I would suggest you look at <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">the full example in bichrome&rsquo;s src/windows.rs</a>, which has all the various parts in two methods (<code>register_urlhandler</code> and <code>refresh_shell</code>).</p>
+
+<p>Please let me know if you have any questions or just to say that this was helpful to you! You can leave a comment, hit me up on <a href="https://twitter.com/jorgenpt">twitter (@jorgenpt)</a>, or send me <a href="mailto:jorgenpt@gmail.com">a quick email</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -133,6 +133,83 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-29T20:23:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">29 Apr, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/04/29/dungeon-generation/" itemprop="url">Dungeon Fodder Update #4: Dungeon generation</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>This week I added some rudimentary dungeon generation code to <a href="/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
+
+<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
+
+
+<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms - some of them will be &ldquo;special&rdquo; rooms.</p>
+
+<p>There&rsquo;re a lot of improvements that can be made to this approach - and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
+
+<a name="Rooms"></a>
+<h3>Rooms</h3>
+
+<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
+
+<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
+
+<a name="Placement"></a>
+<h3>Placement</h3>
+
+<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
+
+<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
+
+<a name="Monsters..amp..loot"></a>
+<h3>Monsters &amp; loot</h3>
+
+<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
+
+<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
+
+<a name="Paths"></a>
+<h3>Paths</h3>
+
+<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
+
+<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
+
+<a name="Questions..Comments."></a>
+<h3>Questions? Comments?</h3>
+
+<p>Feel free to contact me on <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#106;&#111;&#114;&#x67;&#x65;&#x6e;&#112;&#x74;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x6a;&#x6f;&#x72;&#x67;&#x65;&#x6e;&#112;&#x74;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-04-27T11:02:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">27 Apr, 2012</time>
         
       </p>
@@ -626,43 +703,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-04-02T20:07:27-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 2 Apr, 2011</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/post/2011/04/02/the-beautiful-fjords-of-norway-from-our-trip-this/" itemprop="url">The beautiful fjords of Norway, from our trip this past Christmas.</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p><img class="center" src="/images/fjords_of_norway.jpg"></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -686,6 +726,8 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
+    
     <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
     
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
@@ -693,8 +735,6 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
-    
-    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
     
   </div>
 </section>
@@ -726,18 +766,18 @@ wait $ffmpeg_pid $sox_pid $vlc_pid</code></pre></noscript></div>
     
 
 <script type="text/javascript">
-      var disqus_shortname = 'jorgenpt';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+  var disqus_shortname = 'jorgenpt';
+  
+  
+  var disqus_script = 'count.js';
+  
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
-
 
 
 

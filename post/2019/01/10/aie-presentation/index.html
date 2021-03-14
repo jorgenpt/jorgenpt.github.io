@@ -209,6 +209,8 @@ well as some of my opinions on how to avoid or address those things in the futur
             <li class="previous"><a href="/post/2015/10/21/experience-america-presentation/" title="Previous Post: Experience America presentation slides">&laquo; Experience America presentation slides</a></li>
             
             
+            <li class="next"><a href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/" title="Next Post: Registering a (Rust) program as a browser on Windows">Registering a (Rust) program as a browser on Windows &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -232,6 +234,8 @@ well as some of my opinions on how to avoid or address those things in the futur
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
+    
     <a class="list-group-item active" href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
     
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
@@ -239,8 +243,6 @@ well as some of my opinions on how to avoid or address those things in the futur
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
-    
-    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
     
   </div>
 </section>
@@ -272,21 +274,22 @@ well as some of my opinions on how to avoid or address those things in the futur
     
 
 <script type="text/javascript">
-      var disqus_shortname = 'jorgenpt';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'https://jorgen.tjer.no/post/2019/01/10/aie-presentation/';
-        var disqus_url = 'https://jorgen.tjer.no/post/2019/01/10/aie-presentation/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+  var disqus_shortname = 'jorgenpt';
+  
+  
+  var disqus_config = function () {
+    this.page.url = 'https://jorgen.tjer.no/post/2019/01/10/aie-presentation/';
+    this.page.identifier = 'https://jorgen.tjer.no/post/2019/01/10/aie-presentation/';
+  };
+  var disqus_script = 'embed.js';
+  
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
-
 
 
 

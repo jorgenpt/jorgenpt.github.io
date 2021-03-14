@@ -4,7 +4,7 @@
   <title><![CDATA[Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2021-03-07T16:00:34-08:00</updated>
+  <updated>2021-03-13T20:12:13-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,320 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Registering a (Rust) program as a browser on Windows]]></title>
+    <link href="https://jorgen.tjer.no/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/"/>
+    <updated>2021-03-13T17:43:00-08:00</updated>
+    <id>https://jorgen.tjer.no/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows</id>
+    <content type="html"><![CDATA[<p>Registering as a potential web browser in modern Windows versions is mostly just about configuring a handful of registry keys, and there&rsquo;s nothing particularly tricky about doing so in Rust. Exactly what you need to configure (and why) can be hard to divine, and so I&rsquo;ll walk through the various registry keys that are expected, why, and show sample Rust code for setting them. In addition, there&rsquo;s a small call to <code>SHChangeNotify</code> that&rsquo;s required to refresh the OS' notion of available browsers, and that requires a snippet of unsafe Rust code.</p>
+
+<p>I figured out all this while writing an app that pretends to be a browser and forwards URLs to the appropriate browser based on pattern matching. I named it <a href="https://github.com/jorgenpt/bichrome">bichrome</a>, and you can find a <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">full example of URL registration in bichrome&rsquo;s src/windows.rs</a>, or keep reading to learn why these parts are needed and how to adapt it to your program!</p>
+
+<!-- more -->
+
+
+<p>You&rsquo;ll need to pick a couple of arbitrary identifiers. There&rsquo;s a &ldquo;canonical name&rdquo; for your browser (for <a href="https://github.com/jorgenpt/bichrome">bichrome</a> I chose <code>bichrome.exe</code>) and a program ID for your URL associations (for <a href="https://github.com/jorgenpt/bichrome">bichrome</a> I chose <code>bichromeHTML</code>), and these will be referred to as <code>CANONICAL_NAME</code> and <code>PROGID</code> in the samples. You&rsquo;ll also need <code>DISPLAY_NAME</code> and <code>DESCRIPTION</code>, which are simply user-facing names &amp; descriptions for your application.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kr">const</span> <span class="n">CANONICAL_NAME</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="s">&quot;bichrome.exe&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="n">PROGID</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="s">&quot;bichromeHTML&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="n">DISPLAY_NAME</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="s">&quot;bichrome&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="n">DESCRIPTION</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="s">&quot;Pick the right Chrome profile for each URL&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The samples will use the <a href="https://crates.io/crates/const_format">const_format</a> crate for its <a href="https://docs.rs/const_format/0.2.13/const_format/macro.concatcp.html"><code>concatcp!</code></a> macro, the <a href="https://crates.io/crates/winreg">winreg</a> crate to write to the registry, and <a href="https://crates.io/crates/windows">windows-rs</a> to call <code>SHChangeNotify</code>.</p>
+
+<a name="ProgID.registration"></a>
+<h2>ProgID registration</h2>
+
+<p>Registering the ProgID we&rsquo;ve picked lets us use the ProgID in file &amp; URL associations, so that Windows knows what commands to invoke when a particular file or URL gets handled by our ProgID.  The registration happens by configuring <code>SOFTWARE\CLASSES\&lt;PROGID&gt;</code> and it&rsquo;s subkeys <code>DefaultIcon</code> and <code>shell\open\command</code>. The latter is what gets invoked when our ProgID is asked to handle something.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kn">use</span> <span class="n">std</span><span class="o">::</span><span class="n">env</span><span class="o">::</span><span class="n">current_exe</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Find the current executable&#39;s name, which we&#39;ll use to register</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">exe_path</span> <span class="o">=</span> <span class="n">current_exe</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">exe_name</span> <span class="o">=</span> <span class="n">exe_path</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">file_name</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="p">.</span><span class="n">to_str</span><span class="p">())</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">flatten</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">unwrap_or_default</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">to_owned</span><span class="p">();</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">exe_path</span> <span class="o">=</span> <span class="n">exe_path</span><span class="p">.</span><span class="n">to_str</span><span class="p">().</span><span class="n">unwrap_or_default</span><span class="p">().</span><span class="n">to_owned</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// We&#39;re assuming that the registration will use the icon resource of our EXE</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">icon_path</span> <span class="o">=</span> <span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s">,0&quot;</span><span class="p">,</span> <span class="n">exe_path</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// This is the command that will get invoked</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">open_command</span> <span class="o">=</span> <span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">%1</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exe_path</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// We write to the local user&#39;s registry, so that it does not require administrative</span>
+</span><span class='line'><span class="c1">// privileges to update.</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">hkcu</span> <span class="o">=</span> <span class="n">RegKey</span><span class="o">::</span><span class="n">predef</span><span class="p">(</span><span class="n">HKEY_CURRENT_USER</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">const</span> <span class="n">PROGID_CLASS_PATH</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="n">concatcp</span><span class="o">!</span><span class="p">(</span><span class="s-Raw">r&quot;SOFTWARE\Classes\&quot;</span><span class="p">,</span> <span class="n">PROGID</span><span class="p">);</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">progid_class</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">hkcu</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="n">PROGID_CLASS_PATH</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">progid_class</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">progid_class_defaulticon</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">progid_class</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;DefaultIcon&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">progid_class_defaulticon</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">icon_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">progid_class_shell_open_command</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">progid_class</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s-Raw">r&quot;shell\open\command&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">progid_class_shell_open_command</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">open_command</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<a name="Configuring.the.Default.Programs"></a>
+<h2>Configuring the Default Programs</h2>
+
+<p>Default Programs is the user flow that Windows 10 uses to let the user configure defaults for their browser, email client, et cetera. You can read about it in detail <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs">on the MSDN page</a>.</p>
+
+<p>To become a valid browser, we need to register some information about our application, let the OS know we&rsquo;re a browser-type application, tell it which URLs and file types we&rsquo;re capable of handling, and let it know how to launch, register, and unregister us.</p>
+
+<p>First, we set up the high level information &ndash; display name, our icon, and name &amp; description:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kr">const</span> <span class="n">DPROG_PATH</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span> <span class="o">=</span> <span class="n">concatcp</span><span class="o">!</span><span class="p">(</span><span class="s-Raw">r&quot;SOFTWARE\Clients\StartMenuInternet\&quot;</span><span class="p">,</span> <span class="n">CANONICAL_NAME</span><span class="p">);</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">hkcu</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="n">DPROG_PATH</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;LocalizedString&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_defaulticon</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;DefaultIcon&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_defaulticon</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">icon_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_capabilites</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;Capabilities&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;ApplicationName&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DISPLAY_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;ApplicationIcon&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">icon_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;ApplicationDescription&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DESCRIPTION</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we tell the OS we have a <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#startmenu">StartMenuInternet capability</a>, and then link this browser&rsquo;s URL &amp; file associations to the program ID we chose (and registered above).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_capabilities_startmenu</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;Startmenu&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_capabilities_startmenu</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;StartMenuInternet&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CANONICAL_NAME</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Register for various URL protocols that our target browsers might support.</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_capabilities_urlassociations</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;URLAssociations&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">protocol</span> <span class="k">in</span> <span class="o">&amp;</span><span class="p">[</span><span class="s">&quot;ftp&quot;</span><span class="p">,</span> <span class="s">&quot;http&quot;</span><span class="p">,</span> <span class="s">&quot;https&quot;</span><span class="p">,</span> <span class="s">&quot;webcal&quot;</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">dprog_capabilities_urlassociations</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">PROGID</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Register for various file types, so that we&#39;ll be invoked for file:// URLs for these types (e.g.</span>
+</span><span class='line'><span class="c1">// by `cargo doc --open`.)</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_capabilities_fileassociations</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">dprog_capabilites</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;FileAssociations&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">filetype</span> <span class="k">in</span> <span class="o">&amp;</span><span class="p">[</span>
+</span><span class='line'>    <span class="s">&quot;.htm&quot;</span><span class="p">,</span> <span class="s">&quot;.html&quot;</span><span class="p">,</span> <span class="s">&quot;.pdf&quot;</span><span class="p">,</span> <span class="s">&quot;.shtml&quot;</span><span class="p">,</span> <span class="s">&quot;.svg&quot;</span><span class="p">,</span> <span class="s">&quot;.webp&quot;</span><span class="p">,</span> <span class="s">&quot;.xht&quot;</span><span class="p">,</span> <span class="s">&quot;.xhtml&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">dprog_capabilities_fileassociations</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">filetype</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">PROGID</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To finalize the Default Programs configuration, we set up the <a href="https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#registering-installation-information">installation information</a> which allows the OS to register &amp; unregister us. You can read about the expectations for e.g. the reinstall command <a href="https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#the-reinstall-command">on this MSDN page</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="c1">// Set up reinstallation and show/hide icon commands (https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#registering-installation-information)</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_installinfo</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s">&quot;InstallInfo&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_installinfo</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;ReinstallCommand&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s"> register&quot;</span><span class="p">,</span> <span class="n">exe_path</span><span class="p">))</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_installinfo</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;HideIconsCommand&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s"> hide-icons&quot;</span><span class="p">,</span> <span class="n">exe_path</span><span class="p">))</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_installinfo</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;ShowIconsCommand&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s"> show-icons&quot;</span><span class="p">,</span> <span class="n">exe_path</span><span class="p">))</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Only update IconsVisible if it hasn&#39;t been set already</span>
+</span><span class='line'><span class="k">if</span> <span class="kd">let</span> <span class="nb">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog_installinfo</span><span class="p">.</span><span class="n">get_value</span><span class="o">::&lt;</span><span class="kt">u32</span><span class="p">,</span> <span class="n">_</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;IconsVisible&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">dprog_installinfo</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;IconsVisible&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="mi">1</span><span class="k">u32</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">dprog_shell_open_command</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">dprog</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s-Raw">r&quot;shell\open\command&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="n">dprog_shell_open_command</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">open_command</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<a name="Tying.it.all.together"></a>
+<h2>Tying it all together</h2>
+
+<p>Finally, we just need to create a <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#registeredapplications">Registered Application</a> that maps our application name to the Default Programs capabilities we listed, and set up an app path for convenience sake &ndash; so that <code>myprogram.exe</code> can resolve to our program without needing to modify the <code>PATH</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="c1">// Set up a registered application for our Default Programs capabilities (https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#registeredapplications)</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">registered_applications</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">hkcu</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="s-Raw">r&quot;SOFTWARE\RegisteredApplications&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">dprog_capabilities_path</span> <span class="o">=</span> <span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s-Raw">r&quot;{}\Capabilities&quot;</span><span class="p">,</span> <span class="n">DPROG_PATH</span><span class="p">);</span>
+</span><span class='line'><span class="n">registered_applications</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">DISPLAY_NAME</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dprog_capabilities_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Application Registration (https://docs.microsoft.com/en-us/windows/win32/shell/app-registration)</span>
+</span><span class='line'><span class="kd">let</span> <span class="n">appreg_path</span> <span class="o">=</span> <span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s-Raw">r&quot;SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\{}&quot;</span><span class="p">,</span> <span class="n">exe_name</span><span class="p">);</span>
+</span><span class='line'><span class="kd">let</span> <span class="p">(</span><span class="n">appreg</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">hkcu</span><span class="p">.</span><span class="n">create_subkey</span><span class="p">(</span><span class="n">APPREG_PATH</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// This is used to resolve &quot;myprogram.exe&quot; -&gt; full path, if needed.</span>
+</span><span class='line'><span class="n">appreg</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">exe_path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// UseUrl indicates that we don&#39;t need the shell to download a file for us -- we can handle direct</span>
+</span><span class='line'><span class="c1">// HTTP URLs.</span>
+</span><span class='line'><span class="n">appreg</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="s">&quot;UseUrl&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="mi">1</span><span class="k">u32</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<a name="Letting.the.OS.know.we.re.good.to.go"></a>
+<h2>Letting the OS know we&rsquo;re good to go</h2>
+
+<p>As one last step, we <a href="https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#becoming-the-default-browser">notify the OS that the available URL handlers have changed</a>, so that it will refresh the list of browsers, and if this is our first registration, automatically prompt the user if they&rsquo;d like to change their default.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="kn">mod</span> <span class="n">windows_bindings</span> <span class="p">{</span>
+</span><span class='line'>    <span class="o">::</span><span class="n">windows</span><span class="o">::</span><span class="n">include_bindings</span><span class="o">!</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">use</span> <span class="n">windows_bindings</span><span class="o">::</span><span class="n">windows</span><span class="o">::</span><span class="n">win32</span><span class="o">::</span><span class="n">shell</span><span class="o">::</span><span class="p">{</span><span class="n">SHChangeNotify</span><span class="p">,</span> <span class="n">SHCNE_ID</span><span class="p">,</span> <span class="n">SHCNF_FLAGS</span><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Notify the shell about the updated URL associations. (https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#becoming-the-default-browser)</span>
+</span><span class='line'><span class="k">unsafe</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">SHChangeNotify</span><span class="p">(</span>
+</span><span class='line'>        <span class="n">SHCNE_ID</span><span class="o">::</span><span class="n">SHCNE_ASSOCCHANGED</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">SHCNF_FLAGS</span><span class="o">::</span><span class="n">SHCNF_DWORD</span> <span class="o">|</span> <span class="n">SHCNF_FLAGS</span><span class="o">::</span><span class="n">SHCNF_FLUSH</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">ptr</span><span class="o">::</span><span class="n">null_mut</span><span class="p">(),</span>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">ptr</span><span class="o">::</span><span class="n">null_mut</span><span class="p">(),</span>
+</span><span class='line'>    <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setting up windows-rs is a little bit heavier weight than most crates &ndash; you can find documentation on <a href="https://crates.io/crates/windows">the crates.io page for the windows crate</a>, but a minimal example is shown below. First, add the following to your <code>Cargo.toml</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='toml'><span class='line'><span class="p">[</span><span class="n">dependencies</span><span class="p">]</span>
+</span><span class='line'><span class="n">windows</span> <span class="o">=</span> <span class="s">&quot;0.4.0&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="n">build-dependencies</span><span class="p">]</span>
+</span><span class='line'><span class="n">windows</span> <span class="o">=</span> <span class="s">&quot;0.4.0&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you&rsquo;ll also need to specify a <code>build.rs</code> script that generates the appropriate bindings for you:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rust'><span class='line'><span class="k">fn</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">windows</span><span class="o">::</span><span class="n">build</span><span class="o">!</span><span class="p">(</span><span class="n">windows</span><span class="o">::</span><span class="n">win32</span><span class="o">::</span><span class="n">shell</span><span class="o">::*</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<a name="In.closing"></a>
+<h2>In closing</h2>
+
+<p>If you&rsquo;re looking to just drop this in to your own project, I would suggest you look at <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">the full example in bichrome&rsquo;s src/windows.rs</a>, which has all the various parts in two methods (<code>register_urlhandler</code> and <code>refresh_shell</code>).</p>
+
+<p>Please let me know if you have any questions or just to say that this was helpful to you! You can leave a comment, hit me up on <a href="https://twitter.com/jorgenpt">twitter (@jorgenpt)</a>, or send me <a href="mailto:jorgenpt@gmail.com">a quick email</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AIE presentation slides]]></title>
@@ -861,55 +1175,6 @@ it came to it, unlike what I could with my old tumblr blog.</p>
 
 
 <p>Not too much time this week: I added a second (simultaneous) character and some more rudimentary UI.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dungeon Fodder Update #4: Dungeon generation]]></title>
-    <link href="https://jorgen.tjer.no/post/2012/04/29/dungeon-generation/"/>
-    <updated>2012-04-29T20:23:00-07:00</updated>
-    <id>https://jorgen.tjer.no/post/2012/04/29/dungeon-generation</id>
-    <content type="html"><![CDATA[<p>This week I added some rudimentary dungeon generation code to <a href="https://jorgen.tjer.no/blog/categories/dungeon-fodder/">DungeonFodder</a>. You can see what it looks like <a href="http://youtu.be/51Rvmtzo3gg">on YouTube</a>.</p>
-
-<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/51Rvmtzo3gg" allowfullscreen></iframe></div>
-
-
-<p><strong>EDIT</strong>: Eventually I expect to have a certain chance that a level will be a &ldquo;special&rdquo; level that&rsquo;s been made by hand instead of randomly generated. Same for rooms - some of them will be &ldquo;special&rdquo; rooms.</p>
-
-<p>There&rsquo;re a lot of improvements that can be made to this approach - and so far it doesn&rsquo;t add much content to the rooms, just the infrastructure. Here&rsquo;s a quick explanation of how it currently works!</p>
-
-<a name="Rooms"></a>
-<h3>Rooms</h3>
-
-<p>Rooms are created as regular 3D <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.html">Unity GameObjects</a>, complete with scripts and all. Then, the dungeon generation script takes each of these objects, converts their dimensions to a 2D tile-based system and determines where the room has openings for corridors.</p>
-
-<p>Rooms are split into &ldquo;large&rdquo; and &ldquo;small&rdquo; rooms, so that the engine can produce many small rooms and a couple of large ones, depending on what feel the level should have.</p>
-
-<a name="Placement"></a>
-<h3>Placement</h3>
-
-<p>The script then chooses a random number of rooms of each size, based on a range for the level. For each room it wants to place, it picks a random rotation (n * 90°), and places it at a random location in the world. If the location is taken by another room, it starts searching for a free spot outwards from the initial random location.</p>
-
-<p>Large rooms are placed before small rooms, to prevent the fragmentation from getting out of hand. A random &ldquo;large&rdquo; room is picked to be the &ldquo;spawn&rdquo; room.</p>
-
-<a name="Monsters..amp..loot"></a>
-<h3>Monsters &amp; loot</h3>
-
-<p>Each level has a configured range of &ldquo;monsters per tile&rdquo;, like [0.1, 0.4]. For each room, it picks a random number in that range, and multiplies that number with the &ldquo;square tileage&rdquo; of the room. It skips the &ldquo;spawn&rdquo; room.</p>
-
-<p>Currently, the spawn algorithm is very naïve. There&rsquo;s also no loot being spawned.</p>
-
-<a name="Paths"></a>
-<h3>Paths</h3>
-
-<p>Then, each &ldquo;opening&rdquo; in a room is connected by the shortest path to a neighboring room (using an implementation of the <a href="http://en.wikipedia.org/wiki/A-star">A*</a> algorithm), but if a room has more than one &ldquo;opening&rdquo; then they are connected to different rooms. We tell our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as a bit more expensive than pathed tiles, so that paths will get reused.</p>
-
-<p>Finally, each room is connected to the spawn room to ensure that we don&rsquo;t have any disjoint &ldquo;sub-dungeons&rdquo; that aren&rsquo;t connected to the rest of them. This time we configure our <a href="http://en.wikipedia.org/wiki/A-star">A*</a> to count unpathed tiles as much more (currently 20x) expensive than pathed tiles, to encourage it to not create unneccessary paths.</p>
-
-<a name="Questions..Comments."></a>
-<h3>Questions? Comments?</h3>
-
-<p>Feel free to contact me on <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x6a;&#111;&#x72;&#x67;&#x65;&#x6e;&#x70;&#116;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x6a;&#111;&#114;&#103;&#101;&#110;&#x70;&#116;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> or <a href="http://twitter.com/jorgenpt].%20:-">twitter</a></p>
 ]]></content>
   </entry>
   

@@ -133,6 +133,50 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2021-03-13T17:43:00-08:00"  data-updated="true" itemprop="datePublished dateCreated">13 Mar, 2021</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/" itemprop="url">Registering a (Rust) program as a browser on Windows</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Registering as a potential web browser in modern Windows versions is mostly just about configuring a handful of registry keys, and there&rsquo;s nothing particularly tricky about doing so in Rust. Exactly what you need to configure (and why) can be hard to divine, and so I&rsquo;ll walk through the various registry keys that are expected, why, and show sample Rust code for setting them. In addition, there&rsquo;s a small call to <code>SHChangeNotify</code> that&rsquo;s required to refresh the OS' notion of available browsers, and that requires a snippet of unsafe Rust code.</p>
+
+<p>I figured out all this while writing an app that pretends to be a browser and forwards URLs to the appropriate browser based on pattern matching. I named it <a href="https://github.com/jorgenpt/bichrome">bichrome</a>, and you can find a <a href="https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53">full example of URL registration in bichrome&rsquo;s src/windows.rs</a>, or keep reading to learn why these parts are needed and how to adapt it to your program!</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2019-01-10T17:31:00-07:00"  data-updated="true" itemprop="datePublished dateCreated">10 Jan, 2019</time>
         
       </p>
@@ -622,58 +666,6 @@ don&rsquo;t like GitHub any more.</p>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-10-06T15:24:00-07:00"  data-updated="true" itemprop="datePublished dateCreated"> 6 Oct, 2012</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/10/06/first-playtest-of-arcane-deathmatch/" itemprop="url">First playtest of Arcane Deathmatch</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Yesterday I asked two coworkers to play Arcane Deathmatch with me, to get an initial feel for what direction I&rsquo;m going in. It was a great experience, and a great motivator: I finished up a large amount of basic implementations of features in the last week, so that it&rsquo;d be ready for the playtest.</p>
-
-<p>I <strong>highly</strong> recommend doing this early for people working on hobby projects - it helps you focus on shipping and creating a real product, and motivate you. During the time leading up to the play-testing, I started thinking of every issue I&rsquo;ve filed in the bugtracker in terms of &ldquo;how important is this to testing gameplay&rdquo;.</p>
-
-<p>Some very useful things I learned include:</p>
-
-<ul>
-<li>Controls need to be thought about very carefully, and tested on real people. What seems fine when you&rsquo;re just testing around the environment is experienced completely differently when you&rsquo;re in an action-packed fight.</li>
-<li>While art is not important to the &ldquo;fun&rdquo; in this concept, UX is very important - even early on. People need to find the information and actions they care about!</li>
-<li>Pacing is very important, and hard to get right - there are a <em>lot</em> of factors that influence it, many of which I haven&rsquo;t gotten around to implementing yet.</li>
-</ul>
-
-
-<p>There were a lot of other subtle bugs and improvements I found through this little hour of gameplay. As an example, camera movement is currently not animated, which makes Teleport <strong>very</strong> jarring.</p>
-
-<p>For now, I&rsquo;m back to implementing some new content (especially a more interesting level and more spells) - and then I can get a better feel for how pacing and balancing needs to be done.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -697,6 +689,8 @@ don&rsquo;t like GitHub any more.</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
+    
     <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
     
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
@@ -704,8 +698,6 @@ don&rsquo;t like GitHub any more.</p>
     <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
     <a class="list-group-item " href="/post/2014/05/26/self-contained-game-distribution-on-linux/">Self-contained game distribution on Linux</a>
-    
-    <a class="list-group-item " href="/post/2014/05/20/dt-rpath-ld-and-at-rpath-dyld/">DT_RPATH (ld) & @rpath (dyld)</a>
     
   </div>
 </section>
@@ -737,18 +729,18 @@ don&rsquo;t like GitHub any more.</p>
     
 
 <script type="text/javascript">
-      var disqus_shortname = 'jorgenpt';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+  var disqus_shortname = 'jorgenpt';
+  
+  
+  var disqus_script = 'count.js';
+  
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
-
 
 
 
