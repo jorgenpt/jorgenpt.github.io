@@ -196,6 +196,10 @@ By default Rust applications use the "console" subsystem on Windows -- this mean
 
 If you're looking to just drop this in to your own project, I would suggest you look at [the full example in bichrome's src/windows.rs][bichrome-registration], which has all the various parts in two methods (`register_urlhandler` and `refresh_shell`). 
 
+Once you've done all this, your application should show up like any other browser in the `Default apps` selection in Windows 10, like [bichrome] in this screenshot:
+
+{% img center /images/default_apps.png %}
+
 Please let me know if you have any questions or just to say that this was helpful to you! You can leave a comment, hit me up on [twitter (@jorgenpt)][twitter], or send me [a quick email][email].
 
 [bichrome-registration]: https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53
