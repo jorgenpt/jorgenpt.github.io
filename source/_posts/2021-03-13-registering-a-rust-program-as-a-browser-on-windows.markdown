@@ -184,6 +184,14 @@ fn main() {
 }
 ```
 
+## Being suave about it
+
+By default Rust applications use the "console" subsystem on Windows -- this means you can more or less always write to the console and have it show up somewhere. The downside of this is that if the application is run outside of a console window, e.g. by double-clicking the EXE or when invoked as a browser by the OS, you'll see a console window pop up. Luckily, since Rust 1.18, it's quite trivial to switch to the Windows subsystem. Just add the following to the top of your `main.rs`:
+
+```rust
+#![windows_subsystem = "windows"]
+```
+
 ## In closing
 
 If you're looking to just drop this in to your own project, I would suggest you look at [the full example in bichrome's src/windows.rs][bichrome-registration], which has all the various parts in two methods (`register_urlhandler` and `refresh_shell`). 
