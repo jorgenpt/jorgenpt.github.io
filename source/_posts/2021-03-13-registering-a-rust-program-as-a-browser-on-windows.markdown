@@ -6,21 +6,11 @@ comments: true
 categories: Rust
 ---
 
-# Registering a (Rust) program as a Windows web browser
+Registering as a potential web browser in modern Windows versions is mostly just about configuring a handful of registry keys, and there's nothing particularly tricky about doing so in Rust. Exactly what you need to configure (and why) can be hard to divine, and so I'll walk through the various registry keys that are expected, why, and show sample Rust code for setting them. In addition, there's a small call to `SHChangeNotify` that's required to refresh the OS' notion of available browsers, and that requires a snippet of unsafe Rust code. 
 
-## Motivation
+I figured out all this while writing an app that pretends to be a browser and forwards URLs to the appropriate browser based on pattern matching. I named it [bichrome], and you can find a [full example of URL registration in bichrome's src/windows.rs][bichrome-registration], or keep reading to learn why these parts are needed and how to adapt it to your program!
 
-During this period of extended work for home I am often using the desktop Slack app to keep up with both my professional and personal communications. In order to keep my credentials and identities somewhat separated when I'm browsing, I use two different Google Chrome profiles -- a built-in feature where I'm signed in to my employer's Google Suite in one window, and my personal gmail.com account in a different window. This seperates cookies, extensions, and settings.
-
-I recently got tired of clicking "obvious" work links (like JIRA) on Slack and having them open in my personal Google Chrome profile. This happens because Chrome's default behavior is to open a link in the most recently activated window, and it doesn't have any way to be more clever than that.
-
-In order to address this, I figured I could write an app that pretends to be my browser, and then uses command line switches to tell Chrome which profile to open it in, based on the URL. Thus, [bichrome] was born. (Which now also supports Firefox, Safari, and Edge.)
-
-## Overview
-
-Registering as a potential web browser in modern Windows versions is mostly just about configuring a few registry keys, and there's nothing particularly tricky about doing this in Rust. Exactly what (and why) can be hard to divine, and so I'll walk through the various registry keys that are expected, why, and show sample Rust code for setting them. In addition, there's a small change to `SHChangeNotify` that's helpful to refresh the OS' notion of available browsers, and that requires a snippet of unsafe Rust code.
-
-You can find a [full example in bichrome's src/windows.rs][bichrome-registration].
+<!-- more -->
 
 You'll need to pick a couple of arbitrary identifiers. There's a "canonical name" for your browser (for [bichrome] I chose `bichrome.exe`) and a program ID for your URL associations (for [bichrome] I chose `bichromeHTML`), and these will be referred to as `CANONICAL_NAME` and `PROGID` in the samples. You'll also need `DISPLAY_NAME` and `DESCRIPTION`, which are simply user-facing names & descriptions for your application.
 
@@ -194,15 +184,23 @@ fn main() {
 }
 ```
 
+## In closing
+
+If you're looking to just drop this in to your own project, I would suggest you look at [the full example in bichrome's src/windows.rs][bichrome-registration], which has all the various parts in two methods (`register_urlhandler` and `refresh_shell`). 
+
+Please let me know if you have any questions or just to say that this was helpful to you! You can leave a comment, hit me up on [twitter (@jorgenpt)][twitter], or send me [a quick email][email].
+
 [bichrome-registration]: https://github.com/jorgenpt/bichrome/blob/04e8a4476105501032121c05f487f592c6ca68ce/src/windows.rs#L53
 [bichrome]: https://github.com/jorgenpt/bichrome
 [concatcp]: https://docs.rs/const_format/0.2.13/const_format/macro.concatcp.html
 [const_format]: https://crates.io/crates/const_format
 [defaultprograms]: https://docs.microsoft.com/en-us/windows/win32/shell/default-programs
+[email]: mailto:jorgenpt@gmail.com
 [installation-information]: https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#registering-installation-information
 [notify-assoc]: https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#becoming-the-default-browser
 [registered-application]: https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#registeredapplications
 [reinstall-expectations]: https://docs.microsoft.com/en-us/windows/win32/shell/reg-middleware-apps#the-reinstall-command
 [startmenu-capability]: https://docs.microsoft.com/en-us/windows/win32/shell/default-programs#startmenu
+[twitter]: https://twitter.com/jorgenpt
 [windows-rs]: https://crates.io/crates/windows
 [winreg]: https://crates.io/crates/winreg
