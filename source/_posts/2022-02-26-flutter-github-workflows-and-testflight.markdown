@@ -168,4 +168,6 @@ git tag v0.1.0 # This accepts any tag name  starting with "v"
 git push --tags
 ```
 
+You can see an example run [in the Actions tab of `flutter_github_example`](https://github.com/jorgenpt/flutter_github_example/runs/5347687784).
+
 These builds will by default be available to _Internal Testers_ -- you can use the App Store Connect app or website to release one of these builds to _External Testers_.
