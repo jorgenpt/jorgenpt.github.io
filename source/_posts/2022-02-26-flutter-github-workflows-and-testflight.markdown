@@ -76,7 +76,7 @@ Please refer to the [fastlane setup docs](https://docs.fastlane.tools/getting-st
 1. Close your terminal and re-open it for `rbenv` to be initialized, then navigate to your Flutter project and run:
 
     ```sh
-    echo 2.7.5 > .ruby-version # Pick a semi-recent Ruby (you could probably do 3.x instead?)
+    rbenv install -l 2>&1 | grep '^\d' | sort -n | tail -n 1 > .ruby-version # Pick the most recent stable Ruby -- at the time of writing this is 3.1.1.
     rbenv install # Install the requested version of Ruby
     gem install bundler
     cd ios
