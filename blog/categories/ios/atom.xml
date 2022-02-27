@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ios | Jørgen's Blog]]></title>
+  <link href="https://jorgen.tjer.no/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="https://jorgen.tjer.no/"/>
+  <updated>2022-02-26T17:55:26-08:00</updated>
+  <id>https://jorgen.tjer.no/</id>
+  <author>
+    <name><![CDATA[Jørgen Tjernø]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flutter & GitHub Workflows: Deploying to TestFlight]]></title>
+    <link href="https://jorgen.tjer.no/post/2022/02/26/flutter-github-workflows-and-testflight/"/>
+    <updated>2022-02-26T00:00:00-08:00</updated>
+    <id>https://jorgen.tjer.no/post/2022/02/26/flutter-github-workflows-and-testflight</id>
+    <content type="html"><![CDATA[<p>When I wanted my personal <a href="https://flutter.dev/">Flutter</a> app to distribute iOS builds from a <a href="https://docs.github.com/en/actions">GitHub workflow</a> using <a href="https://developer.apple.com/testflight/">TestFlight</a>, I couldn&rsquo;t find a good cohesive guide to setting it up. The process was a bit nuanced and time consuming to get right.</p>
+
+<p>In the end I created a GitHub workflow that automatically publishes whenever I push a versioned tag to GitHub &ndash; it builds the project, signs it, and publishes that build to TestFlight.</p>
+
+<p>Below I&rsquo;ve provided the comprehensive set of steps you need to set this up from scratch, which I reproduced <a href="https://github.com/jorgenpt/flutter_github_example/tree/publish-to-testflight">using a public sample repository for your reference</a>.</p>
+
+<!-- more -->
+
+
+<a name="Requirements"></a>
+<h2>Requirements</h2>
+
+<p>In order to deploy builds to <a href="https://developer.apple.com/testflight/">TestFlight</a>, Apple requires that you have an <a href="https://developer.apple.com/programs/enroll/">Apple Developer Program</a> account &ndash; these cost $99/year.</p>
+
+<p>I&rsquo;m also assuming you&rsquo;ve created a private or public repository on GitHub that you&rsquo;ll be using for version control where you can run the GitHub Workflow we&rsquo;ll set up.</p>
+
+<a name="Setup.with.Apple"></a>
+<h2>Setup with Apple</h2>
+
+<p>These are the steps to configure your app in Apple&rsquo;s systems.</p>
+
+<ol>
+<li>Create a Bundle ID on <a href="https://developer.apple.com/account/resources/identifiers/add/bundleId">Apple Developer portal</a> &ndash; it can be an arbitrary bundle ID, and it doesn&rsquo;t require any specific Capabilities or App Services. Typically these are reverse-domain names, for my example I used <code>no.tjer.HelloWorld</code>.</li>
+<li>Create an iOS App for your Bundle ID in <a href="https://appstoreconnect.apple.com/apps">App Store Connect</a> by clicking the <i class="fa fa-plus-circle" title="circled plus icon"></i> next to <em>Apps</em></li>
+<li>Configure TestFlight on <a href="https://appstoreconnect.apple.com/apps">App Store Connect</a>, by navigating to your app and selecting the <em>TestFlight</em> tab.
+
+<ol>
+<li>Click the <i class="fa fa-plus-circle" title="circled plus icon"></i> next to <em>Internal Testing</em> to create a new internal group</li>
+<li>Name it whatever you&rsquo;d prefer (e.g. Developers)</li>
+<li>Click the new group in the sidebar and add yourself by clicking the <i class="fa fa-plus-circle" title="circled plus icon"></i> next to <em>Tester (0)</em></li>
+</ol>
+</li>
+</ol>
+
+
+<a name="Create..amp..set.up.a.Flutter.project.for.iOS"></a>
+<h2>Create &amp; set up a Flutter project for iOS</h2>
+
+<p>First we set up a project with Flutter with the iOS platform enabled and configure the project&rsquo;s Bundle ID</p>
+
+<ol>
+<li><p>Create a new Flutter project with iOS enabled, if you haven&rsquo;t already:</p>
+
+<pre><code class="`sh"> flutter create --platforms ios --org no.tjer --project-name hello_world --description "Test for iOS deploy on GH" flutter_github_example
+</code></pre></li>
+<li>Navigate to your project directory (e.g. <code>flutter_github_example</code> in the above example) and open <code>ios/Runner.xcworkspace</code> in Xcode.</li>
+<li>Make sure the Bundle Identifier for the project matches the one you created above by navigating to the Runner project in the left pane, clicking the Runner target, and then updating the <em>Bundle Identifier</em> under the <em>General</em> tab.</li>
+</ol>
+
+
+<a name="Configure.code.signing"></a>
+<h2>Configure code signing</h2>
+
+<p>To help managing code signing certificates and provisioning profiles, as well as the process of building &amp; signing, we&rsquo;ll use the excellent open source project <a href="https://fastlane.tools/">fastlane</a>. We&rsquo;ll be using a <strong>private</strong> GH repository to distribute the signing certificate to the builder (and to the team, if wanted).</p>
+
+<a name="Setting.up..code.fastlane..code..for.your.project"></a>
+<h3>Setting up <code>fastlane</code> for your project</h3>
+
+<p>Please refer to the <a href="https://docs.fastlane.tools/getting-started/ios/setup/">fastlane setup docs</a> for more details, but here&rsquo;s a quick overview of what to do to configure Fastlane.</p>
+
+<ol>
+<li><p>Create a text-file called <code>ios/Gemfile</code> with the following content:</p>
+
+<pre><code class="`rb"> source "https://rubygems.org"
+
+ gem "fastlane"
+ gem "cocoapods"
+</code></pre></li>
+<li><p>From a shell:</p>
+
+<pre><code class="`sh"> brew install rbenv ruby-build # Set up rbenv to control the ruby version
+ rbenv init
+</code></pre></li>
+<li><p>Close your terminal and re-open it for <code>rbenv</code> to be initialized, then navigate to your Flutter project and run:</p>
+
+<pre><code class="`sh"> echo 2.7.5 &gt; .ruby-version # Pick a semi-recent Ruby (you could probably do 3.x instead?)
+ rbenv install # Install the requested version of Ruby
+ gem install bundler
+ cd ios
+ bundle lock --add-platform x86_64-darwin-19 # Make sure the platform list includes the GH Runner platform
+ bundle exec fastlane init # Start the initial configuration of fastlane
+</code></pre>
+
+<ul>
+<li>Choose <em>🚀 Automate App Store distribution</em> when <code>fastlane init</code> prompts you for what you&rsquo;re configuring, and sign in to your Apple Developer account.</li>
+</ul>
+</li>
+<li>Make sure to add the following files to git:
+
+<ul>
+<li><code>.ruby-version</code> &ndash; the Ruby version we&rsquo;re using for fastlane</li>
+<li><code>ios/fastlane/Appfile</code> &ndash; configuration for the iOS app store</li>
+<li><code>ios/fastlane/Fastfile</code> &ndash; where we keep our fastlane recipe</li>
+<li><code>ios/Gemfile</code> &ndash; the dependencies for fastlane</li>
+<li><code>ios/Gemfile.lock</code> &ndash; specific version informatin for the gems specified in the Gemfile</li>
+</ul>
+</li>
+</ol>
+
+
+<a name="Configuring.App.Store.Connect.API.access.for.fastlane"></a>
+<h3>Configuring App Store Connect API access for fastlane</h3>
+
+<ol>
+<li>Set up an App Store Connect API key <a href="https://appstoreconnect.apple.com/access/users">on the <em>Users &amp; Access</em> section of the site</a> by going to the <em>Keys</em> tab and then:
+
+<ol>
+<li>Click the <i class="fa fa-plus-circle" title="circled plus icon"></i> next to <em>Active (0)</em>.</li>
+<li>Give it an identifying name (E.g. <em>Flutter GH Deploy</em> for the example project</li>
+<li>Choose <em>Developer</em> as the Access for the key, and click Generate</li>
+</ol>
+</li>
+<li>Refresh the page (navigating back to <em>Keys</em>) and choose to <em>Download API key</em> on the right side of the newly added key</li>
+<li>Add the API key to your GitHub secrets &ndash; this allows GitHub Workflows to publish new TestFlight builds:
+
+<ol>
+<li>Navigate to your Flutter project&rsquo;s GitHub page (e.g. <a href="https://github.com/jorgenpt/flutter_github_example/">https://github.com/jorgenpt/flutter_github_example/</a> for my example repo).</li>
+<li>Go to Settings, and select Secrets > Actions on the left side.</li>
+<li>Add a <em>New repository secret</em> named <code>APP_STORE_CONNECT_API_KEY_KEY</code> (yes, <code>KEY</code> should be there twice) and paste in the contents of the API key file you downloaded from App Store Connect (the file is named something like <code>AuthKey_KEYID.p8</code>).</li>
+</ol>
+</li>
+</ol>
+
+
+<a name="Configuring.certificates..amp..provisioning.profiles"></a>
+<h3>Configuring certificates &amp; provisioning profiles</h3>
+
+<p>First, create a private repository <a href="https://github.com/new">on GitHub</a> and mark it as <em>Private</em>. In my case, I named it <code>certificates</code>. Don&rsquo;t initialize it with any files or licenses. Make a note of the SSH url for your repository, in my case that&rsquo;ll be <code>git@github.com:jorgenpt/certificates</code>.</p>
+
+<ol>
+<li><p>Navigate to your Flutter project in a shell and then run these commands:</p>
+
+<pre><code class="`sh"> # These all need to be run from the ios platform of your Flutter project
+ cd ios
+
+ # For the following command, give `match init` the SSH URL for your repository (e.g.
+ # git@github.com:myuser/certificates) and generate a random password (though make a note
+ # of it for the next step).
+ # You should add the generated Matchfile to Git.
+ bundle exec fastlane match init 
+
+ # Create an appstore distribution certificate &amp; provisioning profile
+ bundle exec fastlane match appstore
+ # Create a development certificate &amp; provisioning profile
+ bundle exec fastlane match development
+</code></pre></li>
+<li>Make sure that your Xcode project is configured to use the same certificates:
+
+<ol>
+<li>Open <code>ios/Runner.xcworkspace</code> in Xcode</li>
+<li>Navigate to the Runner project in the left pane, click the Runner target, and switch to the <em>Signing &amp; Capabilities</em> tab.</li>
+<li>Uncheck <em>Automatically manage signing</em>.</li>
+<li>Select <em>Release</em> in the top bar and set the provisioning profile to the one that starts with <em>match AppStore</em>.</li>
+<li>Select <em>Debug</em> in the top bar and set the provisioning profile to the one that starts with <em>match Development</em>, and repeat this for <em>Profile</em> as well.
+<img src="/images/flutter-github-testflight-configured-signing.png"></li>
+</ol>
+</li>
+<li><p>Create a new SSH key that your workflow can use to access your GitHub certificates repository:</p>
+
+<pre><code class="`sh"> ssh-keygen -C github.com:myuser/my_flutter_project_name -f ~/Desktop/id_rsa_build
+</code></pre></li>
+<li><p>Add the password you generated above &amp; the SSH key to your GitHub secrets &ndash; this allows GitHub Workflows to sign your build:</p>
+
+<ol>
+<li>Navigate to your Flutter project&rsquo;s GitHub page (e.g. <a href="https://github.com/jorgenpt/flutter_github_example/">https://github.com/jorgenpt/flutter_github_example/</a> for my example repo).</li>
+<li>Go to Settings, and select Secrets > Actions on the left side.</li>
+<li>Add a <em>New repository secret</em> named <code>MATCH_PASSWORD</code> and paste in the password you generated above.</li>
+<li>Add a second <em>New repository secret</em> named <code>SSH_PRIVATE_KEY</code> and paste in the contents of <code>id_rsa_build</code> on your Desktop.</li>
+</ol>
+</li>
+</ol>
+
+
+<a name="Putting.it.all.together"></a>
+<h2>Putting it all together</h2>
+
+<p>Your GitHub repository&rsquo;s secrets should have three different secrets configured:</p>
+
+<p><img src="/images/flutter-github-testflight-configured-secrets.png" width="640"></p>
+
+<p>Now all that remains is to set up a fastlane <em>lane</em> that runs our build for us, and configure GitHub Workflows to invoke it:</p>
+
+<ol>
+<li>Create <code>.github/workflows/publish_ios.yml</code> in your Flutter repository from the <a href="https://raw.githubusercontent.com/jorgenpt/flutter_github_example/blogpost-testflight/.github/workflows/publish_ios.yml">reference publish_ios.yml in the example project</a>.</li>
+<li>Create <code>ios/fastlane/Fastfile</code> in your Flutter repository from the <a href="https://raw.githubusercontent.com/jorgenpt/flutter_github_example/blogpost-testflight/ios/fastlane/Fastfile">reference Fastfile in the example project</a>.</li>
+<li>Update <code>ios/fastlane/Fastfile</code> with your project details:
+
+<ol>
+<li><code>APP_IDENTIFIER</code> is the <em>Bundle Identifier</em> we created in <em>Setup with Apple</em>.</li>
+<li><code>APPSTORECONNECT_ISSUER_ID</code> is the <em>Issuer ID</em> from the <em>Keys</em> section of <a href="https://appstoreconnect.apple.com/access/users"><em>Users and Access</em> on App Store Connect</a>.</li>
+<li><code>APPSTORECONNECT_KEY_ID</code> is the <em>Key ID</em> from the specific key that we created in <em>Configuring App Store Connect API access for fastlane</em>, which you can look up in the <em>Keys</em> section of <a href="https://appstoreconnect.apple.com/access/users"><em>Users and Access</em> on App Store Connect</a>.</li>
+</ol>
+</li>
+</ol>
+
+
+<p>That&rsquo;s it! Now just create a git tag and push it to GitHub to start a build:</p>
+
+<pre><code class="sh">git tag v0.1.0 # This accepts any tag name  starting with "v"
+git push --tags
+</code></pre>
+
+<p>You can see an example run <a href="https://github.com/jorgenpt/flutter_github_example/runs/5347687784">in the Actions tab of <code>flutter_github_example</code></a>.</p>
+
+<p>These builds will by default be available to <em>Internal Testers</em> &ndash; you can use the App Store Connect app or website to release one of these builds to <em>External Testers</em>.</p>
+]]></content>
+  </entry>
+  
+</feed>
