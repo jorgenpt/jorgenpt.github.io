@@ -163,7 +163,7 @@ Now all that remains is to set up a fastlane _lane_ that runs our build for us, 
 
 That's it! Now just create a git tag and push it to GitHub to start a build:
 
-```shell
+```sh
 git tag v0.1.0 # This accepts any tag name  starting with "v"
 git push --tags
 ```
