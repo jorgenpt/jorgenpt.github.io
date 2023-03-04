@@ -1,11 +1,12 @@
 ---
 layout: post
 title: Thoughts on Unreal Engine 4
-date: '2014-03-19T14:04:00-07:00'
+date: "2014-03-19T14:04:00-07:00"
 comments: true
 categories:
- - Game Development
- - Unity3D
+  - Game Development
+  - Unity3D
+  - Unreal Engine
 tumblr_url: http://jorgenpt.tumblr.com/post/80097448178/thoughts-on-unreal-engine-4
 alias: [/post/80097448178, /post/80097448178/thoughts-on-unreal-engine-4]
 ---
@@ -18,7 +19,7 @@ I've seen people compare this release to Unity, and aside from differences in te
 
 Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That's pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve's licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.
 
-*Disclaimer: I don't speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).*
+_Disclaimer: I don't speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet)._
 
 [ue4-release]: https://unrealengine.com/blog/welcome-to-unreal-engine-4
 [ue-eula]: https://www.unrealengine.com/eula
