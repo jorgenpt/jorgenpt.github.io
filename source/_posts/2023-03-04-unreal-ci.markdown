@@ -1,0 +1,147 @@
+---
+layout: post
+title: "Unreal Engine and Continuous Integration"
+date: 2023-03-04 11:25:52 -0800
+comments: true
+categories:
+  - Game Development
+  - Unreal Engine
+---
+
+Unreal Engine and continuous integration presents some unique challenges (shared
+by some other game engines as well) and most CI tools aren't a great fit for
+those, so this post enumerates what those challenges are and what is
+**actually** required of a CI tool for our use cases.
+
+<!-- more -->
+
+I am not a build engineer, but a well functioning continuous integration set-up
+is an important part of a good developer user experience and required to build
+high quality products. I tend to help with any part of the development process
+that's valuable to the team, and so I often end up thinking about CI.
+
+Since I've been working with Unreal for about seven years, I figured I'd outline
+what outline what an Unreal workflow looks like andt hen rant a little bit about
+what I don't have.
+
+## A common Unreal Engine pipeline
+
+I'll use the term **Host Platform** to refer to the platform used for
+development (or needed by a paired **Target Platform**), which will usually be
+Windows and sometimes Linux or macOS.
+
+**Target Platform** refers to a platform the game runs on, which can be any
+number of platforms like Windows, macOS, PS5, iOS, Android, etc. Some target
+platforms require certain host platforms, like iOS requiring macOS or PS5
+requiring Windows.
+
+- Build each Host Platform editor
+  - **Inputs**: Source code
+  - **Outputs**: Editor binaries
+- Publish Host Platform editor to team
+  - **Inputs**: Editor binaries
+  - **Outputs**: Binaries in Perforce (for UGS or just in-tree)
+- Build binary for each Target Platform (this can include both clients and servers)
+  - **Inputs**: Source code
+  - **Outputs**: Game binaries
+- Cook content for each Target Platform
+  - **Inputs**: Source content, editor binaries for paired Host Platform
+  - **Outputs**: Cooked content assets or PAK files
+- Stage game for each Target Platform
+  - **Inputs**: Game binaries, cooked content
+  - **Outputs**: Staged game ready for publishing
+- Publish game to storefronts
+  - **Inputs**: Staged game
+  - **Outputs**: Game on one or more storefront CDNs (Steam, EGS, etc)
+
+Depending on your architecture, this might also have additional tools or
+services building & publishing in parallel (sometimes lockstep -- e.g. we don't
+publish new client binaries to the storefront unless the server binary
+successfully published and the backend on-demand asset cook reported success).
+
+## Unique challenges for CI in games
+
+There are three things I consider to be somewhat unique to managing CI in games,
+namely:
+
+1. **Artifact size** -- outputs from build steps range from hundreds of megabytes to
+   tens of gigabytes.
+1. **Team visibility** -- the build process affects and is affected by a large
+   number of non-technical staff.
+1. **Vaguely complicated dependency graphs** -- as you can see from the above, cooking only
+   requires editor binaries, but staging requires the output of cook and binaries.
+
+**Artifact size** means that many common ways of pushing inputs & outputs can
+fall short, and you often require large backing stores & good retention
+policies. I've only had bad experiences with Jenkins' artifact management, and
+usually we just fall back on pushing things to S3 directly.
+
+**Team visibility** means that artists and designers can check in changes that
+they both want to know when are available to e.g. playtests and that also
+might cause the build to fail. We want these failures to be actionable by the
+non-technical staff without needing to involve an engineer, and we want the
+state of the build to be something they can inspect on their own.
+
+**Vaguely complicated dependency graphs** means that you ideally want to have
+"join points" in your CI system, so that you can take the input from two
+different jobs and combine them into a third job. In the past, we've put
+together hacks that rely on S3 markers to detect if the other job has finished,
+but more commonly teams tend to either create large serial build pipelines
+(build editor, then game binaries, then cook, then publish) or duplicate work
+(e.g. build the paired host platform editor for each **target** platform so you
+can cook without knowing when the host platform editor build is done).
+
+## Shortcomings of existing CI tools
+
+First of all, most CI tools are not great at letting you filter the information
+you expose to the end user. That means that there tends to be information
+overload, both for engineers and more importantly, for non-engineers. I am
+starting to come around on the notion that this is fine -- we develop our own
+tools to handle this. Things like badges in Unreal Game Sync and log-parsing
+Slack bots that extract (more) actionable information.
+
+Secondly, the way we would like to structure our dependency graphs to achieve
+lower latency builds is as far as I've seen not well supported in neither
+Jenkins nor buildbot. Having to fight the CI system to achieve this means that
+people tend to just .. not, and instead just throw more hardware at it.
+
+Finally, especially Jenkins has this problem of wanting to solve too many of my
+problems. There's a plugin for **everything**, but I rarely use a plugin without
+finding that it has some shortcoming or doesn't fit my particular use case. When
+that happens, it's usually quite painful -- writing (or modifying) and deploying
+plugins for Jenkins is a huge pain. At the end of the day, we usually write our
+own tools, and I'd much rather have a system that **supports** that, rather than
+gets in the way of it.
+
+## What I need from a CI tool
+
+In some ways, I think Jenkins and its ecosystem has too much complexity, and I'd
+love something a little leaner. With that in mind, I've started to try to
+distill what I actually want / need from a tool:
+
+1. Trigger a build when there's a Perforce change
+1. Run a bunch of commands, some in parallel, some in serial, across a number of
+   nodes with different OSes (as an aside, I quite like GitHub Workflow's [log
+   grouping][gh-log-grouping] as a tool to let complex commands break up their
+   output for consumption)
+1. Report failures in a way where I can automatically introspect and format it
+   (ideally some way of hooking into "events" from my build job, like failure)
+1. Store secrets we can expose to jobs
+1. Configuration of the build pipeline lives in SCM and doesn't require me to
+   re-deploy the CI itself (looking at you, buildbot)
+1. Authentication (single sign-on with Google, specifically) with read-only or
+   read-write permissions
+1. If we're being greedy, ability to spin up & shut down EC2 instances for the
+   jobs to run on, or at least some way to hook into the host provisioning to do
+   this (we currently do this manually in our pipeline, because all the plugins
+   assume you have an AMI or a docker image, but I have like ..
+   already-provisioned nodes I want to use)
+
+I think that when it comes to a plugin / component architecture, I'd much rather
+have a simple structure where components can be included per-job, and are just
+programs that run. Whether it's a shell script or a Rust program, it should be a
+way to bundle & configure tools that's no different than what I can do in my own
+build definition, so that it's trivial to expand when you outgrow them or create
+new ones from existing build definitions.
+
+[gh-log-grouping]: (https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)
