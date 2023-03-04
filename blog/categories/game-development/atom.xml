@@ -4,7 +4,7 @@
   <title><![CDATA[Category: game development | Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/blog/categories/game-development/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2022-02-26T17:55:26-08:00</updated>
+  <updated>2023-03-04T12:33:32-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -12,6 +12,187 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Unreal Engine and Continuous Integration]]></title>
+    <link href="https://jorgen.tjer.no/post/2023/03/04/unreal-ci/"/>
+    <updated>2023-03-04T11:25:52-08:00</updated>
+    <id>https://jorgen.tjer.no/post/2023/03/04/unreal-ci</id>
+    <content type="html"><![CDATA[<p>Unreal Engine and continuous integration presents some unique challenges (shared
+by some other game engines as well) and most CI tools aren&rsquo;t a great fit for
+those, so this post enumerates what those challenges are and what is
+<strong>actually</strong> required of a CI tool for our use cases.</p>
+
+<!-- more -->
+
+
+<p>I am not a build engineer, but a well functioning continuous integration set-up
+is an important part of a good developer user experience and required to build
+high quality products. I tend to help with any part of the development process
+that&rsquo;s valuable to the team, and so I often end up thinking about CI.</p>
+
+<p>Since I&rsquo;ve been working with Unreal for about seven years, I figured I&rsquo;d outline
+what outline what an Unreal workflow looks like andt hen rant a little bit about
+what I don&rsquo;t have.</p>
+
+<a name="A.common.Unreal.Engine.pipeline"></a>
+<h2>A common Unreal Engine pipeline</h2>
+
+<p>I&rsquo;ll use the term <strong>Host Platform</strong> to refer to the platform used for
+development (or needed by a paired <strong>Target Platform</strong>), which will usually be
+Windows and sometimes Linux or macOS.</p>
+
+<p><strong>Target Platform</strong> refers to a platform the game runs on, which can be any
+number of platforms like Windows, macOS, PS5, iOS, Android, etc. Some target
+platforms require certain host platforms, like iOS requiring macOS or PS5
+requiring Windows.</p>
+
+<ul>
+<li>Build each Host Platform editor
+
+<ul>
+<li><strong>Inputs</strong>: Source code</li>
+<li><strong>Outputs</strong>: Editor binaries</li>
+</ul>
+</li>
+<li>Publish Host Platform editor to team
+
+<ul>
+<li><strong>Inputs</strong>: Editor binaries</li>
+<li><strong>Outputs</strong>: Binaries in Perforce (for UGS or just in-tree)</li>
+</ul>
+</li>
+<li>Build binary for each Target Platform (this can include both clients and servers)
+
+<ul>
+<li><strong>Inputs</strong>: Source code</li>
+<li><strong>Outputs</strong>: Game binaries</li>
+</ul>
+</li>
+<li>Cook content for each Target Platform
+
+<ul>
+<li><strong>Inputs</strong>: Source content, editor binaries for paired Host Platform</li>
+<li><strong>Outputs</strong>: Cooked content assets or PAK files</li>
+</ul>
+</li>
+<li>Stage game for each Target Platform
+
+<ul>
+<li><strong>Inputs</strong>: Game binaries, cooked content</li>
+<li><strong>Outputs</strong>: Staged game ready for publishing</li>
+</ul>
+</li>
+<li>Publish game to storefronts
+
+<ul>
+<li><strong>Inputs</strong>: Staged game</li>
+<li><strong>Outputs</strong>: Game on one or more storefront CDNs (Steam, EGS, etc)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Depending on your architecture, this might also have additional tools or
+services building &amp; publishing in parallel (sometimes lockstep &ndash; e.g. we don&rsquo;t
+publish new client binaries to the storefront unless the server binary
+successfully published and the backend on-demand asset cook reported success).</p>
+
+<a name="Unique.challenges.for.CI.in.games"></a>
+<h2>Unique challenges for CI in games</h2>
+
+<p>There are three things I consider to be somewhat unique to managing CI in games,
+namely:</p>
+
+<ol>
+<li><strong>Artifact size</strong> &ndash; outputs from build steps range from hundreds of megabytes to
+tens of gigabytes.</li>
+<li><strong>Team visibility</strong> &ndash; the build process affects and is affected by a large
+number of non-technical staff.</li>
+<li><strong>Vaguely complicated dependency graphs</strong> &ndash; as you can see from the above, cooking only
+requires editor binaries, but staging requires the output of cook and binaries.</li>
+</ol>
+
+
+<p><strong>Artifact size</strong> means that many common ways of pushing inputs &amp; outputs can
+fall short, and you often require large backing stores &amp; good retention
+policies. I&rsquo;ve only had bad experiences with Jenkins' artifact management, and
+usually we just fall back on pushing things to S3 directly.</p>
+
+<p><strong>Team visibility</strong> means that artists and designers can check in changes that
+they both want to know when are available to e.g. playtests and that also
+might cause the build to fail. We want these failures to be actionable by the
+non-technical staff without needing to involve an engineer, and we want the
+state of the build to be something they can inspect on their own.</p>
+
+<p><strong>Vaguely complicated dependency graphs</strong> means that you ideally want to have
+&ldquo;join points&rdquo; in your CI system, so that you can take the input from two
+different jobs and combine them into a third job. In the past, we&rsquo;ve put
+together hacks that rely on S3 markers to detect if the other job has finished,
+but more commonly teams tend to either create large serial build pipelines
+(build editor, then game binaries, then cook, then publish) or duplicate work
+(e.g. build the paired host platform editor for each <strong>target</strong> platform so you
+can cook without knowing when the host platform editor build is done).</p>
+
+<a name="Shortcomings.of.existing.CI.tools"></a>
+<h2>Shortcomings of existing CI tools</h2>
+
+<p>First of all, most CI tools are not great at letting you filter the information
+you expose to the end user. That means that there tends to be information
+overload, both for engineers and more importantly, for non-engineers. I am
+starting to come around on the notion that this is fine &ndash; we develop our own
+tools to handle this. Things like badges in Unreal Game Sync and log-parsing
+Slack bots that extract (more) actionable information.</p>
+
+<p>Secondly, the way we would like to structure our dependency graphs to achieve
+lower latency builds is as far as I&rsquo;ve seen not well supported in neither
+Jenkins nor buildbot. Having to fight the CI system to achieve this means that
+people tend to just .. not, and instead just throw more hardware at it.</p>
+
+<p>Finally, especially Jenkins has this problem of wanting to solve too many of my
+problems. There&rsquo;s a plugin for <strong>everything</strong>, but I rarely use a plugin without
+finding that it has some shortcoming or doesn&rsquo;t fit my particular use case. When
+that happens, it&rsquo;s usually quite painful &ndash; writing (or modifying) and deploying
+plugins for Jenkins is a huge pain. At the end of the day, we usually write our
+own tools, and I&rsquo;d much rather have a system that <strong>supports</strong> that, rather than
+gets in the way of it.</p>
+
+<a name="What.I.need.from.a.CI.tool"></a>
+<h2>What I need from a CI tool</h2>
+
+<p>In some ways, I think Jenkins and its ecosystem has too much complexity, and I&rsquo;d
+love something a little leaner. With that in mind, I&rsquo;ve started to try to
+distill what I actually want / need from a tool:</p>
+
+<ol>
+<li>Trigger a build when there&rsquo;s a Perforce change</li>
+<li>Run a bunch of commands, some in parallel, some in serial, across a number of
+nodes with different OSes (as an aside, I quite like GitHub Workflow&rsquo;s <a href="(https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)">log
+grouping</a> as a tool to let complex commands break up their
+output for consumption)</li>
+<li>Report failures in a way where I can automatically introspect and format it
+(ideally some way of hooking into &ldquo;events&rdquo; from my build job, like failure)</li>
+<li>Store secrets we can expose to jobs</li>
+<li>Configuration of the build pipeline lives in SCM and doesn&rsquo;t require me to
+re-deploy the CI itself (looking at you, buildbot)</li>
+<li>Authentication (single sign-on with Google, specifically) with read-only or
+read-write permissions</li>
+<li>If we&rsquo;re being greedy, ability to spin up &amp; shut down EC2 instances for the
+jobs to run on, or at least some way to hook into the host provisioning to do
+this (we currently do this manually in our pipeline, because all the plugins
+assume you have an AMI or a docker image, but I have like ..
+already-provisioned nodes I want to use)</li>
+</ol>
+
+
+<p>I think that when it comes to a plugin / component architecture, I&rsquo;d much rather
+have a simple structure where components can be included per-job, and are just
+programs that run. Whether it&rsquo;s a shell script or a Rust program, it should be a
+way to bundle &amp; configure tools that&rsquo;s no different than what I can do in my own
+build definition, so that it&rsquo;s trivial to expand when you outgrow them or create
+new ones from existing build definitions.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AIE presentation slides]]></title>
@@ -420,23 +601,6 @@ distribution.</p>
 <p><strong>Update</strong>: In the follow-up post, I cover <a href="/post/2014/05/28/steam-runtime-without-steam/">the details of distributing
 a game that relies on the steam-runtime to hermetically seal its
 environment, without depending on Steam</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Thoughts on Unreal Engine 4]]></title>
-    <link href="https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4/"/>
-    <updated>2014-03-19T14:04:00-07:00</updated>
-    <id>https://jorgen.tjer.no/post/2014/03/19/thoughts-on-unreal-engine-4</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m excited by the <a href="https://unrealengine.com/blog/welcome-to-unreal-engine-4">release of Unreal Engine 4</a> (by Epic Games), and I figured I&rsquo;d put a couple of my thoughts down in writing.</p>
-
-<p>First, let me emphasize something that hasn&rsquo;t been clear about this release: While UE4 uses a subscription model, a continued subscription is only required to get access to updates. Even if you cancel your subscription, you <strong>retain license to use &amp; modify the engine</strong>. Don&rsquo;t believe me? Read the <a href="https://www.unrealengine.com/eula">second to last paragraph of section 3 in their EULA</a>. You still have to (of course) follow the EULA and pay Epic 5% of your revenue from using UE4, even if you don&rsquo;t have an active subscription. On the topic of the EULA: It is written in fairly accessible english. Yay!</p>
-
-<p>I&rsquo;ve seen people compare this release to Unity, and aside from differences in technology, one of the big things to note is that Unity keeps their source very close to their chest. If you&rsquo;re a Unity developer, and Unity Technologies goes away or the Unity engine has limitations that you care about but they don&rsquo;t, then you&rsquo;re hosed unless you go the route of getting a custom source license (which I&rsquo;d guess isn&rsquo;t cheap). You have no source access, so you cannot easily remove those limitations, and you cannot add support for new (or old) platforms. The same thing was true for the Unreal Development Kit (UDK), which was the &ldquo;non-AAA&rdquo; license option for UE3, but for UE4 it looks like you&rsquo;ll never be locked down like that.</p>
-
-<p>Lastly, Epic is trying to encourage an open development process - both by them and by their licensees. That&rsquo;s pretty cool - I cringe when I think about how many different times the same things have likely been implemented / fixed in the Source engine, both by Valve&rsquo;s licensees, but also Valve developers. Epic realizes that their advantage is not (mainly) their specific implementation, but the sheer amount of engineering effort that has been put into making UE4 what it is. If licensees actually contribute back, then that will further UE4.</p>
-
-<p><em>Disclaimer: I don&rsquo;t speak on behalf of Valve Software, and I have no association with Epic Games. I have not looked at the source of Unreal Engine 4 (yet).</em></p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Unreal Engine and Continuous Integration - Jørgen's Blog</title>
+  <meta name="author" content="Jørgen Tjernø">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://jorgen.tjer.no/post/2023/03/04/unreal-ci/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Jørgen's Blog" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jorgen.tjer.no/post/2023/03/04/unreal-ci/">
+  <meta property="og:title" content="Unreal Engine and Continuous Integration - Jørgen's Blog">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51279149-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jørgen's Blog</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/jorgenpt"><i class="fa fa-twitter fa-lg"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/jorgenpt"><i class="fa fa-github fa-lg"></i></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="jorgen.tjer.no">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Jørgen's Blog" />
+    
+    <meta itemprop="url" content="https://jorgen.tjer.no" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2023-03-04T11:25:52-08:00"  data-updated="true" itemprop="datePublished dateCreated"> 4 Mar, 2023</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Unreal Engine and Continuous Integration
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p>Unreal Engine and continuous integration presents some unique challenges (shared
+by some other game engines as well) and most CI tools aren&rsquo;t a great fit for
+those, so this post enumerates what those challenges are and what is
+<strong>actually</strong> required of a CI tool for our use cases.</p>
+
+<!-- more -->
+
+
+<p>I am not a build engineer, but a well functioning continuous integration set-up
+is an important part of a good developer user experience and required to build
+high quality products. I tend to help with any part of the development process
+that&rsquo;s valuable to the team, and so I often end up thinking about CI.</p>
+
+<p>Since I&rsquo;ve been working with Unreal for about seven years, I figured I&rsquo;d outline
+what outline what an Unreal workflow looks like andt hen rant a little bit about
+what I don&rsquo;t have.</p>
+
+<a name="A.common.Unreal.Engine.pipeline"></a>
+<h2>A common Unreal Engine pipeline</h2>
+
+<p>I&rsquo;ll use the term <strong>Host Platform</strong> to refer to the platform used for
+development (or needed by a paired <strong>Target Platform</strong>), which will usually be
+Windows and sometimes Linux or macOS.</p>
+
+<p><strong>Target Platform</strong> refers to a platform the game runs on, which can be any
+number of platforms like Windows, macOS, PS5, iOS, Android, etc. Some target
+platforms require certain host platforms, like iOS requiring macOS or PS5
+requiring Windows.</p>
+
+<ul>
+<li>Build each Host Platform editor
+
+<ul>
+<li><strong>Inputs</strong>: Source code</li>
+<li><strong>Outputs</strong>: Editor binaries</li>
+</ul>
+</li>
+<li>Publish Host Platform editor to team
+
+<ul>
+<li><strong>Inputs</strong>: Editor binaries</li>
+<li><strong>Outputs</strong>: Binaries in Perforce (for UGS or just in-tree)</li>
+</ul>
+</li>
+<li>Build binary for each Target Platform (this can include both clients and servers)
+
+<ul>
+<li><strong>Inputs</strong>: Source code</li>
+<li><strong>Outputs</strong>: Game binaries</li>
+</ul>
+</li>
+<li>Cook content for each Target Platform
+
+<ul>
+<li><strong>Inputs</strong>: Source content, editor binaries for paired Host Platform</li>
+<li><strong>Outputs</strong>: Cooked content assets or PAK files</li>
+</ul>
+</li>
+<li>Stage game for each Target Platform
+
+<ul>
+<li><strong>Inputs</strong>: Game binaries, cooked content</li>
+<li><strong>Outputs</strong>: Staged game ready for publishing</li>
+</ul>
+</li>
+<li>Publish game to storefronts
+
+<ul>
+<li><strong>Inputs</strong>: Staged game</li>
+<li><strong>Outputs</strong>: Game on one or more storefront CDNs (Steam, EGS, etc)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Depending on your architecture, this might also have additional tools or
+services building &amp; publishing in parallel (sometimes lockstep &ndash; e.g. we don&rsquo;t
+publish new client binaries to the storefront unless the server binary
+successfully published and the backend on-demand asset cook reported success).</p>
+
+<a name="Unique.challenges.for.CI.in.games"></a>
+<h2>Unique challenges for CI in games</h2>
+
+<p>There are three things I consider to be somewhat unique to managing CI in games,
+namely:</p>
+
+<ol>
+<li><strong>Artifact size</strong> &ndash; outputs from build steps range from hundreds of megabytes to
+tens of gigabytes.</li>
+<li><strong>Team visibility</strong> &ndash; the build process affects and is affected by a large
+number of non-technical staff.</li>
+<li><strong>Vaguely complicated dependency graphs</strong> &ndash; as you can see from the above, cooking only
+requires editor binaries, but staging requires the output of cook and binaries.</li>
+</ol>
+
+
+<p><strong>Artifact size</strong> means that many common ways of pushing inputs &amp; outputs can
+fall short, and you often require large backing stores &amp; good retention
+policies. I&rsquo;ve only had bad experiences with Jenkins' artifact management, and
+usually we just fall back on pushing things to S3 directly.</p>
+
+<p><strong>Team visibility</strong> means that artists and designers can check in changes that
+they both want to know when are available to e.g. playtests and that also
+might cause the build to fail. We want these failures to be actionable by the
+non-technical staff without needing to involve an engineer, and we want the
+state of the build to be something they can inspect on their own.</p>
+
+<p><strong>Vaguely complicated dependency graphs</strong> means that you ideally want to have
+&ldquo;join points&rdquo; in your CI system, so that you can take the input from two
+different jobs and combine them into a third job. In the past, we&rsquo;ve put
+together hacks that rely on S3 markers to detect if the other job has finished,
+but more commonly teams tend to either create large serial build pipelines
+(build editor, then game binaries, then cook, then publish) or duplicate work
+(e.g. build the paired host platform editor for each <strong>target</strong> platform so you
+can cook without knowing when the host platform editor build is done).</p>
+
+<a name="Shortcomings.of.existing.CI.tools"></a>
+<h2>Shortcomings of existing CI tools</h2>
+
+<p>First of all, most CI tools are not great at letting you filter the information
+you expose to the end user. That means that there tends to be information
+overload, both for engineers and more importantly, for non-engineers. I am
+starting to come around on the notion that this is fine &ndash; we develop our own
+tools to handle this. Things like badges in Unreal Game Sync and log-parsing
+Slack bots that extract (more) actionable information.</p>
+
+<p>Secondly, the way we would like to structure our dependency graphs to achieve
+lower latency builds is as far as I&rsquo;ve seen not well supported in neither
+Jenkins nor buildbot. Having to fight the CI system to achieve this means that
+people tend to just .. not, and instead just throw more hardware at it.</p>
+
+<p>Finally, especially Jenkins has this problem of wanting to solve too many of my
+problems. There&rsquo;s a plugin for <strong>everything</strong>, but I rarely use a plugin without
+finding that it has some shortcoming or doesn&rsquo;t fit my particular use case. When
+that happens, it&rsquo;s usually quite painful &ndash; writing (or modifying) and deploying
+plugins for Jenkins is a huge pain. At the end of the day, we usually write our
+own tools, and I&rsquo;d much rather have a system that <strong>supports</strong> that, rather than
+gets in the way of it.</p>
+
+<a name="What.I.need.from.a.CI.tool"></a>
+<h2>What I need from a CI tool</h2>
+
+<p>In some ways, I think Jenkins and its ecosystem has too much complexity, and I&rsquo;d
+love something a little leaner. With that in mind, I&rsquo;ve started to try to
+distill what I actually want / need from a tool:</p>
+
+<ol>
+<li>Trigger a build when there&rsquo;s a Perforce change</li>
+<li>Run a bunch of commands, some in parallel, some in serial, across a number of
+nodes with different OSes (as an aside, I quite like GitHub Workflow&rsquo;s <a href="(https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)">log
+grouping</a> as a tool to let complex commands break up their
+output for consumption)</li>
+<li>Report failures in a way where I can automatically introspect and format it
+(ideally some way of hooking into &ldquo;events&rdquo; from my build job, like failure)</li>
+<li>Store secrets we can expose to jobs</li>
+<li>Configuration of the build pipeline lives in SCM and doesn&rsquo;t require me to
+re-deploy the CI itself (looking at you, buildbot)</li>
+<li>Authentication (single sign-on with Google, specifically) with read-only or
+read-write permissions</li>
+<li>If we&rsquo;re being greedy, ability to spin up &amp; shut down EC2 instances for the
+jobs to run on, or at least some way to hook into the host provisioning to do
+this (we currently do this manually in our pipeline, because all the plugins
+assume you have an AMI or a docker image, but I have like ..
+already-provisioned nodes I want to use)</li>
+</ol>
+
+
+<p>I think that when it comes to a plugin / component architecture, I&rsquo;d much rather
+have a simple structure where components can be included per-job, and are just
+programs that run. Whether it&rsquo;s a shell script or a Rust program, it should be a
+way to bundle &amp; configure tools that&rsquo;s no different than what I can do in my own
+build definition, so that it&rsquo;s trivial to expand when you outgrow them or create
+new ones from existing build definitions.</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Jørgen Tjernø</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2023-03-04T11:25:52-08:00"  data-updated="true" itemprop="datePublished dateCreated"> 4 Mar, 2023</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-development/'>game development</a>, <a class='category' href='/blog/categories/unreal-engine/'>unreal engine</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://jorgen.tjer.no/post/2023/03/04/unreal-ci/" data-via="" data-counturl="https://jorgen.tjer.no/post/2023/03/04/unreal-ci/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/post/2022/02/26/flutter-github-workflows-and-testflight/" title="Previous Post: Flutter & GitHub Workflows: Deploying to TestFlight">&laquo; Flutter & GitHub Workflows: Deploying to TestFlight</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h2>Comments</h2>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/post/2023/03/04/unreal-ci/">Unreal Engine and Continuous Integration</a>
+    
+    <a class="list-group-item " href="/post/2022/02/26/flutter-github-workflows-and-testflight/">Flutter & GitHub Workflows: Deploying to TestFlight</a>
+    
+    <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
+    
+    <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
+    
+    <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2023 - Jørgen Tjernø<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'jorgenpt';
+  
+  
+  var disqus_config = function () {
+    this.page.url = 'https://jorgen.tjer.no/post/2023/03/04/unreal-ci/';
+    this.page.identifier = 'https://jorgen.tjer.no/post/2023/03/04/unreal-ci/';
+  };
+  var disqus_script = 'embed.js';
+  
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

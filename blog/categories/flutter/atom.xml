@@ -4,7 +4,7 @@
   <title><![CDATA[Category: flutter | Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/blog/categories/flutter/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2022-02-26T17:55:26-08:00</updated>
+  <updated>2023-03-04T12:33:32-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -93,7 +93,7 @@
 </code></pre></li>
 <li><p>Close your terminal and re-open it for <code>rbenv</code> to be initialized, then navigate to your Flutter project and run:</p>
 
-<pre><code class="`sh"> echo 2.7.5 &gt; .ruby-version # Pick a semi-recent Ruby (you could probably do 3.x instead?)
+<pre><code class="`sh"> rbenv install -l 2&gt;&amp;1 | grep '^\d' | sort -n | tail -n 1 &gt; .ruby-version # Pick the most recent stable Ruby -- at the time of writing this is 3.1.1.
  rbenv install # Install the requested version of Ruby
  gem install bundler
  cd ios
@@ -220,7 +220,7 @@
 git push --tags
 </code></pre>
 
-<p>You can see an example run <a href="https://github.com/jorgenpt/flutter_github_example/runs/5347687784">in the Actions tab of <code>flutter_github_example</code></a>.</p>
+<p>You can see an example run <a href="https://github.com/jorgenpt/flutter_github_example/actions/workflows/publish_ios.yml">in the Actions tab of <code>flutter_github_example</code></a>.</p>
 
 <p>These builds will by default be available to <em>Internal Testers</em> &ndash; you can use the App Store Connect app or website to release one of these builds to <em>External Testers</em>.</p>
 ]]></content>

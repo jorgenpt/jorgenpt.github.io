@@ -217,7 +217,7 @@
 </code></pre></li>
 <li><p>Close your terminal and re-open it for <code>rbenv</code> to be initialized, then navigate to your Flutter project and run:</p>
 
-<pre><code class="`sh"> echo 2.7.5 &gt; .ruby-version # Pick a semi-recent Ruby (you could probably do 3.x instead?)
+<pre><code class="`sh"> rbenv install -l 2&gt;&amp;1 | grep '^\d' | sort -n | tail -n 1 &gt; .ruby-version # Pick the most recent stable Ruby -- at the time of writing this is 3.1.1.
  rbenv install # Install the requested version of Ruby
  gem install bundler
  cd ios
@@ -347,7 +347,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You can see an example run <a href="https://github.com/jorgenpt/flutter_github_example/runs/5347687784">in the Actions tab of <code>flutter_github_example</code></a>.</p>
+<p>You can see an example run <a href="https://github.com/jorgenpt/flutter_github_example/actions/workflows/publish_ios.yml">in the Actions tab of <code>flutter_github_example</code></a>.</p>
 
 <p>These builds will by default be available to <em>Internal Testers</em> &ndash; you can use the App Store Connect app or website to release one of these builds to <em>External Testers</em>.</p>
 </div>
@@ -401,6 +401,8 @@
             <li class="previous"><a href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/" title="Previous Post: Registering a (Rust) program as a browser on Windows">&laquo; Registering a (Rust) program as a browser on Windows</a></li>
             
             
+            <li class="next"><a href="/post/2023/03/04/unreal-ci/" title="Next Post: Unreal Engine and Continuous Integration">Unreal Engine and Continuous Integration &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -424,6 +426,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2023/03/04/unreal-ci/">Unreal Engine and Continuous Integration</a>
+    
     <a class="list-group-item active" href="/post/2022/02/26/flutter-github-workflows-and-testflight/">Flutter & GitHub Workflows: Deploying to TestFlight</a>
     
     <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
@@ -431,8 +435,6 @@
     <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
     
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
-    
-    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
   </div>
 </section>
@@ -452,7 +454,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2022 - Jørgen Tjernø<br>
+  Copyright &copy; 2023 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

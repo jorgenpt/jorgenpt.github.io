@@ -133,6 +133,60 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-03-02T13:22:00-08:00"  data-updated="true" itemprop="datePublished dateCreated"> 2 Mar, 2012</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/post/2012/03/02/requiring-a-minimum-version-of-the-android-ndk/" itemprop="url">Requiring a minimum version of the Android NDK</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I was tinkering with our build system at work, and I realized that builds were failing on r5b and below. After a bit of debugging (and reading the NDK changelog), I realized that <code>LOCAL_WHOLE_STATIC_LIBRARIES</code> was broken in r5b and missing in r4 and before. To prevent other engineers from running into this, I wanted to make our project depend on r5c or above.</p>
+
+<p>There doesn&rsquo;t seem to be a facility in place to do this, so I created a shellscript you can invoke from your <code>Makefile</code> to assert that the right version of the NDK is present. You can find <a href="https://gist.github.com/1961404">the shellscript as a gist on GitHub</a></p>
+
+<p><strong>EDIT</strong>: This script depends on the environment variable ANDROID_NDK_ROOT to point to the base of your NDK. The script has been updated to test that this is the case (thanks to David R. for pointing this out).</p>
+
+<p>The only caveat is that it does <em>not</em> support asserting versions below r5 - this is because only r5 and above have a version identifier in the NDK tree. It will correctly identify r4 and below as not being good enough for your build, but you can&rsquo;t say &ldquo;I need r3 or above&rdquo;.</p>
+
+<p>Put the script into <code>jni/assert_ndk_version.sh</code>, and put the following at the top of your <code>jni/Android.mk</code>, and voilà! Builds should now fail with a more understandable message if someone&rsquo;s using the wrong NDK version. :-)</p>
+
+<figure class='code'><figcaption><span>jni/Android.mk</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="cp">ifneq ($(shell $(LOCAL_PATH)/assert_ndk_version.sh &quot;r5c&quot;),true)</span>
+</span><span class='line'>  <span class="k">$(</span>error NDK version r5c or greater required<span class="k">)</span>
+</span><span class='line'><span class="cp">endif</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-07-26T16:45:55-07:00"  data-updated="true" itemprop="datePublished dateCreated">26 Jul, 2011</time>
         
       </p>
@@ -334,6 +388,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/post/2023/03/04/unreal-ci/">Unreal Engine and Continuous Integration</a>
+    
     <a class="list-group-item " href="/post/2022/02/26/flutter-github-workflows-and-testflight/">Flutter & GitHub Workflows: Deploying to TestFlight</a>
     
     <a class="list-group-item " href="/post/2021/03/13/registering-a-rust-program-as-a-browser-on-windows/">Registering a (Rust) program as a browser on Windows</a>
@@ -341,8 +397,6 @@
     <a class="list-group-item " href="/post/2019/01/10/aie-presentation/">AIE presentation slides</a>
     
     <a class="list-group-item " href="/post/2015/10/21/experience-america-presentation/">Experience America presentation slides</a>
-    
-    <a class="list-group-item " href="/post/2014/05/28/steam-runtime-without-steam/">steam-runtime without Steam</a>
     
   </div>
 </section>
@@ -362,7 +416,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2022 - Jørgen Tjernø<br>
+  Copyright &copy; 2023 - Jørgen Tjernø<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
