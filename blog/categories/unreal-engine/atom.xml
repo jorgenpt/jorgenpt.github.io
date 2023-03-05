@@ -4,7 +4,7 @@
   <title><![CDATA[Category: unreal engine | Jørgen's Blog]]></title>
   <link href="https://jorgen.tjer.no/blog/categories/unreal-engine/atom.xml" rel="self"/>
   <link href="https://jorgen.tjer.no/"/>
-  <updated>2023-03-04T12:33:32-08:00</updated>
+  <updated>2023-03-05T12:11:10-08:00</updated>
   <id>https://jorgen.tjer.no/</id>
   <author>
     <name><![CDATA[Jørgen Tjernø]]></name>
@@ -32,8 +32,13 @@ high quality products. I tend to help with any part of the development process
 that&rsquo;s valuable to the team, and so I often end up thinking about CI.</p>
 
 <p>Since I&rsquo;ve been working with Unreal for about seven years, I figured I&rsquo;d outline
-what outline what an Unreal workflow looks like andt hen rant a little bit about
+what outline what an Unreal workflow looks like and then rant a little bit about
 what I don&rsquo;t have.</p>
+
+<p>This is intended to be a jumping-off point for conversations, so feel free to
+reach out with suggestions, questions, or otherwise continue this discussion!
+The easiest way to reach me is probably <a href="https://mastodon.gamedev.place/@jorgenpt">on mastodon.gamedev.place</a>,
+and there&rsquo;s also a comment field at the end of the post.</p>
 
 <a name="A.common.Unreal.Engine.pipeline"></a>
 <h2>A common Unreal Engine pipeline</h2>
@@ -69,7 +74,7 @@ requiring Windows.</p>
 <li><strong>Outputs</strong>: Game binaries</li>
 </ul>
 </li>
-<li>Cook content for each Target Platform
+<li>Cook<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> content for each Target Platform
 
 <ul>
 <li><strong>Inputs</strong>: Source content, editor binaries for paired Host Platform</li>
@@ -167,14 +172,16 @@ distill what I actually want / need from a tool:</p>
 <ol>
 <li>Trigger a build when there&rsquo;s a Perforce change</li>
 <li>Run a bunch of commands, some in parallel, some in serial, across a number of
-nodes with different OSes (as an aside, I quite like GitHub Workflow&rsquo;s <a href="(https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)">log
+nodes with different OSes (as an aside, I quite like GitHub Workflow&rsquo;s <a href="https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines">log
 grouping</a> as a tool to let complex commands break up their
 output for consumption)</li>
 <li>Report failures in a way where I can automatically introspect and format it
 (ideally some way of hooking into &ldquo;events&rdquo; from my build job, like failure)</li>
 <li>Store secrets we can expose to jobs</li>
 <li>Configuration of the build pipeline lives in SCM and doesn&rsquo;t require me to
-re-deploy the CI itself (looking at you, buildbot)</li>
+re-deploy the CI itself (looking at you, buildbot), ideally next to the game
+code &ndash; so that build instructions are versioned alongside the code it
+builds.</li>
 <li>Authentication (single sign-on with Google, specifically) with read-only or
 read-write permissions</li>
 <li>If we&rsquo;re being greedy, ability to spin up &amp; shut down EC2 instances for the
@@ -191,6 +198,14 @@ programs that run. Whether it&rsquo;s a shell script or a Rust program, it shoul
 way to bundle &amp; configure tools that&rsquo;s no different than what I can do in my own
 build definition, so that it&rsquo;s trivial to expand when you outgrow them or create
 new ones from existing build definitions.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Cooking is the process of applying per-target-platform data transformations, like converting textures to the optimal encoding for the target.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 ]]></content>
   </entry>
   
