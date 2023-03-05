@@ -21,8 +21,13 @@ high quality products. I tend to help with any part of the development process
 that's valuable to the team, and so I often end up thinking about CI.
 
 Since I've been working with Unreal for about seven years, I figured I'd outline
-what outline what an Unreal workflow looks like andt hen rant a little bit about
+what outline what an Unreal workflow looks like and then rant a little bit about
 what I don't have.
+
+This is intended to be a jumping-off point for conversations, so feel free to
+reach out with suggestions, questions, or otherwise continue this discussion!
+The easiest way to reach me is probably [on mastodon.gamedev.place][mastodon],
+and there's also a comment field at the end of the post.
 
 ## A common Unreal Engine pipeline
 
@@ -44,7 +49,7 @@ requiring Windows.
 - Build binary for each Target Platform (this can include both clients and servers)
   - **Inputs**: Source code
   - **Outputs**: Game binaries
-- Cook content for each Target Platform
+- Cook[^cooking] content for each Target Platform
   - **Inputs**: Source content, editor binaries for paired Host Platform
   - **Outputs**: Cooked content assets or PAK files
 - Stage game for each Target Platform
@@ -128,7 +133,9 @@ distill what I actually want / need from a tool:
    (ideally some way of hooking into "events" from my build job, like failure)
 1. Store secrets we can expose to jobs
 1. Configuration of the build pipeline lives in SCM and doesn't require me to
-   re-deploy the CI itself (looking at you, buildbot)
+   re-deploy the CI itself (looking at you, buildbot), ideally next to the game
+   code -- so that build instructions are versioned alongside the code it
+   builds.
 1. Authentication (single sign-on with Google, specifically) with read-only or
    read-write permissions
 1. If we're being greedy, ability to spin up & shut down EC2 instances for the
@@ -144,4 +151,7 @@ way to bundle & configure tools that's no different than what I can do in my own
 build definition, so that it's trivial to expand when you outgrow them or create
 new ones from existing build definitions.
 
-[gh-log-grouping]: (https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)
+[gh-log-grouping]: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines
+[mastodon]: https://mastodon.gamedev.place/@jorgenpt
+
+[^cooking]: Cooking is the process of applying per-target-platform data transformations, like converting textures to the optimal encoding for the target.
