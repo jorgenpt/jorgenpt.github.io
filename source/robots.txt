@@ -1,7 +1,9 @@
 ---
 layout: null
 ---
-User-agent: *
-Disallow: 
+User-agent: GPTBot
+Disallow: /
 
-Sitemap: {{ site.url }}/sitemap.xml 
+User-agent: *
+Allow: /
+Sitemap: {{ site.url }}/sitemap.xml
